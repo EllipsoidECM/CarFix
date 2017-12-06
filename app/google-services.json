@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "749225772995",
+    "firebase_url": "https://carfix-738ef.firebaseio.com",
+    "project_id": "carfix-738ef",
+    "storage_bucket": "carfix-738ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749225772995:android:034eb87e71736520",
+        "android_client_info": {
+          "package_name": "com.ellipsoidecm.carfix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749225772995-j89aj31o6edffj4ei35d3uebmtiab48k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ellipsoidecm.carfix",
+            "certificate_hash": "67cbd65589e52ce4617698f817f1057dbd858667"
+          }
+        },
+        {
+          "client_id": "749225772995-vbtvj374egasrorhccj4teg8u9s26fpp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ellipsoidecm.carfix",
+            "certificate_hash": "11c35a281b9eed725cf8ac1107efe858201133fa"
+          }
+        },
+        {
+          "client_id": "749225772995-t335lfmcaip0a3cu8m8aib0pr7eigqhe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj2SH2Qx4JcKLoC9mkhlEBW4fM5ELNCkU"
+        },
+        {
+          "current_key": "AIzaSyCEiSaKKn95ww8tLj5FQZ42a4ePaGjkE54"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749225772995-t335lfmcaip0a3cu8m8aib0pr7eigqhe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

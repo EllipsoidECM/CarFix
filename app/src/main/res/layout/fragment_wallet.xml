@@ -1,0 +1,52 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_weight="0.3">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="55dp"
+                android:layout_weight="0.5"
+                android:background="@color/iron">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="Wallet Balance"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@drawable/ic_rupee_indian"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="0.00"
+                    android:textAlignment="center"
+                    android:textSize="60sp" />
+            </RelativeLayout>
+        </TableRow>
+
+        <TableRow android:layout_weight="0.7">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5">
+
+
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

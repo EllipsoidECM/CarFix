@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/milkywhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@drawable/shadow">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="25dp"
+                android:src="@drawable/ic_bin" />
+
+
+            <TextView
+                android:id="@+id/cartspare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
+                android:text="Spare Part"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/cartbrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/cartspare"
+                android:layout_below="@+id/cartspare"
+                android:layout_marginTop="3dp"
+                android:text="Brand"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/cartmodel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/cartbrand"
+                android:layout_below="@+id/cartbrand"
+                android:layout_marginTop="3dp"
+                android:text="Model"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/cartdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/cartmodel"
+                android:layout_below="@+id/cartmodel"
+                android:layout_marginTop="3dp"
+                android:text="Date"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

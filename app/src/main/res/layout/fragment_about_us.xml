@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.ellipsoidecm.carfix.fragment.AboutUs">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/icon_red" />
+
+    <ImageView
+        android:id="@+id/white"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/logo_white" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tableLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/policy_text"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="16dp" />
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp">
+
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/facebook"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_facebook" />
+
+            <ImageView
+                android:id="@+id/twitter"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_twitter" />
+
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_instagram" />
+        </TableRow>
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="wwww.carfixzone.com"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent" />
+    </TableLayout>
+
+
+</RelativeLayout>

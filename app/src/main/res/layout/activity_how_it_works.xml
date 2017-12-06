@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/activity_how_it_works">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/layoutDots"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dots_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dots_margin_bottom"
+        android:gravity="center"
+        android:orientation="horizontal"></LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/layoutDots"
+        android:alpha=".5"
+        android:background="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/btn_next"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_arrow_point_to_right" />
+
+    <ImageView
+        android:id="@+id/btn_skip"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="3dp"
+        android:paddingBottom="7dp"
+        android:src="@drawable/ic_cancel_music" />
+
+</RelativeLayout>

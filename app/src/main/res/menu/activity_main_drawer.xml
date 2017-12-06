@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_house_outline"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_wallet"
+            android:title="Wallet" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_user"
+            android:title="My Account" />
+    </group>
+
+    <item android:title="Application">
+        <menu>
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/ic_translation"
+                android:title="Language" />
+            <item
+                android:id="@+id/nav_cart"
+                android:icon="@drawable/ic_shopping_cart"
+                android:title="Cart" />
+            <item
+                android:id="@+id/nav_orders"
+                android:icon="@drawable/ic_list"
+                android:title="My Orders" />
+            <item
+                android:id="@+id/nav_notiications"
+                android:icon="@drawable/ic_white_alarm"
+                android:title="Notiications" />
+        </menu>
+    </item>
+
+    <item android:title="Miscellaneous">
+        <menu>
+            <item
+                android:id="@+id/nav_aboutus"
+                android:icon="@drawable/ic_question"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_secure_shield"
+                android:title="Privacy Policy" />
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_phone_call"
+                android:title="Contact Us" />
+            <item
+                android:id="@+id/nav_how"
+                android:icon="@drawable/ic_question"
+                android:title="How It Works?" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_logout"
+                android:title="Log Out" />
+        </menu>
+    </item>
+
+</menu>

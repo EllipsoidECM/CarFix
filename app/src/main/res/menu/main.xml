@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mainlogout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_cart"
+        android:icon="@drawable/ic_white_shopping_cart"
+        android:title="cart"
+        app:actionLayout="@layout/custom_action_item_layout"
+        app:showAsAction="always" />
+
+
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@drawable/ic_alarm"
+        android:title="Notification"
+        app:showAsAction="always" />
+</menu>
+
+
+

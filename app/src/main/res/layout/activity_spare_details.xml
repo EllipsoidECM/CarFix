@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.ellipsoidecm.carfix.activity.SpareDetails">
+
+
+    <RelativeLayout
+        android:id="@+id/r5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey">
+
+        <TextView
+            android:id="@+id/tvselectvariant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Select Variant"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerVariant"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/tvselectvariant"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvselecthc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r5"
+        android:layout_marginTop="10dp"
+        android:text="Select Classification"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <GridView
+        android:id="@+id/hcGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvselecthc"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:columnWidth="70dp"
+        android:gravity="center_horizontal"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:textAlignment="center"
+        android:textDirection="firstStrong"
+        android:verticalSpacing="15dp"></GridView>
+
+
+
+</RelativeLayout>

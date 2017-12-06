@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="35dp"
+        android:background="#f0f0f0">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#f0f0f0">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv101"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="Category"
+                android:textColor="@color/colorPrimary" />
+
+
+            <Spinner
+                android:id="@+id/spinnerhc"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv101"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="2.5dip"
+                android:entries="@array/highc"
+                android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerhc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="Sub Category"
+                android:textColor="@color/colorPrimary" />
+
+
+            <Spinner
+                android:id="@+id/spinnerlc"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv102"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginTop="2.5dip"
+                android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv103"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinnerlc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:text="Sub Category"
+                android:textColor="@color/colorPrimary" />
+
+
+            <Spinner
+                android:id="@+id/spinnerpart"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv103"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginTop="2.5dip"
+                android:textAlignment="center" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/vrel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomtable"
+        android:layout_below="@+id/rel"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/shadow">
+
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textviewspare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="Spare Part Details"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textviewspare"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:hint="Part Details"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorPrimary" />
+
+
+            <EditText
+                android:id="@+id/et4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et1"
+                android:layout_marginBottom="2.5dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="5dp"
+                android:hint="Part Number"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorPrimary" />
+
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et4"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="15dp">
+
+
+                <TableRow>
+
+                    <ImageView
+                        android:id="@+id/camera"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_photo_camera" />
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="80dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_fix" />
+                </TableRow>
+
+            </TableLayout>
+
+
+        </RelativeLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+    <TableLayout
+        android:id="@+id/bottomtable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/rel1">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/refresh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:background="@color/mustard"
+                android:text="Edit"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/nexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:background="@color/green"
+                android:text="Continue"
+                android:textColor="@color/white" />
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>
