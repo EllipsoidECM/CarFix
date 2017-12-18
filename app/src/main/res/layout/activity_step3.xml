@@ -7,31 +7,74 @@
     android:fitsSystemWindows="true">
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="15dp"
+        android:background="@color/iron"
+        android:layout_marginRight="15dp"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+
+    <RelativeLayout
         android:id="@+id/linear1"
+        android:layout_margin="2dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="12dp"
+        android:layout_marginBottom="10dp"
         android:background="#ffffff"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        >
 
         <TextView
-            android:id="@+id/t1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Uploaded Image"
-            android:textAlignment="center"
-            android:textColor="@color/black" />
+            android:gravity="center_horizontal"
+            android:text="Product"
+            android:textSize="18dp"
+            android:id="@+id/producttext"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:id="@+id/cpartname"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/producttext"
+            android:layout_below="@+id/producttext"
+            android:text="sub part" />
+
+        <TextView
+            android:id="@+id/csubpart"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/cpartname"
+            android:layout_below="@+id/cpartname"
+            android:layout_marginTop="5dp"
+            android:text="Partdescription " />
+
+        <TextView
+            android:id="@+id/cpartnumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/csubpart"
+            android:layout_below="@+id/csubpart"
+            android:text="partnumber" />
 
         <ImageView
             android:id="@+id/finalimage"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_below="@+id/t1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/shadow" />
+            android:layout_alignParentEnd="true"
+             />
 
         <TableLayout
             android:id="@+id/table1"
@@ -49,99 +92,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Brand"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:text="category"
 
-                <TextView
-                    android:id="@+id/cbrand"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_border"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_margin="2dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="Year"
-                    android:textColor="@color/black"
                     android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/cyear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_border"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_margin="2dp">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Model"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/cmodel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_border"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_margin="2dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="Varaint"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/cvariant"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_border"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_margin="2dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="Body Category"
+                    android:text=":"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
@@ -150,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/background_border"
+
                     android:fontFamily="sans-serif-condensed"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
@@ -164,7 +124,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Part"
+                    android:text="category/part"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=":"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="18dp" />
 
@@ -173,7 +142,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/background_border"
                     android:fontFamily="sans-serif-condensed"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
@@ -187,79 +155,347 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Part Name"
-                    android:textColor="@color/black"
+                    android:text="category/part"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/cpartname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text=":"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+                <TextView
+                    android:id="@+id/subpart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/background_border"
                     android:fontFamily="sans-serif-condensed"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
             </TableRow>
 
-            <TableRow android:layout_margin="2dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:fontFamily="sans-serif-condensed"
-                    android:text="Part No."
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
 
-                <TextView
-                    android:id="@+id/cpartno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_border"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
-            </TableRow>
+            <!--<TableRow android:layout_margin="2dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.25"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:text="Varaint"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="18dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/cvariant"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/background_border"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
+
+            <!--<TableRow android:layout_margin="2dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.25"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:text="Body Category"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="18dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/cclassification"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/background_border"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
+
+            <!--<TableRow android:layout_margin="2dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.25"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:text="Part"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="18dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/ctype"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/background_border"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
+
+            <!--<TableRow android:layout_margin="2dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.25"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:text="Part Name"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="18dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/cpartname"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/background_border"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
+
+            <!--<TableRow android:layout_margin="2dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="0.25"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:text="Part No."-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="18dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/cpartno"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@drawable/background_border"-->
+                    <!--android:fontFamily="sans-serif-condensed"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/colorPrimary"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</TableRow>-->
         </TableLayout>
+        
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="100dp"
+            android:id="@+id/lineee1"
+            android:layout_height="3dp"
+            android:layout_below="@id/table1"
+            android:background="@color/divideline"
+            />
 
-        <TableLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/table1"
+            android:id="@+id/cardetails"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10dp"
+            android:text="car details"
+            android:layout_toEndOf="@+id/lineee1" />
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:id="@+id/lineee2"
+            android:layout_toEndOf="@id/cardetails"
+            android:layout_height="3dp"
+            android:layout_below="@id/table1"
+            android:background="@color/divideline"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardetails"
+            android:id="@+id/step1det"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                android:id="@+id/brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="Brand"
+                android:textColor="@color/colorPrimary" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/brand"
+                android:layout_toEndOf="@+id/brand"
+                android:background="#b0afb0" />
+
+            <TextView
+                android:id="@+id/cbrand"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:layout_below="@+id/view"
+                android:layout_marginEnd="7dp"
+                android:layout_toStartOf="@+id/view"
+                android:text="brand details" />
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_toEndOf="@id/brand"
+                android:text="Year"
+                android:textColor="@color/colorPrimary" />
+
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_alignTop="@+id/year"
+                android:layout_toEndOf="@+id/year"
+                android:background="#b0afb0" />
+
+            <TextView
+                android:id="@+id/cyear"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:layout_below="@+id/view2"
+                android:layout_toStartOf="@+id/view2"
+                android:text="Year details" />
+
+            <TextView
+                android:id="@+id/Model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:layout_toEndOf="@id/year"
+                android:text="Model"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/cmodel"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:textAlignment="center"
+                android:layout_below="@+id/view2"
+                android:layout_marginStart="9dp"
+                android:layout_toEndOf="@+id/view2"
+                android:text="Model details" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@id/step1det"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/step1det1"
+            android:layout_marginStart="50dp">
+
+            <TextView
+                android:id="@+id/varient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Varient"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/cvariant"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_alignBaseline="@+id/varient"
+                android:layout_alignBottom="@+id/varient"
+                android:layout_alignStart="@+id/varient"
+                android:layout_marginStart="52dp"
+                android:text="Varient details" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step1det1"
             android:layout_marginTop="20dp"
             >
 
-            <TableRow>
 
                 <Button
+                    android:layout_centerHorizontal="true"
                     android:id="@+id/edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_weight="1"
-                    android:background="@color/mustard"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="30dp"
+
+                    android:background="@drawable/mybutton3"
                     android:text="Edit"
                     android:textColor="@color/white" />
 
-                <Button
-                    android:id="@+id/cont"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_weight="1"
-                    android:background="@color/green"
-                    android:text="Add to Cart"
-                    android:textColor="@color/white" />
-            </TableRow>
-        </TableLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+            <TextView
+                android:layout_width="70dp"
+                android:text = "( O R )"
+                android:layout_marginBottom="0dp"
+                android:background="@color/white"
+                android:layout_gravity="bottom|center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/divideline"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/frame"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cont"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/green"
+                android:text="Add to Cart"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 </ScrollView>

@@ -1,10 +1,12 @@
 package com.ellipsoidecm.carfix.fragment;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ellipsoidecm.carfix.R;
@@ -29,7 +32,7 @@ public class Home extends Fragment {
     Spinner s1, s2, s3, s4;
     Button next;
 
-    RadioButton ecm, sparesscreen ;
+    Button  sparesscreen ;
 
     public Home() {
     }
@@ -47,17 +50,21 @@ public class Home extends Fragment {
 
 
 
-        ecm = (RadioButton) view.findViewById(R.id.ecm);
-        sparesscreen = (RadioButton) view.findViewById(R.id.spareparts);
 
-        ecm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(),ECM.class);
-                startActivity(i);
 
-            }
-        });
+        TextView tx = (TextView)view.findViewById(R.id.main_about);
+
+        Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/chaparral.ttf");
+
+        tx.setTypeface(custom_font);
+
+        String str2 = "";
+
+        String str1 ="";
+
+
+        tx.setText(Html.fromHtml("Buy spare parts at <font color=#cc0029>Carfix</font> <br/> with cheaper price. Providing all car brands spare parts."));
+
 
 
 
@@ -71,8 +78,9 @@ public class Home extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Select Brand",
-                            Toast.LENGTH_SHORT).show();                }
+
+                    Snackbar snackbar1 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Select Year Details", Snackbar.LENGTH_LONG);
+                    snackbar1.show();               }
                 return false;
             }
         });
@@ -81,7 +89,8 @@ public class Home extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Toast.makeText(getActivity().getApplicationContext(),"Select Year",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar2 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Select Variant", Snackbar.LENGTH_LONG);
+                    snackbar2.show();
                 }
 
                 return false;
@@ -94,18 +103,23 @@ public class Home extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Toast.makeText(getActivity().getApplicationContext(),"Select Variant",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar3 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Fuel details", Snackbar.LENGTH_LONG);
+                    snackbar3.show();
+
                 }
 
                 return false;
             }
         });
 
+
+
         s4.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Toast.makeText(getActivity().getApplicationContext(),"Select Fuel Source",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar4 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Click on continue", Snackbar.LENGTH_LONG);
+                    snackbar4.show();
                 }
 
                 return false;
@@ -122,7 +136,7 @@ public class Home extends Fragment {
 
                 if (sp1.contentEquals("Ashok Layland")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("LEYLAND STILE");
                     list.add("LEYLAND DOST");
                     ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
@@ -134,7 +148,7 @@ public class Home extends Fragment {
 
                 if (sp1.contentEquals("Aston Martin")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("MARTIN DB11");
                     list.add("MARTIN DB9(body type-couple)");
                     list.add("MARTIN DB9(body type-Convertible)");
@@ -153,7 +167,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Audi")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("A3 (8P7)");
                     list.add("A3 (8V7)");
                     list.add("A3(2017-now)");
@@ -187,7 +201,7 @@ public class Home extends Fragment {
 
                 if (sp1.contentEquals("BMW")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("1 (F20)");
                     list.add("3 (E90)");
                     list.add("3 (F30)");
@@ -222,7 +236,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Chevrolet")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("AVEO");
                     list.add("AVEO U-VA");
                     list.add("BEAT");
@@ -248,7 +262,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Daewoo")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("CIELO Saloon");
                     list.add("MATIZ");
                     ArrayAdapter<String> dataAdapter6 = new ArrayAdapter<String>(getActivity(),
@@ -259,7 +273,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Datsun")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("GO");
                     list.add("GO +");
                     list.add("REDI GO");
@@ -271,7 +285,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Fiat")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("ABARTH 595");
                     list.add("AVVENTURA");
                     list.add("ABARTH AVVENTURA");
@@ -300,7 +314,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Force")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("GURKHA(2013-now)(Body type: Convertible)");
                     list.add("GURKHA(2013-now)(Body type: Off-road vehicles)");
                     list.add("GURKHA");
@@ -314,7 +328,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Ford")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("CLASSIC");
                     list.add("ECOSPORT");
                     list.add("ENDEAVOUR(2003-2006)");
@@ -340,7 +354,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Honda")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("ACCORD VII");
                     list.add("ACCORD VI");
                     list.add("ACCORD IX");
@@ -370,7 +384,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Hyundai")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("ACCENT/ VIVA");
                     list.add("CRETA");
                     list.add("ELANTRA(2004-2007)");
@@ -411,7 +425,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("ISUZU")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("D-Max");
                     list.add("D-Max V-cross");
                     list.add("MU-7");
@@ -424,7 +438,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Jaguar")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("F-TYPE(2012-now)");
                     list.add("F-TYPE(2013-now)");
                     list.add("S-TYPE (CCX)");
@@ -447,7 +461,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Land Rover")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("DISCOVERY(2004-2009)");
                     list.add("DISCOVERY(2009-2013)");
                     list.add("DISCOVERY SPORT");
@@ -467,7 +481,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Mahindra")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("BOLERO PICKUP");
                     list.add("BOLERO");
                     list.add("BOLERO INVADER");
@@ -520,7 +534,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Maruti Suzuki")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("800(1997)");
                     list.add("800(2000)");
                     list.add("ALTO");
@@ -574,7 +588,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Mercdes-Benz")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("A-CLASS (W176");
                     list.add("B-CLASS (W245))");
                     list.add("C-CLASS (W203)");
@@ -615,7 +629,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Mini")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("F55");
                     list.add("F56");
                     list.add("R56");
@@ -630,7 +644,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Mitsubushi")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("CEDIA");
                     list.add("LANCER Mk VI");
                     list.add("LANCER EVOLUTION X");
@@ -647,7 +661,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Nissan")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("EVALIA");
                     list.add("GT-R (R35) (2008)");
                     list.add("MICRA (K13K)(2010-2013)");
@@ -669,7 +683,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Renault")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("DUSTER(2012-now)");
                     list.add("DUSTER(2017-now)");
                     list.add("FLUENCE");
@@ -687,7 +701,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Skoda")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("FABIA");
                     list.add("LAURA (1Z3)");
                     list.add("OCTAVIA (1U2)");
@@ -707,7 +721,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("TATA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("207");
                     list.add("ACE");
                     list.add("SUPER ACE");
@@ -762,7 +776,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Toyota")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("CAMRY XV30");
                     list.add("CAMRY XV40");
                     list.add("CAMRY XV50");
@@ -795,7 +809,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("VOLVO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("S60(2011-2015)");
                     list.add("S60 Cross Country");
                     list.add("S60(2016-now");
@@ -816,7 +830,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Volkswagen")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("AMEO");
                     list.add("BEETLE (9C1, 1C1)");
                     list.add("JETTA 6");
@@ -837,7 +851,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Opel")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("ASTRA");
                     list.add("CORSA");
                     list.add("VECTRA C (2002)");
@@ -849,7 +863,7 @@ public class Home extends Fragment {
                 }
                 if (sp1.contentEquals("Porsche")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Model");
                     list.add("911 (997)(2004-now)");
                     list.add("911 (997)(2005-now)");
                     list.add("911 (997)(2006-now)");
@@ -1008,7 +1022,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A3 (8P7)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 TFSI / 1.2L / Petrol");
                     list.add("1.4 TFSI / 1.4L / Petrol");
                     list.add("1.6/ 1.6L / Petrol");
@@ -1026,7 +1040,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A3 (8V7)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4TFSI / 1.4L / petrol / 140h.p");
                     list.add("1.4TFSI / 1.4L / petrol / 125h.p");
                     list.add("1.4TFSI / 1.4L / petrol / 150h.p");
@@ -1046,7 +1060,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A3(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 148h.p");
                     list.add("2.0 / 2.0L / Diesel / 141h.p");
                     ArrayAdapter<String> dataAdapter114 = new ArrayAdapter<String>(getActivity(),
@@ -1057,7 +1071,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A3(2015-2016)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 180h.p");
                     list.add("2.0 / 2.0L / Diesel / 143h.p");
                     ArrayAdapter<String> dataAdapter115 = new ArrayAdapter<String>(getActivity(),
@@ -1068,7 +1082,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A3 Cabriolet")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 148h.p");
                     list.add("1.8 / 1.8L / Petrol / 177h.p");
                     ArrayAdapter<String> dataAdapter116 = new ArrayAdapter<String>(getActivity(),
@@ -1079,7 +1093,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A4 (8E2, B6)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8T / 1.8L / Petrol / 150h.p");
                     list.add("1.8T / 1.8L / Petrol / 170h.p");
                     list.add("1.8T / 1.8L / Petrol / 163h.p");
@@ -1103,7 +1117,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A4 (8EC, B7)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 102h.p");
                     list.add("1.8 T quattro / 1.8L / Petrol / 163h.p");
                     list.add("1.9 TDI  / 1.9L / Diesel / 116h.p");
@@ -1134,7 +1148,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A4 (8K2, B8)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 TFSI / 1.8L / Petrol / 120h.p");
                     list.add("1.8 TFSI quattro / 1.8L / Petrol / 170h.p");
                     list.add("1.8 TFSI quattro / 1.8L / Petrol / 160h.p");
@@ -1165,7 +1179,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A4 (8W, B9)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 TFSI / 1.4L / Petrol / 148h.p");
                     ArrayAdapter<String> dataAdapter120 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1175,7 +1189,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RS5")) {
                     List<String> list = new ArrayList<>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.2 / 4.2L/Petrol / 44h.p");
                     ArrayAdapter<String> dataAdapter121 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1185,7 +1199,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A6 (4F2, C6)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 TDI / 2.0L / Diesel / 140h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 121h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 170h.p");
@@ -1218,7 +1232,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A6 (4G2, C7)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 TDI / 2.0L / Diesel / 177h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 163h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 190h.p");
@@ -1242,7 +1256,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A7")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0  quattro / 3.0L / Diesel / 241h.p");
                     ArrayAdapter<String> dataAdapter124 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1252,7 +1266,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A8 (4E_)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.8  FSI / 2.8L /Petrol / 210h.p");
                     list.add("2.8  FSI / 2.8L /Petrol / 231h.p");
                     list.add("3.0  / 3.0L /Petrol / 220h.p");
@@ -1276,7 +1290,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A8 (4H_)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 TDI / 3.0L / Diesel / 204h.p");
                     list.add("3.0 TDI quattro / 3.0L / Diesel / 250h.p");
                     list.add("3.0 TDI quattro / 3.0L / Diesel / 211h.p");
@@ -1298,7 +1312,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Q3 (8U)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 TFSI / 1.4L / Petrol / 150h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 140h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 136h.p");
@@ -1314,7 +1328,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Q3")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 150h.p");
                     list.add("2.0 / 2.0L / Diesel / 184h.p");
                     ArrayAdapter<String> dataAdapter128 = new ArrayAdapter<String>(getActivity(),
@@ -1325,7 +1339,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Q5 (8R)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 TDI / 2.0L / Diesel / 143h.p");
                     list.add("2.0 TDI quattro / 2.0L / Diesel / 170h.p");
                     list.add("2.0 TDI quattro / 2.0L / Diesel / 163h.p");
@@ -1355,7 +1369,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Q7 (4L)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0TDI / 3.0L / Diesel / 233h.p");
                     list.add("3.0TDI / 3.0L / Diesel / 211h.p");
                     list.add("3.0TDI / 3.0L / Diesel / 240h.p");
@@ -1376,7 +1390,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("R8(2007-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.2FSI quattro / 4.2L / Petrol / 420h.p");
                     list.add("4.2FSI quattro / 4.2L / Petrol / 430h.p");
                     list.add("5.2FSI quattro / 5.2L / Petrol / 525h.p");
@@ -1391,7 +1405,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("R8(2010-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.2FSI quattro / 4.2L / Petrol / 430h.p");
                     list.add("5.2 FSI quattro / 5.2L / Petrol / 525h.p");
                     list.add("5.2 FSI quattro / 5.2L / Petrol / 560h.p");
@@ -1404,7 +1418,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TT (8N3)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 T quattro / 1.8L / Petrol / 180h.p");
                     list.add("3.2 VR6 quattro / 3.2L / Petrol / 250h.p");
                     ArrayAdapter<String> dataAdapter133 = new ArrayAdapter<String>(getActivity(),
@@ -1415,7 +1429,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TT (8J3)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8TFSI / 1.8L / Petrol / 160h.p");
                     list.add("2.0TFSI / 2.0L / Petrol / 200h.p");
                     list.add("3.6 V6 quattro / 3.2L / Petrol / 250h.p");
@@ -1428,7 +1442,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 TDI / 2.0L / Diesel / 184h.p");
                     ArrayAdapter<String> dataAdapter135 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1438,7 +1452,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("1 (F20)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("116i / 1.6L / Petrol / 136h.p");
                     list.add("3.6 V6 quattro / 3.2L / Petrol / 250h.p");
                     list.add("118d(LCI) / 2.0L / Diesel / 150h.p");
@@ -1450,7 +1464,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("3 (E90)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("320d M47N2 / 2.0L / Diesel / 163h.p");
                     list.add("320d N47 / 2.0L / Diesel / 177h.p");
                     list.add("320d N47(LCI) / 2.0L / Diesel / 184h.p");
@@ -1475,7 +1489,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("3 (F80 M3)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("M3 / 3.0L / Petrol / 431h.p");
                     ArrayAdapter<String> dataAdapter138 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1485,7 +1499,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("3 GT (F34)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("M4 / 3.0L / Petrol / 431h.p");
                     ArrayAdapter<String> dataAdapter139 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1495,7 +1509,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("4 (F82)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("520d / 2.0L / Diesel / 177h.p");
                     list.add("523i / 2.5L / Petrol / 190h.p");
                     list.add("525d / 3.0L / Diesel / 197h.p");
@@ -1510,7 +1524,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("5 (E60)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("530d / 3.0L / Diesel / 245h.p");
                     ArrayAdapter<String> dataAdapter141 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1520,7 +1534,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("5 GT (F07)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("520d / 2.0L / Diesel / 184h.p");
                     list.add("520d B47 (LCI) / 2.0L / Diesel / 190h.p");
                     list.add("520d N47N (LCI) / 2.0L / Diesel / 184h.p");
@@ -1542,7 +1556,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("5 (F10)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("640d / 3.0L / Diesel / 313h.p");
                     list.add("640d (LCI) / 3.0L / Diesel / 313h.p");
                     list.add("M6 / 4.4L / Petrol / 560h.p");
@@ -1556,7 +1570,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("6 (F06)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("M6  / 4.4L / Petrol / 575h.p");
                     ArrayAdapter<String> dataAdapter144 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1566,7 +1580,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("6 (F13)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("730d / 3.0L / Diesel / 545h.p");
                     list.add("730d (LCI) / 3.0L / Diesel / 558h.p");
                     list.add("Hybrid 7L (LCI) / 3.0L / Hybrid / 320h.p");
@@ -1581,7 +1595,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("7 (F02)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 265h.p");
                     list.add("4.4 / 4.4L / Petrol / 450h.p");
                     list.add("M760Li 6.6 / 6.6L / Petrol / 610h.p");
@@ -1593,7 +1607,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("7 (G12)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 265h.p");
                     ArrayAdapter<String> dataAdapter147 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1603,7 +1617,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("7 (G11)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 265h.p");
                     list.add("4.4 / 4.4L / Petrol / 450h.p");
                     list.add("M760Li 6.6 / 6.6L / Petrol / 610h.p");
@@ -1615,7 +1629,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i8")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("20d / 2.0L / Diesel / 190h.p");
                     list.add("4.4 / 4.4L / Petrol / 450h.p");
                     list.add("20dX / 2.0L / Diesel / 190h.p");
@@ -1627,7 +1641,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X1 (E84)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("20dX B47 / 2.0L / Diesel / 190h.p");
                     ArrayAdapter<String> dataAdapter150 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1637,7 +1651,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X1 (F48)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("20dX N47N / 2.0L / Diesel / 184h.p");
                     ArrayAdapter<String> dataAdapter151 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1647,7 +1661,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X3 (F25)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("20dX / 3.0L / Diesel / 258h.p");
                     ArrayAdapter<String> dataAdapter151 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1657,7 +1671,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X5 M (F85)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("M / 4.4L / Petrol / 575h.p");
                     ArrayAdapter<String> dataAdapter152 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1667,7 +1681,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X5 (F15)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("30dX / 3.0L / Diesel / 258h.p");
                     list.add("30iX / 3.0L / Petrol / 306h.p");
                     ArrayAdapter<String> dataAdapter151 = new ArrayAdapter<String>(getActivity(),
@@ -1678,7 +1692,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X5 (E70)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0d / 3.0L / Diesel / 235h.p");
                     ArrayAdapter<String> dataAdapter152 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1688,7 +1702,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X6  M (F86)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("M / 4.4L / Petrol / 575h.p");
                     ArrayAdapter<String> dataAdapter152 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1698,7 +1712,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X6 (F16)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("40dX / 3.0L / Diesel / 313h.p");
                     ArrayAdapter<String> dataAdapter153 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1708,7 +1722,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X6 (E71)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("30dX / 3.0L / Diesel / 235h.p");
                     ArrayAdapter<String> dataAdapter154 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1718,7 +1732,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Z4 (E89)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("35i / 3.0L / Petrol / 306h.p");
                     ArrayAdapter<String> dataAdapter154 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1728,7 +1742,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("AVEO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 94h.p");
                     list.add("1.4 / 1.4L / Petrol / 101h.p");
                     list.add("1.6 / 1.6L / Petrol / 105h.p");
@@ -1741,7 +1755,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("AVEO U-VA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 84h.p");
                     ArrayAdapter<String> dataAdapter156 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1751,7 +1765,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BEAT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Diesel / 63h.p");
                     list.add("1.2 / 1.2L / Petrol / 82h.p");
                     list.add("1.2 LPG / 1.2L / Petrol / 82h.p");
@@ -1763,7 +1777,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAPTIVA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 126h.p");
                     list.add("2.2 / 2.2L / Diesel / 163h.p");
                     list.add("2.2 4WD / 2.2L / Diesel / 163h.p");
@@ -1776,7 +1790,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAPTIVA REFRESH")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 150h.p");
                     list.add("2.2 AWD / 2.2L / Diesel / 184h.p");
                     ArrayAdapter<String> dataAdapter159 = new ArrayAdapter<String>(getActivity(),
@@ -1787,7 +1801,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CRUZE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 163h.p");
                     list.add("2.0 / 2.0L / Diesel / 166h.p");
                     ArrayAdapter<String> dataAdapter160 = new ArrayAdapter<String>(getActivity(),
@@ -1798,7 +1812,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ENJOY")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 78h.p");
                     list.add("1.4 / 1.4L / Petrol / 104h.p");
                     list.add("1.4 / 1.4L / Petrol / 104h.p");
@@ -1810,7 +1824,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FORESTER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 120h.p");
                     ArrayAdapter<String> dataAdapter162 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1820,7 +1834,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OPTRA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 104h.p");
                     list.add("1.8 / 1.8L / Petrol / 115h.p");
                     ArrayAdapter<String> dataAdapter163 = new ArrayAdapter<String>(getActivity(),
@@ -1831,7 +1845,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OPTRA MAGNUM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add(" 2.0 / 2.0L / Diesel / 121h.p");
                     list.add("2.0 / 2.0L / Petrol / 120h.p");
                     ArrayAdapter<String> dataAdapter164 = new ArrayAdapter<String>(getActivity(),
@@ -1842,7 +1856,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OPTRA S-RV")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 101h.p");
                     ArrayAdapter<String> dataAdapter165 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1852,7 +1866,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAIL")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 86h.p");
                     list.add("1.3 / 1.3L / Diesel / 78h.p");
                     ArrayAdapter<String> dataAdapter166 = new ArrayAdapter<String>(getActivity(),
@@ -1863,7 +1877,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAIL HATCH")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 86h.p");
                     list.add("1.3 / 1.3L / Diesel / 78h.p");
                     ArrayAdapter<String> dataAdapter167 = new ArrayAdapter<String>(getActivity(),
@@ -1874,7 +1888,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SPARK")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 52h.p");
                     list.add("1.0 / 1.0L / Petrol / 67h.p");
                     list.add("1.0 / 1.0L / Petrol / 65h.p");
@@ -1886,7 +1900,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TAVERA(2004-2013)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 107h.p");
                     list.add("2.5 / 2.5L / Diesel / 80h.p");
                     ArrayAdapter<String> dataAdapter169 = new ArrayAdapter<String>(getActivity(),
@@ -1897,7 +1911,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TAVERA(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 78h.p");
                     list.add("2.5 / 2.5L / Diesel / 78h.p");
                     ArrayAdapter<String> dataAdapter170 = new ArrayAdapter<String>(getActivity(),
@@ -1908,7 +1922,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TRAILBLAZER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.8 2WD / 2.8L / Diesel / 198h.p");
                     list.add("1.2 / 1.2L / Petrol / 67h.p");
                     ArrayAdapter<String> dataAdapter171 = new ArrayAdapter<String>(getActivity(),
@@ -1919,7 +1933,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CIELO Saloon")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("No Varaint");
                     ArrayAdapter<String> dataAdapter172 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1929,7 +1943,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MATIZ")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("No Varaint");
                     ArrayAdapter<String> dataAdapter173 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1939,7 +1953,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 67h.p");
                     ArrayAdapter<String> dataAdapter174 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1949,7 +1963,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GO +")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 68h.p");
                     ArrayAdapter<String> dataAdapter172 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1959,7 +1973,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("REDI GO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 53h.p");
                     ArrayAdapter<String> dataAdapter176 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1969,7 +1983,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ABARTH 595")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 160h.p");
                     ArrayAdapter<String> dataAdapter177 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -1979,7 +1993,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("AVVENTURA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 93h.p");
                     list.add("1.4 / 1.4L / Petrol / 90h.p");
                     ArrayAdapter<String> dataAdapter178 = new ArrayAdapter<String>(getActivity(),
@@ -1990,7 +2004,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ABARTH AVVENTURA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 140h.p");
                     ArrayAdapter<String> dataAdapter179 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -2000,7 +2014,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LINEA(2015-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 93h.p");
                     list.add("1.4 / 1.4L / Petrol / 114h.p");
                     ArrayAdapter<String> dataAdapter180 = new ArrayAdapter<String>(getActivity(),
@@ -2011,7 +2025,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LINEA(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 91.7h.p");
                     list.add("1.4 / 1.4L / Petrol / 123.2h.p");
                     list.add("1.4 / 1.4L / Petrol / 88.8h.p");
@@ -2023,7 +2037,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LINEA CLASSIC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     list.add("1.4 / 1.4L / Petrol / 88.7h.p");
                     ArrayAdapter<String> dataAdapter182 = new ArrayAdapter<String>(getActivity(),
@@ -2034,7 +2048,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LINEA (323)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 90h.p");
                     list.add("1.3 / 1.3L / Diesel / 95h.p");
                     list.add("1.4 / 1.4L / Petrol / 77h.p");
@@ -2061,7 +2075,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PALIO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 61h.p");
                     list.add("1.1 / 1.1L / Petrol / 54h.p");
                     list.add("1.1 / 1.1L / Petrol / 54h.p");
@@ -2076,7 +2090,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PALIO (188)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 80h.p");
                     list.add("1.3 / 1.3L / Diesel / 70h.p");
                     list.add("1.4 / 1.4L / Petrol / 95h.p");
@@ -2090,7 +2104,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PALIO STILE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 57h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     list.add("1.6 / 1.6L / Petrol / 100h.p");
@@ -2103,7 +2117,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PETRA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 100h.p");
                     list.add("1.2 / 1.2L / Petrol / 60h.p");
                     list.add("1.3 / 1.3L / Diesel / 90h.p");
@@ -2119,7 +2133,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PUNTO (199)(2005-2011)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 69h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     list.add("1.4 / 1.4L / Petrol / 78h.p");
@@ -2132,7 +2146,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PUNTO (199)(2008-2014)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 78h.p");
 
                     ArrayAdapter<String> dataAdapter189 = new ArrayAdapter<String>(getActivity(),
@@ -2143,7 +2157,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PUNTO EVO (199)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 69h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     list.add("1.3 / 1.3L / Diesel / 95h.p");
@@ -2157,7 +2171,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ABARTH PUNTO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4I TJET/ 1.4L / Petrol / 145h.p");
 
                     ArrayAdapter<String> dataAdapter190 = new ArrayAdapter<String>(getActivity(),
@@ -2168,7 +2182,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PUNTO EVO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 92h.p");
 
                     ArrayAdapter<String> dataAdapter191 = new ArrayAdapter<String>(getActivity(),
@@ -2179,7 +2193,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("EVO PURE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 67h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
 
@@ -2191,7 +2205,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SIENA (372)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 85h.p");
                     list.add("1.6 / 1.6L / Petrol / 115h.p");
                     list.add("1.7 / 1.7L / Diesel / 72h.p");
@@ -2204,7 +2218,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("UNO (146 A/E)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 60h.p");
                     list.add("1.3 / 1.3L / Petrol / 71h.p");
 
@@ -2216,7 +2230,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("URBAN CROSS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 92h.p");
                     list.add("1.4 / 1.4L / Petrol / 138h.p");
 
@@ -2228,7 +2242,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GURKHA(2013-now)(Body type: Convertible)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel / 82h.p");
                     list.add("2.6 4X4 / 2.6L / Diesel / 82h.p");
                     ArrayAdapter<String> dataAdapter196 = new ArrayAdapter<String>(getActivity(),
@@ -2239,7 +2253,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GURKHA(2013-now)(Body type: Off-road vehicles)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel / 82h.p");
 
                     ArrayAdapter<String> dataAdapter197 = new ArrayAdapter<String>(getActivity(),
@@ -2250,7 +2264,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GURKHA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel / 80.8h.p");
 
                     ArrayAdapter<String> dataAdapter198 = new ArrayAdapter<String>(getActivity(),
@@ -2261,7 +2275,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ONE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 141h.p");
 
                     ArrayAdapter<String> dataAdapter199 = new ArrayAdapter<String>(getActivity(),
@@ -2272,7 +2286,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TRAX")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel / 76h.p");
 
                     ArrayAdapter<String> dataAdapter200 = new ArrayAdapter<String>(getActivity(),
@@ -2283,7 +2297,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CLASSIC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 68h.p");
                     list.add("1.6 / 1.6L / Petrol / 101h.p");
 
@@ -2295,7 +2309,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ECOSPORT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 123h.p");
                     list.add("1.5 / 1.5L / Petrol / 109h.p");
                     list.add("1.5 / 1.5L / Diesel / 91h.p");
@@ -2308,7 +2322,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ENDEAVOUR(2003-2006)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 116h.p");
 
                     ArrayAdapter<String> dataAdapter203 = new ArrayAdapter<String>(getActivity(),
@@ -2319,7 +2333,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ENDEAVOUR(2007-2013)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 4X2/ 2.5L / Diesel / 142h.p");
                     list.add("3.0 4X2/ 3.0L / Diesel / 154h.p");
                     list.add("3.0 4X4/ 3.0L / Diesel / 154h.p");
@@ -2332,7 +2346,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ENDEAVOUR(2014-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 143h.p");
                     list.add("2.5 4X4 / 2.5L / Diesel / 143h.p");
                     list.add("3.0 / 3.0L / Diesel / 156h.p");
@@ -2345,7 +2359,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIESTA(2005-2007)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 99h.p");
 
                     ArrayAdapter<String> dataAdapter207 = new ArrayAdapter<String>(getActivity(),
@@ -2356,7 +2370,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIESTA(2008-2011)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 68h.p");
                     list.add("1.6 / 1.6L / Petrol / 101h.p");
 
@@ -2368,7 +2382,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIESTA(2011-2012)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
                     list.add("1.6 / 1.6L / Diesel / 95h.p");
 
@@ -2380,7 +2394,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIESTA(2012-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 95h.p");
                     list.add("1.6 / 1.6L / Petrol / 98h.p");
                     list.add("1.6 / 1.6L / Diesel / 90h.p");
@@ -2393,7 +2407,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIGO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 71h.p");
                     list.add("1.4 / 1.4L / Diesel / 69h.p");
 
@@ -2405,7 +2419,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIGO ASPIRE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 88h.p");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
                     list.add("1.5 / 1.5L / Petrol / 112h.p");
@@ -2418,7 +2432,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FIGO NEXT GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 88h.p");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
                     list.add("1.5 / 1.5L / Petrol / 112h.p");
@@ -2431,7 +2445,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FUSION")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 68h.p");
 
                     ArrayAdapter<String> dataAdapter214 = new ArrayAdapter<String>(getActivity(),
@@ -2442,7 +2456,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("IKON")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 68h.p");
                     list.add("1.3 / 1.3L / Petrol / 68h.p");
                     list.add("1.8 / 1.8L / Diesel /43.3h.p");
@@ -2455,7 +2469,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("IKON II")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol /95h.p");
 
                     ArrayAdapter<String> dataAdapter216 = new ArrayAdapter<String>(getActivity(),
@@ -2466,7 +2480,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MONDEO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0/ 2.0L / Diesel /114h.p");
                     list.add("2.0/ 2.0L / Petrol /143h.p");
 
@@ -2478,7 +2492,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MUSTANG GT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("5.0L VB/ 5.0L / Petrol /395h.p");
 
                     ArrayAdapter<String> dataAdapter218 = new ArrayAdapter<String>(getActivity(),
@@ -2489,7 +2503,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACCORD VII")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 204h.p");
                     list.add("3.0 / 3.0L / Petrol / 221h.p");
 
@@ -2501,7 +2515,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACCORD VI")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 170h.p");
 
                     ArrayAdapter<String> dataAdapter220 = new ArrayAdapter<String>(getActivity(),
@@ -2512,7 +2526,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACCORD IX")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 192h.p");
                     list.add("3.5 / 3.5L / Petrol / 282h.p");
 
@@ -2524,7 +2538,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACCORD")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Hybrid / 143h.p");
 
                     ArrayAdapter<String> dataAdapter222 = new ArrayAdapter<String>(getActivity(),
@@ -2535,7 +2549,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("AMAZE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 88h.p");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
 
@@ -2547,7 +2561,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BRIO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 88h.p");
                     list.add("1.3 / 1.3L / Petrol / 99h.p");
 
@@ -2559,7 +2573,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BR-V")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 99h.p");
                     list.add("1.5 / 1.5L / Petrol / 117h.p");
 
@@ -2571,7 +2585,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CITY III")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Petrol / 105h.p");
 
                     ArrayAdapter<String> dataAdapter226 = new ArrayAdapter<String>(getActivity(),
@@ -2582,7 +2596,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CITY IV")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Petrol / 90h.p");
 
                     ArrayAdapter<String> dataAdapter227 = new ArrayAdapter<String>(getActivity(),
@@ -2593,7 +2607,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CITY (GM)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 99h.p");
                     list.add("1.5 / 1.5L / Petrol / 120h.p");
 
@@ -2605,7 +2619,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CITY")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
                     list.add("1.5 / 1.5L / Petrol / 119h.p");
 
@@ -2617,7 +2631,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CITY F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Petrol / 117.3h.p");
                     list.add("1.5 / 1.5L / Diesel / 98.6h.p");
 
@@ -2629,7 +2643,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CIVIC VIII")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 141h.p");
 
                     ArrayAdapter<String> dataAdapter230 = new ArrayAdapter<String>(getActivity(),
@@ -2640,7 +2654,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CIVIC IX (FB, FG)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 141h.p");
 
                     ArrayAdapter<String> dataAdapter231 = new ArrayAdapter<String>(getActivity(),
@@ -2651,7 +2665,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CR-V Mk III (RE)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 150h.p");
                     list.add("2.4 4WD / 2.4L / Petrol / 168h.p");
                     list.add("2.4 4WD / 2.4L / Petrol / 166h.p");
@@ -2664,7 +2678,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CR-V  IV (RE)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 155h.p");
                     list.add("2.0 AT / 2.0L / Petrol / 155h.p");
                     list.add("2.4 AWD / 2.4L / Petrol / 177h.p");
@@ -2677,7 +2691,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("JAZZ(2009-2011)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 90h.p");
 
                     ArrayAdapter<String> dataAdapter234 = new ArrayAdapter<String>(getActivity(),
@@ -2688,7 +2702,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("JAZZ(2015-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
 
                     ArrayAdapter<String> dataAdapter235 = new ArrayAdapter<String>(getActivity(),
@@ -2699,7 +2713,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MOBILIO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
                     list.add("1.5 / 1.5L / Petrol / 118h.p");
 
@@ -2711,7 +2725,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("WRV")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 88.7h.p");
                     list.add("1.5 / 1.5L / Diesel / 98.6h.p");
 
@@ -2723,7 +2737,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACCENT/ VIVA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Petrol / 94h.p");
                     list.add("1.5 CRDi/ 1.5L / Diesel / 82h.p");
                     list.add("1.6/ 1.6L / Petrol / 105h.p");
@@ -2736,7 +2750,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CRETA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
                     list.add("1.6 CRDi / 1.6L / Diesel / 128h.p");
                     list.add("1.6/ 1.6L / Petrol / 105h.p");
@@ -2749,7 +2763,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ELANTRA(2004-2007)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 125h.p");
                     list.add("2.0 / 2.0L / Diesel / 112h.p");
 
@@ -2761,7 +2775,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FLUIDIC ELANTRA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Diesel / 128h.p");
                     list.add("1.8 / 1.8L / Petrol / 150h.p");
 
@@ -2773,7 +2787,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ELANTRA(2016-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Diesel / 128h.p");
                     list.add("2.0 / 2.0L / Petrol / 152h.p");
 
@@ -2785,7 +2799,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("EON")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 56h.p");
                     list.add("1.0 / 1.0L / Petrol / 69h.p");
 
@@ -2797,7 +2811,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GETZ(2004-2007)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 61h.p");
                     list.add("1.3 / 1.3L / Petrol");
 
@@ -2809,7 +2823,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GETZ(2007-2010)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 66h.p");
                     list.add("1.3 / 1.3L / Petrol");
                     list.add("1.5 / 1.5L / Diesel ");
@@ -2822,7 +2836,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i10")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 67h.p");
                     list.add("1.1 / 1.1L / Petrol / 69h.p");
                     list.add("1.2 / 1.2L / Petrol / 80h.p");
@@ -2836,7 +2850,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GRAND i10")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 LPG/CNG / 1.0L / Petrol / 66h.p");
                     list.add("1.1 CRDi  / 1.1L / Diesel / 70h.p");
                     list.add("1.2  / 1.2L / Petrol / 83h.p");
@@ -2849,7 +2863,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GRAND i10 F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2  / 1.2L / Petrol / 82h.p");
                     list.add("1.2  / 1.2L / Diesel / 75h.p");
 
@@ -2861,7 +2875,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20(2008-2012)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2  / 1.2L / Petrol / 78h.p");
                     list.add("1.4  / 1.4L / Petrol / 101h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
@@ -2876,7 +2890,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20(2008-2012)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 83h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
 
@@ -2888,7 +2902,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20 ELITE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
 
                     ArrayAdapter<String> dataAdapter251 = new ArrayAdapter<String>(getActivity(),
@@ -2899,7 +2913,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20(2012-2014)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 83h.p");
                     list.add("1.4/ 1.4L/ Petrol / 101h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
@@ -2912,7 +2926,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20 ACTIVE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 83h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
 
@@ -2924,7 +2938,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("i20 ACTIVE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 83h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
 
@@ -2936,7 +2950,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Santa Fe II (CM)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 CRDi / 2.2L / Diesel / 197h.p");
                     list.add("2.4 / 2.4L / Petrol / 174h.p");
 
@@ -2948,7 +2962,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SANTA FE III (DM)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L /Diesel / 197h.p");
                     ArrayAdapter<String> dataAdapter255 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -2958,7 +2972,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SANTRO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L /Petrol / 54h.p");
                     list.add("1.1 / 1.1L /Petrol / 58h.p");
                     ArrayAdapter<String> dataAdapter256 = new ArrayAdapter<String>(getActivity(),
@@ -2969,7 +2983,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SANTRO XING")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L /Petrol / 58h.p");
                     list.add("1.1 / 1.1L /Petrol / 61h.p");
                     ArrayAdapter<String> dataAdapter257 = new ArrayAdapter<String>(getActivity(),
@@ -2980,7 +2994,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SONATA IV (EF-B) GOLD")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L /Petrol / 144h.p");
                     list.add("2.7 V6 / 2.7L /Petrol / 175h.p");
                     list.add("2.0 CRDi Embera / 2.0L /Diesel / 140h.p");
@@ -2994,7 +3008,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SONATA V (NF) EMBERA/TRANSFORM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 Transform / 2.4L /Petrol / 173h.p");
                     ArrayAdapter<String> dataAdapter259 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3004,7 +3018,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SONATA VI (YF) FLUDIC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 Transform / 2.4L /Petrol / 181h.p");
                     ArrayAdapter<String> dataAdapter260 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3014,7 +3028,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TERRACAN (HP)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.9 CRDi / 2.9L / Diesel / 150h.p");
                     ArrayAdapter<String> dataAdapter261 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3024,7 +3038,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TUCSON 1st Gen")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 CRDi / 2.0L / Diesel / 113h.p");
                     list.add("2.0 CRDi (turbo) / 2.0L / Diesel / 150h.p");
                     ArrayAdapter<String> dataAdapter262 = new ArrayAdapter<String>(getActivity(),
@@ -3035,7 +3049,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TUCSON 2nd GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0  / 2.0L / Petrol / 153h.p");
                     list.add("2.0 / 2.0L / Diesel / 185h.p");
                     ArrayAdapter<String> dataAdapter263 = new ArrayAdapter<String>(getActivity(),
@@ -3046,7 +3060,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERNA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 CRDi / 1.5L / Diesel / 110h.p");
                     list.add("1.6 / 1.6L / Petrol / 112h.p");
                     ArrayAdapter<String> dataAdapter264 = new ArrayAdapter<String>(getActivity(),
@@ -3057,7 +3071,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERNA FLUIDIC(2011-2014)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 107h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
                     list.add("1.6 / 1.6L / Petrol / 123h.p");
@@ -3070,7 +3084,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERNA FLUIDIC(2014-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 107h.p");
                     list.add("1.4 CRDi / 1.4L / Diesel / 90h.p");
                     list.add("1.6 CRDi / 1.6L / Diesel / 128h.p");
@@ -3082,7 +3096,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XCENT(2013-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 CNG / 1.0L / Petrol / 69h.p");
                     list.add("1.1 CRDi / 1.1L / Diesel / 70h.p");
                     list.add("1.2 / 1.2L / Petrol / 83h.p");
@@ -3094,7 +3108,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Xcent(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Diesel / 74h.p");
                     ArrayAdapter<String> dataAdapter268 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3104,7 +3118,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("D-Max")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 134h.p");
                     ArrayAdapter<String> dataAdapter269 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3114,7 +3128,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("D-Max V-cross")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 134h.p");
                     ArrayAdapter<String> dataAdapter270 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3124,7 +3138,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MU-7")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 163h.p");
                     ArrayAdapter<String> dataAdapter271 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3134,7 +3148,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MUX")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 175h.p");
                     ArrayAdapter<String> dataAdapter271 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3144,7 +3158,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("F-PACE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 177h.p");
                     list.add("3.0 / 3.0L / Diesel / 296h.p");
                     ArrayAdapter<String> dataAdapter273 = new ArrayAdapter<String>(getActivity(),
@@ -3155,7 +3169,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("F-TYPE(2012-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Petrol / 340h.p");
                     list.add("3.0 / 3.0L / Petrol / 381h.p");
                     list.add("5.0 / 5.0L / Petrol / 495h.p");
@@ -3167,7 +3181,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("F-TYPE(2013-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Petrol / 340h.p");
                     list.add("3.0 / 3.0L / Petrol / 381h.p");
                     list.add("5.0 / 5.0L / Petrol / 551h.p");
@@ -3180,7 +3194,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S-TYPE (CCX)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Petrol / 200h.p");
                     list.add("2.7 / 2.7L / Diesel / 207h.p");
                     list.add("3.0 / 3.0L / Petrol / 238h.p");
@@ -3201,7 +3215,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XE 2.0")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("XE 2.0 / 2.0L / Petrol / 197h.p");
                     ArrayAdapter<String> dataAdapter277 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3211,7 +3225,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XF (_J05_, CC9)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 241h.p");
                     list.add("2.2 / 2.2L / Diesel / 163h.p");
                     list.add("2.2 / 2.2L / Diesel / 190h.p");
@@ -3241,7 +3255,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XF (CC9)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 280h.p");
                     list.add("2.2 / 2.2L / Diesel / 163h.p");
                     list.add("3.0 / 3.0L / Diesel / 241h.p");
@@ -3256,7 +3270,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XJ (X350, X358)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.7 / 2.7L / Diesel / 207h.p");
                     list.add("3.0 / 3.0L / Petrol / 238h.p");
                     list.add("3.0 / 3.0L / Petrol / 243h.p");
@@ -3273,7 +3287,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XJ (X35_, _J12_, _J24_)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 241h.p");
                     list.add("3.0 / 3.0L / Diesel / 275h.p");
                     list.add("3.0 / 3.0L / Petrol / 238h.p");
@@ -3293,7 +3307,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XK 8 (QDV)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.0 / 4.0L / Petrol / 284h.p");
                     list.add("4.0 / 4.0L / Petrol / 363h.p");
                     list.add("4.0 / 4.0L / Petrol / 375h.p");
@@ -3309,7 +3323,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XK 8 (QEV)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.0 / 4.0L / Petrol / 284h.p");
                     list.add("4.0 / 4.0L / Petrol / 363h.p");
                     list.add("4.0 / 4.0L / Petrol / 375h.p");
@@ -3325,7 +3339,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XK (_J43_)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.6 / 3.6L / Petrol / 258h.p");
                     list.add("4.2 / 4.2L / Petrol / 416h.p");
                     list.add("4.2 / 4.2L / Petrol / 298h.p");
@@ -3346,7 +3360,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XK (_J43_) body-couple")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.5 / 3.5L / Petrol / 258h.p");
                     list.add("4.2 / 4.2L / Petrol / 298h.p");
                     list.add("4.2 / 4.2L / Petrol / 396h.p");
@@ -3377,7 +3391,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X-TYPE(CF1)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 156h.p");
                     list.add("2.0 / 2.0L / Petrol / 156h.p");
                     list.add("2.0 / 2.0L / Diesel / 130h.p");
@@ -3404,7 +3418,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLERO PICKUP")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 76h.p");
                     list.add("2.5 / 2.5L / Diesel / 95h.p");
                     list.add("2.5 / 2.5L / Diesel / 101h.p");
@@ -3421,7 +3435,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLERO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 68h.p");
                     list.add("2.5 / 2.5L / Diesel / 63h.p");
                     list.add("2.5 / 2.5L / Diesel / 73h.p");
@@ -3442,7 +3456,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLERO INVADER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 DI / 2.5L / Diesel / 58h.p");
                     list.add("2.5 GLX / 2.5L / Diesel / 72h.p");
                     ArrayAdapter<String> dataAdapter289 = new ArrayAdapter<String>(getActivity(),
@@ -3453,7 +3467,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLERO CAMPER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 62h.p");
                     list.add("2.5 4X4 / 2.5L / Diesel / 63h.p");
                     list.add("2.5 GOLD / 2.5L / Diesel / 63h.p");
@@ -3465,7 +3479,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLERO MAXI TRUCK")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 63h.p");
                     ArrayAdapter<String> dataAdapter291 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3475,7 +3489,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("COMMANDER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 58h.p");
                     list.add("2.5 / 2.5L / Diesel / 63h.p");
                     list.add("2.5 4X4/ 2.5L / Diesel / 50h.p");
@@ -3489,7 +3503,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GENIO SC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter293 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3499,7 +3513,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GENIO SC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 56h.p");
                     list.add("VX 2.5 / 2.5L / Diesel / 56h.p");
                     ArrayAdapter<String> dataAdapter294 = new ArrayAdapter<String>(getActivity(),
@@ -3510,7 +3524,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GIO (2009)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("MAHIN GIO 0.5D / 0.5L / Diesel / 10h.p");
                     ArrayAdapter<String> dataAdapter295 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3520,7 +3534,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("IMPERIO SC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 56h.p");
                     ArrayAdapter<String> dataAdapter296 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3539,7 +3553,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("JEETO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 BSIII / 0.6L / Diesel / 16h.p");
                     list.add("0.6 BSIII / 0.6L / Diesel / 11h.p");
                     ArrayAdapter<String> dataAdapter298 = new ArrayAdapter<String>(getActivity(),
@@ -3550,7 +3564,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("KUV100")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 82h.p");
                     list.add("1.2 / 1.2L / Diesel / 77h.p");
                     ArrayAdapter<String> dataAdapter299 = new ArrayAdapter<String>(getActivity(),
@@ -3561,7 +3575,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MARSHAL")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 56h.p");
                     ArrayAdapter<String> dataAdapter300 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3571,7 +3585,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAXX")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 62h.p");
                     list.add("2.5 4X4 / 2.5L / Diesel / 58h.p");
                     ArrayAdapter<String> dataAdapter301 = new ArrayAdapter<String>(getActivity(),
@@ -3582,7 +3596,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAXX PICK UP")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 63h.p");
                     list.add("2.5 CNG/ 2.5L / Diesel / 70h.p");
                     ArrayAdapter<String> dataAdapter301 = new ArrayAdapter<String>(getActivity(),
@@ -3593,7 +3607,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAXX PICK UP")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.9/ 0.9L / Diesel / 25h.p");
                     ArrayAdapter<String> dataAdapter302 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3603,7 +3617,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAXXIMO MINI VAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.9/ 0.9L / Diesel / 25h.p");
                     ArrayAdapter<String> dataAdapter303 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3613,7 +3627,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAXXIMO PlUS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.9/ 0.9L / Diesel / 25h.p");
                     list.add("var");
                     ArrayAdapter<String> dataAdapter304 = new ArrayAdapter<String>(getActivity(),
@@ -3624,7 +3638,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("NUVOSPORT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5/ 1.5L / Diesel / 100h.p");
                     ArrayAdapter<String> dataAdapter305 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3634,7 +3648,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("QUANTO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5/ 1.5L / Diesel / 100h.p");
                     ArrayAdapter<String> dataAdapter306 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3644,7 +3658,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("REVA-E20")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("E20 Electric / Electric motor / 25h.p");
                     ArrayAdapter<String> dataAdapter307 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3654,7 +3668,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("REVA-E2oPlus")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("E20 Electric / Electric motor / 25h.p");
                     ArrayAdapter<String> dataAdapter308 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3664,7 +3678,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("REXTON")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.7 RX6 /2.7L / Diesel / 162h.p");
                     list.add("2.7 RX7 /2.7L / Diesel / 184h.p");
                     ArrayAdapter<String> dataAdapter309 = new ArrayAdapter<String>(getActivity(),
@@ -3675,7 +3689,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAVARI")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.7 RX6 /2.7L / Diesel / 162h.p");
                     ArrayAdapter<String> dataAdapter310 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3685,7 +3699,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio 1st Gen")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Petrol / 115h.p");
                     list.add("2.6 CRDe / 2.6L / Diesel / 116h.p");
                     list.add("2.6 TURBO / 2.6L / Diesel / 109h.p");
@@ -3697,7 +3711,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio 1st Gen F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
                     list.add("2.5 / 2.5L / Diesel / 75h.p");
                     list.add("2.6 / 2.6L / Diesel / 116h.p");
@@ -3709,7 +3723,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio 2nd Gen")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
                     list.add("2.5 / 2.5L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter312 = new ArrayAdapter<String>(getActivity(),
@@ -3720,7 +3734,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio 3rd Gen")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 120h.p");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
                     list.add("2.5 / 2.5L / Diesel / 75h.p");
@@ -3732,7 +3746,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio Getaway Ver 1")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel /115h.p");
                     ArrayAdapter<String> dataAdapter314 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3742,7 +3756,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Scorpio Getaway Ver 2")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.6 / 2.6L / Diesel /115h.p");
                     ArrayAdapter<String> dataAdapter315 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3752,7 +3766,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Supro")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Diesel /45h.p");
                     ArrayAdapter<String> dataAdapter316 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3762,7 +3776,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Supro Mini Truck")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Diesel /45h.p");
                     ArrayAdapter<String> dataAdapter317 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3772,7 +3786,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("THAR")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 105h.p");
                     list.add("2.5 / 2.5L / Diesel / 64h.p");
                     list.add("2.5 4X4 / 2.5L / Diesel / 105h.p");
@@ -3784,7 +3798,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TUV 300")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 84h.p");
                     list.add("1.5 / 1.5L / Diesel / 100h.p");
                     ArrayAdapter<String> dataAdapter319 = new ArrayAdapter<String>(getActivity(),
@@ -3795,7 +3809,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERITO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 76h.p");
                     list.add("1.5 / 1.5L / Diesel / 66h.p");
                     ArrayAdapter<String> dataAdapter320 = new ArrayAdapter<String>(getActivity(),
@@ -3806,7 +3820,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERITO F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 65h.p");
                     ArrayAdapter<String> dataAdapter321 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3816,7 +3830,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERITO VIBE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 64h.p");
                     ArrayAdapter<String> dataAdapter322 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3835,7 +3849,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERITO EXECUTIVE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 EXE/ 1.5L / Diesel / 65h.pt");
                     ArrayAdapter<String> dataAdapter324 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3845,7 +3859,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XUV 500")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2/ 2.2L / Diesel / 140h.p");
                     list.add("2.2 AWD / 2.2L / Diesel / 140h.p");
                     ArrayAdapter<String> dataAdapter325 = new ArrayAdapter<String>(getActivity(),
@@ -3856,7 +3870,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XUV 500 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2  / 2.2L / Diesel / 140h.p");
                     list.add("2.2 AWD / 2.2L / Diesel / 140h.p");
                     ArrayAdapter<String> dataAdapter326 = new ArrayAdapter<String>(getActivity(),
@@ -3867,7 +3881,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XYLO 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5  / 2.5L / Diesel / 95h.p");
                     list.add("2.5  / 2.5L / Diesel / 114h.p");
                     ArrayAdapter<String> dataAdapter327 = new ArrayAdapter<String>(getActivity(),
@@ -3878,7 +3892,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XYLO 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2  / 2.2L / Diesel / 120h.p");
                     list.add("2.5  / 2.5L / Diesel / 114h.p");
                     list.add("2.5  / 2.5L / Diesel / 95h.p");
@@ -3890,7 +3904,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XYLO 3RD GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2  / 2.2L / Diesel / 120h.p");
                     list.add("2.5  / 2.5L / Diesel / 95h.p");
                     ArrayAdapter<String> dataAdapter329 = new ArrayAdapter<String>(getActivity(),
@@ -3901,7 +3915,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XYLO 3RD GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2  / 2.2L / Diesel / 120h.p");
                     list.add("2.5  / 2.5L / Diesel / 95h.p");
                     ArrayAdapter<String> dataAdapter329 = new ArrayAdapter<String>(getActivity(),
@@ -3912,7 +3926,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("DISCOVERY(2004-2009)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 191h.p");
                     ArrayAdapter<String> dataAdapter330 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3922,7 +3936,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("DISCOVERY(2009-2013)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 248h.p");
                     ArrayAdapter<String> dataAdapter331 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3932,7 +3946,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("DISCOVERY SPORT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 147h.p");
                     ArrayAdapter<String> dataAdapter332 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3942,7 +3956,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FREELANDER 2")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 148h.p");
                     ArrayAdapter<String> dataAdapter333 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -3952,7 +3966,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER Mk III (LM)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 4x4 / 3.0L / Diesel / 177h.p");
                     list.add("3.6 4x4 / 3.6L / Diesel / 272h.p");
                     list.add("4.2 4x4 / 4.2L / petrol / 396h.p");
@@ -3973,7 +3987,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER IV (LG)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 4x4 / 3.0L / Petrol / 340h.p");
                     list.add("3.0 4x4 / 3.0L / Diesel / 249h.p");
                     list.add("3.0 4x4 / 3.0L / Diesel / 258h.p");
@@ -3990,7 +4004,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER EVOQUE (LV)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 4x4 / 2.0L / Petrol / 241h.p");
                     list.add("2.2 / 2.2L / Petrol / 150h.p");
                     list.add("2.2 4x4/ 2.2L / Diesel / 150h.p");
@@ -4002,7 +4016,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER EVOQUE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 4x4/ 2.0L / Diesel / 187h.p");
                     ArrayAdapter<String> dataAdapter337 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4012,7 +4026,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER EVOQUE CONVERTIABLE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 4x4/ 2.0L / Diesel / 187.7h.p");
                     ArrayAdapter<String> dataAdapter338 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4022,7 +4036,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER SPORT (LS)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.7 4x4/ 2.7L / Diesel / 190h.p");
                     list.add("3.0 4x4/ 3.0L / Diesel / 245h.p");
                     list.add("3.0 4x4/ 3.0L / Diesel / 211h.p");
@@ -4043,7 +4057,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RANGE ROVER SPORT (LW)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 4x4/ 3.0L / Petrol / 340h.p");
                     list.add("3.0 4x4/ 3.0L / Diesel / 292h.p");
                     list.add("3.0 4x4/ 3.0L / Diesel / 258h.p");
@@ -4056,7 +4070,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("800(1997)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol /39h.p");
                     ArrayAdapter<String> dataAdapter341 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4066,7 +4080,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("800(2000)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol /37h.p");
                     ArrayAdapter<String> dataAdapter342 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4076,7 +4090,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ALTO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol /48h.p");
                     list.add("0.8 / 0.8L / Petrol /48h.p");
                     list.add("0.8 / 0.8L / Petrol /48h.p");
@@ -4090,7 +4104,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ALTO K10")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol /68h.p");
                     ArrayAdapter<String> dataAdapter344 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4100,7 +4114,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ALTO 800")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol /48h.p");
                     list.add("0.8 CNG/ 0.8L / Petrol /48h.p");
                     ArrayAdapter<String> dataAdapter345 = new ArrayAdapter<String>(getActivity(),
@@ -4111,7 +4125,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A-STAR")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 67h.p");
                     ArrayAdapter<String> dataAdapter346 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4121,7 +4135,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BALENO ALTURA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 96h.p");
                     ArrayAdapter<String> dataAdapter347 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4131,7 +4145,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BALENO 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 96h.p");
                     ArrayAdapter<String> dataAdapter348 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4141,7 +4155,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BALENO 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 96h.p");
                     ArrayAdapter<String> dataAdapter349 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4151,7 +4165,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CELERIO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Diesel / 47h.p");
                     list.add("1.0 / 1.0L / Petrol / 68h.p");
                     ArrayAdapter<String> dataAdapter350 = new ArrayAdapter<String>(getActivity(),
@@ -4162,7 +4176,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CIAZ")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 88h.p");
                     list.add("1.4 / 1.4L / Petrol / 92h.p");
                     ArrayAdapter<String> dataAdapter351 = new ArrayAdapter<String>(getActivity(),
@@ -4173,7 +4187,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("EECO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 73h.p");
                     list.add("1.2 / 1.2L / Petrol / 63h.p");
                     ArrayAdapter<String> dataAdapter352 = new ArrayAdapter<String>(getActivity(),
@@ -4184,7 +4198,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ERTIGA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 90h.p");
                     list.add("1.4 / 1.4L / Petrol / 93h.p");
                     ArrayAdapter<String> dataAdapter353 = new ArrayAdapter<String>(getActivity(),
@@ -4195,7 +4209,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ESTEEM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Petrol / 65h.p");
                     list.add("1.3 / 1.3L / Petrol / 85h.p");
                     list.add("1.5 / 1.5L / Diesel / 57h.p");
@@ -4207,7 +4221,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GRAND VITARA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 122h.p");
                     list.add("2.4 / 2.4L / Petrol / 166h.p");
                     list.add("2.7 AWD / 2.7L / Petrol / 169h.p");
@@ -4219,7 +4233,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GYPSY")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 4WD / 1.3L / Petrol / 82h.p");
                     list.add("2.4 / 2.4L / Petrol / 166h.p");
                     list.add("2.7 AWD / 2.7L / Petrol / 169h.p");
@@ -4231,7 +4245,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Ignis")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 82h.p");
                     list.add("1.3 / 1.3L / Diesel / 74h.p");
                     ArrayAdapter<String> dataAdapter357 = new ArrayAdapter<String>(getActivity(),
@@ -4242,7 +4256,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("KIZASHI")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 185h.p");
                     list.add("2.4 / 2.4L / Petrol / 178h.p");
                     list.add("2.4 / 2.4L / Petrol / 185h.p");
@@ -4254,7 +4268,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OMNI 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 35h.p");
                     ArrayAdapter<String> dataAdapter359 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4264,7 +4278,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OMNI 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 35h.p");
                     ArrayAdapter<String> dataAdapter360 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4274,7 +4288,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OMNI 3RD GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 / 0.8L / Petrol / 35h.p");
                     ArrayAdapter<String> dataAdapter361 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4284,7 +4298,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RITZ")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 86h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter362 = new ArrayAdapter<String>(getActivity(),
@@ -4295,7 +4309,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RITZ 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 86h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter363 = new ArrayAdapter<String>(getActivity(),
@@ -4306,7 +4320,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S-CROSS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 88.5h.p");
                     list.add("1.6 / 1.6L / Diesel / 118h.p");
                     ArrayAdapter<String> dataAdapter364 = new ArrayAdapter<String>(getActivity(),
@@ -4317,7 +4331,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("STINGRAY")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 68h.p");
                     ArrayAdapter<String> dataAdapter365 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4327,7 +4341,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SWIFT 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Petrol / 87h.p");
                     list.add("1.2 / 1.2L / Petrol / 85h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
@@ -4340,7 +4354,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SWIFT 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 85h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter367 = new ArrayAdapter<String>(getActivity(),
@@ -4351,7 +4365,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SWIFT DZIRE 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 85h.p");
                     list.add("1.3 / 1.3L / Petrol / 87h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
@@ -4363,7 +4377,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SWIFT DZIRE 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 85h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter369 = new ArrayAdapter<String>(getActivity(),
@@ -4374,7 +4388,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SWIFT DZIRE 3RD GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 82h.p");
                     list.add("1.3 / 1.3L / Diesel / 74h.p");
                     ArrayAdapter<String> dataAdapter370 = new ArrayAdapter<String>(getActivity(),
@@ -4385,7 +4399,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SX4")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 102h.p");
                     ArrayAdapter<String> dataAdapter371 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4395,7 +4409,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SX4 1st F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 89h.p");
                     list.add("1.6 / 1.6L / Petrol / 102h.p");
                     list.add("1.6 CNG / 1.6L / Petrol / 102h.p");
@@ -4407,7 +4421,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SX4 2nd F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 102h.p");
                     ArrayAdapter<String> dataAdapter373 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4417,7 +4431,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VERSA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Petrol / 82h.p");
                     ArrayAdapter<String> dataAdapter374 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4427,7 +4441,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BREZZA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 89h.p");
                     ArrayAdapter<String> dataAdapter375 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4437,7 +4451,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("WAGON R (2000-2003)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 67h.p");
                     ArrayAdapter<String> dataAdapter376 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4447,7 +4461,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("WAGON R (2003-2006)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 67h.p");
                     ArrayAdapter<String> dataAdapter376 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4457,7 +4471,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("WAGON R (2010-2012)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 68h.p");
                     list.add("1.0  CNG / 1.0L / Petrol / 68h.p");
                     list.add("1.0 LPG / 1.0L / Petrol / 68h.p");
@@ -4469,7 +4483,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Wagon R (2012-NOW)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0  / 1.0L / Petrol / 68h.p");
                     ArrayAdapter<String> dataAdapter378 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4479,7 +4493,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0  / 1.0L / Petrol / 58h.p");
                     list.add("1.6  / 1.6L / Petrol / 58h.p");
                     ArrayAdapter<String> dataAdapter379 = new ArrayAdapter<String>(getActivity(),
@@ -4490,7 +4504,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEN CLASSIC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 58h.p");
                     ArrayAdapter<String> dataAdapter380 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4500,7 +4514,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEN 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 60h.p");
                     ArrayAdapter<String> dataAdapter381 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4510,7 +4524,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEN ESTILO 2ND GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.0 / 1.0L / Petrol / 68h.p");
                     ArrayAdapter<String> dataAdapter382 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4520,7 +4534,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEN ESTILO 1ST GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Petrol / 64h.p");
                     ArrayAdapter<String> dataAdapter383 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4530,7 +4544,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("A-CLASS (W176)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("160 CDi / 1.5L / Diesel / 90h.p");
                     list.add("200 CDi / 2.1L / Diesel / 136h.p");
                     list.add("220 4MATIC / 2.0L / Petrol / 184h.p");
@@ -4547,7 +4561,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("B-CLASS (W245)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 / 2.0L / Petrol / 211h.p");
                     ArrayAdapter<String> dataAdapter385 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4557,7 +4571,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("C-CLASS (W203)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("180 / 2.0L / Petrol / 129h.p");
                     list.add("180 Kompressor / 1.8L / Petrol / 143h.p");
                     list.add("200 CDi / 2.2L / Diesel / 116h.p");
@@ -4575,7 +4589,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("C-CLASS (CL203)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("C 160 Kompressor / 1.8L / Petrol / 122h.p");
                     list.add("C 180 / 2.0L / Petrol / 129h.p");
                     list.add("C 180 Kompressor / 1.8L / Petrol / 143h.p");
@@ -4598,7 +4612,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("C-CLASS (W204)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("180 CDI / 2.1L / Diesel / 120h.p");
                     list.add("180 Kompressor / 1.6L / Petrol / 156h.p");
                     list.add("200 CDI / 2.1L / Diesel / 136h.p");
@@ -4619,7 +4633,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("C-CLASS (W205)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("180 / 1.6L / Petrol / 156h.p");
                     list.add("180 BlueTEC/ 1.6L / Diesel / 116h.p");
                     list.add("200/ 2.0L / Petrol / 184h.p");
@@ -4635,7 +4649,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CLA (C117)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("180 / 1.6L / Petrol / 156h.p");
                     list.add("180 CDI/ 1.5L / Diesel / 109h.p");
                     list.add("200 / 1.6L / Petrol / 156h.p");
@@ -4651,7 +4665,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CLS (C219)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("280 / 3.0L / Petrol / 231h.p");
                     list.add("320 / 3.0L / Diesel / 224h.p");
                     list.add("MERCE CLS (C219)CLS 350 (219.357) / 3.5L / Petrol ");
@@ -4664,7 +4678,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("E-CLASS (W211)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 CDI / 2.2L / Diesel / 102h.p");
                     list.add("200 CDI / 2.2L / Diesel / 122h.p");
                     list.add("200 Kompressor / 1.8L / Petrol / 163h.p");
@@ -4693,7 +4707,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("E-CLASS (W212)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 / 2.0L / Petrol / 184h.p");
                     list.add("200 CDI / 2.1L / Diesel / 136h.p");
                     list.add("200 NGT / 1.8L / Petrol / 163h.p");
@@ -4719,7 +4733,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("E-CLASS Coupe (C207)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 / 2.0L / Petrol / 184h.p");
                     list.add("200 CGI / 1.8L / Petrol / 184h.p");
                     list.add("220 CGI / 2.2L / Diesel / 170h.p");
@@ -4735,7 +4749,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("E 63")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("5.5 AMG / 5.5L / Petrol / 557h.p");
                     ArrayAdapter<String> dataAdapter396 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4745,7 +4759,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("E-CLASS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 E 200 / 2.0L / Petrol / 184h.p");
                     list.add("2.0 E 200D / 2.0L / Diesel / 192h.p");
                     list.add("2.0 E 350 D / 3.0L / Diesel / 258h.p");
@@ -4757,7 +4771,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("G-CLASS (W463)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("250 GD / 2.5L / Diesel / 94h.p");
                     list.add("300 GD / 3.0L / Diesel / 113h.p");
                     list.add("300 GE / 3.0L / Diesel / 170h.p");
@@ -4784,7 +4798,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("G-CLASS (W461)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("230 GE / 2.3L / Petrol / 125h.p");
                     list.add("250 GD / 2.5L / Diesel / 92h.p");
                     list.add("290 GD / 2.9L / Diesel / 95h.p");
@@ -4798,7 +4812,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GLA-CLASS (X156)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("GLA 200 / 1.6L / Petrol / 156h.p");
                     list.add("GLA 200 CDI / 2.1L / Diesel / 136h.p");
                     list.add("GLA 220 CDI / 2.1L / Diesel / 170h.p");
@@ -4812,7 +4826,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GLA-CLASS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 181h.p");
                     list.add("2.2 / 2.2L / Diesel / 168h.p");
                     list.add("2.2 / 2.2L / Diesel / 134h.p");
@@ -4824,7 +4838,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GLC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("220D / 2.1L / Diesel / 168h.p");
                     list.add("300 / 3.0L / Petrol / 241h.p");
                     list.add("300 / 3.0L / Petrol / 241h.p");
@@ -4836,7 +4850,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GL-CLASS (X164)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("GL 320 CDI / 3.0L / Diesel / 218h.p");
                     list.add("GL 350 CDI / 3.0L / Diesel / 231h.p");
                     list.add("GL 350 CDI / 3.0L / Diesel / 211h.p");
@@ -4852,7 +4866,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GL-CLASS (X166)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / DieseL / 258h.p");
                     list.add("GL 350 BlueTec 4-matic / 3.0L / DieseL / 258h.p");
                     list.add("GL 400 4-matic / 3.0L / PetroL / 333h.p");
@@ -4867,7 +4881,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GLE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("250 CDI / 2.1L / DieseL / 204h.p");
                     list.add("250D CDI / 3.0L / DieseL / 258h.p");
                     ArrayAdapter<String> dataAdapter404 = new ArrayAdapter<String>(getActivity(),
@@ -4878,7 +4892,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GLS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("350 d / 3.0L / DieseL / 258h.p");
                     list.add("400 4MATIC / 3.0L / PetroL / 333h.p");
                     ArrayAdapter<String> dataAdapter405 = new ArrayAdapter<String>(getActivity(),
@@ -4889,7 +4903,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("M-CLASS (W163) (1998 - 2005)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("MERCE M-CLASS (W163) ML 230 (163,136) / 2.3L / Pet");
                     list.add("MERCE M-CLASS (W163) ML 270 CDI(163,113) / 2.7L");
                     list.add("MERCE M-CLASS (W163) ML 270 CDI(163,113) / 2.7L /");
@@ -4926,7 +4940,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("M-CLASS (W164) (2005)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("ML 250 CDI BlueTEC 4-matic  / 2.1L / Diesel / 204h");
                     ArrayAdapter<String> dataAdapter407 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4936,7 +4950,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("M-CLASS (W166)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.5 / 3.5L / Petrol / 272h.p");
                     ArrayAdapter<String> dataAdapter408 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4946,7 +4960,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("R350")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.5 / 3.5L / Petrol / 272h.p");
                     ArrayAdapter<String> dataAdapter408 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -4956,7 +4970,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S-CLASS (W220)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("280 / 2.8L / Petrol / 204h.p");
                     list.add("320 / 3.2L / Petrol / 224h.p");
                     list.add("320 CDI / 3.2L / Diesel / 197h.p");
@@ -4972,7 +4986,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S-CLASS (W222)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("320 / 3.0L / Petrol / 272h.p");
                     list.add("350BlueTEC / 3.0L / Diesel / 258h.p");
                     list.add("400 / 3.5L / Petrol / 333h.p");
@@ -4986,7 +5000,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S-CLASS Coupe (C217)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("500 / 4.7L / Petrol / 456h.p");
                     list.add("63 AMG / 5.5L / Petrol / 585h.p");
                     ArrayAdapter<String> dataAdapter412 = new ArrayAdapter<String>(getActivity(),
@@ -4997,7 +5011,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SLC-43 AMG (R172)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("SLC-43 AMG / 3.0L / Petrol / 362h.p");
                     ArrayAdapter<String> dataAdapter413 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5007,7 +5021,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SLK (R171)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 / 1.8L / Petrol / 124h.p");
                     list.add("200 Kompressor/ 1.8L / Petrol / 163h.p");
                     list.add("200 Kompressor/ 1.8L / Petrol / 184h.p");
@@ -5022,7 +5036,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SLK (R172)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("200 / 1.8L / Petrol / 184h.p");
                     list.add("250 / 1.8L / Petrol / 204h.p");
                     list.add("250 CDI / 2.1L / Diesel / 204h.p");
@@ -5036,7 +5050,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("F55")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("Cooper / 1.5L / Petrol / 136h.p");
                     list.add("Cooper D / 1.5L / Diesel / 116h.p");
                     list.add("Cooper S / 2.0L / Petrol / 192h.p");
@@ -5049,7 +5063,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("F56")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("Cooper / 1.5L / Petrol / 136h.p");
                     list.add("Cooper D/ 1.5L / Diesel / 116h.p");
                     list.add("Cooper S/ 2.0L / Petrol / 192h.p");
@@ -5065,7 +5079,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("R56")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("Cooper S / 1.6L / Petrol / 200h.p");
                     ArrayAdapter<String> dataAdapter417 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5075,7 +5089,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Roadster (R59)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("Cooper / 1.6L / Petrol / 122h.p");
                     list.add("Cooper S / 1.6L / Petrol / 163h.p");
                     list.add("Cooper S / 1.6L / Petrol / 184h.p");
@@ -5090,7 +5104,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("COUNTRYMAN (R60)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("Cooper / 1.6L / Petrol / 120h.p");
                     list.add("Cooper D / 1.6L / Diesel / 112h.p");
                     list.add("Cooper D / 2.0L / Diesel / 112h.p");
@@ -5110,7 +5124,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PACEMAN (R61)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Petrol / 120h.p");
                     list.add("Cooper S / 1.6L / Petrol / 190h.p");
                     ArrayAdapter<String> dataAdapter420 = new ArrayAdapter<String>(getActivity(),
@@ -5121,7 +5135,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CEDIA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0  4WD / 2.0L / Petrol / 290h.p.p");
                     list.add("2.0 / 2.0L / Diesel / 68h.p");
                     list.add("2.0 / 2.0L / Petrol / 115h.p");
@@ -5136,7 +5150,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LANCER Mk VI")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Petrol / 75h.p");
                     list.add("1.8 / 1.8L / Petrol / 131h.p");
                     list.add("1.8 / 1.6L / Petrol / 205h.p");
@@ -5148,7 +5162,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LANCER EVOLUTION X")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 294h.p");
                     ArrayAdapter<String> dataAdapter423 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5158,7 +5172,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MONTERO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.2 MT / 3.2L / Diesel / 167h.p");
                     ArrayAdapter<String> dataAdapter424 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5168,7 +5182,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("Outlander XL")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 178h.p");
                     ArrayAdapter<String> dataAdapter425 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5178,7 +5192,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OUTLANDER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Diesel / 166h.p");
                     ArrayAdapter<String> dataAdapter426 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5188,7 +5202,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PAJERO SFX")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.8 / 2.8L / Diesel / 118h.p");
                     ArrayAdapter<String> dataAdapter427 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5198,7 +5212,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PAJERO SPORT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 178h.p");
                     ArrayAdapter<String> dataAdapter428 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5208,7 +5222,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("EVALIA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 86h.p");
 
                     ArrayAdapter<String> dataAdapter429 = new ArrayAdapter<String>(getActivity(),
@@ -5219,7 +5233,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GT-R (R35) (2008)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("NISSA GT-R(R35) 3.8 V6 / 3.8L / Petrol / 480h.p");
 
                     ArrayAdapter<String> dataAdapter430 = new ArrayAdapter<String>(getActivity(),
@@ -5230,7 +5244,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MICRA (K13K)(2010-2013)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 76h.p");
                     list.add("1.5 / 1.5L / Diesel / 64h.p");
                     ArrayAdapter<String> dataAdapter431 = new ArrayAdapter<String>(getActivity(),
@@ -5241,7 +5255,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MICRA (K13K)(2013-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 76h.p");
                     list.add("1.5 / 1.5L / Diesel / 64h.p");
                     ArrayAdapter<String> dataAdapter432 = new ArrayAdapter<String>(getActivity(),
@@ -5252,7 +5266,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MICRA ACTIVE (MK13K/MK13KK)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / petrol / 76h.p");
                     ArrayAdapter<String> dataAdapter433 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5262,7 +5276,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MICRA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / petrol / 75h.p");
                     list.add("1.5 / 1.5L / Diesel / 62h.p");
                     ArrayAdapter<String> dataAdapter434 = new ArrayAdapter<String>(getActivity(),
@@ -5273,7 +5287,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUNNY (N17K)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 86h.p");
                     list.add("1.5 / 1.5L / Petrol / 99h.p");
                     list.add("1.5 / 1.5L / Diesel / 86h.p");
@@ -5287,7 +5301,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUNNY (N17KK)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 86h.p");
                     list.add("1.5 / 1.5L / Petrol / 99h.p");
                     ArrayAdapter<String> dataAdapter436 = new ArrayAdapter<String>(getActivity(),
@@ -5298,7 +5312,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TEANA (J31)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.3(230JM) / 2.3L / Petrol / 173h.p");
                     ArrayAdapter<String> dataAdapter437 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5308,7 +5322,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TEANA (J32/J32K)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5(250XV-J32) / 2.5L / Petrol / 180h.p");
                     list.add("2.5(250XV-J32K) / 2.5L / Petrol / 180h.p");
                     ArrayAdapter<String> dataAdapter438 = new ArrayAdapter<String>(getActivity(),
@@ -5319,7 +5333,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TERRANO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 XE /XL Plus / 1.5L / Diesel / 85h.p");
                     list.add("1.6 XL / 1.6L / Petrol / 104h.p");
                     list.add("1.5 XV Premium / 1.5L / Diesel / 110h.p");
@@ -5331,7 +5345,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X-TRAIL (T31)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 dCi / 2.0L / Diesel / 177h.p");
                     ArrayAdapter<String> dataAdapter440 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5341,7 +5355,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("X-TRAIL (T30) (2001 - 2005)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 114h.p");
                     ArrayAdapter<String> dataAdapter441 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5351,7 +5365,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("DUSTER(2012-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 dci(HSAF)/ 1.5L / Diesel / 109h.p");
                     list.add("1.5 dci(HSM3)/ 1.5L / Diesel / 110h.p");
                     list.add("1.5 dci(HSMW)/ 1.5L / Diesel / 86h.p");
@@ -5364,7 +5378,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("DUSTER(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5/ 1.5L / Petrol / 104.5h.p");
                     list.add("1.5/ 1.5L / Diesel / 83.8h.p");
                     list.add("1.5/ 1.5L / Diesel / 108.4h.p");
@@ -5376,7 +5390,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FLUENCE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 dCi (L30B) / 1.5L / Diesel / 106h.p");
                     list.add("1.5 dCi (L333) / 1.5L / Diesel / 95h.p");
                     list.add("2.0 16V (L30T) / 2.0L / Petrol / 140h.p");
@@ -5388,7 +5402,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("KOLEOS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 (HYOK) / 2.0L / Diesel / 150h.p");
                     list.add("2.0 (HYOL) / 2.0L / Diesel / 173h.p");
                     ArrayAdapter<String> dataAdapter445 = new ArrayAdapter<String>(getActivity(),
@@ -5399,7 +5413,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("KWID")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.8 sCe  / 0.8L / Petrol / 54h.p");
                     list.add("1.0 sCe  / 1.0L / Petrol / 63h.p");
                     ArrayAdapter<String> dataAdapter446 = new ArrayAdapter<String>(getActivity(),
@@ -5410,7 +5424,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LODGY")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5(JSAF)  / 1.5L / Diesel / 110h.p");
                     list.add("1.5(JSMW)  / 1.5L / Diesel / 85h.p");
                     ArrayAdapter<String> dataAdapter447 = new ArrayAdapter<String>(getActivity(),
@@ -5421,7 +5435,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LOGAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4(LS12/LSOC)  / 1.4L / Petrol / 76h.p");
                     list.add("1.5 dCi (LSOO)  / 1.5L / Diesel / 65h.p");
                     list.add("1.5 dCi (LSOK)  / 1.5L / Diesel / 66h.p");
@@ -5434,7 +5448,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LOGAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4(LS12/LSOC)  / 1.4L / Petrol / 76h.p");
                     list.add("1.5 dCi (LSOO)  / 1.5L / Diesel / 65h.p");
                     list.add("1.5 dCi (LSOK)  / 1.5L / Diesel / 66h.p");
@@ -5447,7 +5461,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PULSE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 (BDMC)  / 1.2L / Petrol / 76h.p");
                     list.add("1.5 (BDMD)  / 1.5L / Diesel / 64h.p");
                     ArrayAdapter<String> dataAdapter450 = new ArrayAdapter<String>(getActivity(),
@@ -5458,7 +5472,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SCALA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 dCi (LJMD)  / 1.5L / Diesel / 86h.p");
                     list.add("1.5 (LJMA)  / 1.5L / Petrol / 99h.p");
                     ArrayAdapter<String> dataAdapter451 = new ArrayAdapter<String>(getActivity(),
@@ -5478,7 +5492,7 @@ public class Home extends Fragment {
 
                 if (model.contentEquals("FABIA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 60h.p");
                     list.add("1.2 / 1.2L / Petrol / 70h.p");
                     list.add("1.2 / 1.2L / Petrol / 105h.p");
@@ -5503,7 +5517,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAURA (1Z3)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 160h.p");
                     list.add("1.8 / 1.8L / Petrol / 152h.p");
                     list.add("1.9 / 1.9L / Diesel / 105h.p");
@@ -5519,7 +5533,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OCTAVIA (1U2)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 180h.p");
                     list.add("1.8 4X4 / 1.8L / Petrol / 150h.p");
                     list.add("1.9 / 1.9L / Diesel / 130h.p");
@@ -5533,7 +5547,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OCTAVIA (5E3)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 180h.p");
                     list.add("2.0 / 2.0L / Diesel / 143h.p");
                     list.add("2.0 / 2.0L / Petrol / 220h.p");
@@ -5546,7 +5560,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("OCTAVIA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 148h.p");
                     list.add("1.8 / 1.8L / Petrol / 177h.p");
                     list.add("2.0 / 2.0L / Diesel / 141h.p");
@@ -5558,7 +5572,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RAPID (NA2)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.6 / 1.6L / Diesel / 105h.p");
                     list.add("1.6 / 1.6L / Petrol / 105h.p");
                     ArrayAdapter<String> dataAdapter457 = new ArrayAdapter<String>(getActivity(),
@@ -5569,7 +5583,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("RAPID")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.5 / 1.5L / Diesel / 109h.p");
                     list.add("1.6 / 1.6L / Petrol / 104h.p");
                     ArrayAdapter<String> dataAdapter458 = new ArrayAdapter<String>(getActivity(),
@@ -5580,7 +5594,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUPERB Saloon (3U4)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.9 / 1.9L / Diesel / 105h.p");
                     list.add("1.9 / 1.9L / Diesel / 115h.p");
                     list.add("2.0 / 2.0L / Diesel / 140h.p");
@@ -5595,7 +5609,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUPERB (3T4)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 160h.p");
                     list.add("1.8 / 1.8L / Petrol / 160h.p");
                     list.add("1.9 / 1.9L / Diesel / 105h.p");
@@ -5611,7 +5625,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUPERB")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 TSI AT / 1.8L / Petrol / 178h.p");
                     list.add("1.8 TSI MT / 1.8L / Petrol / 178h.p");
                     list.add("2.0 TDI AT / 2.0L / Diesel / 174.5h.p");
@@ -5633,7 +5647,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("YETI (5L)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 TSI AT / 1.8L / Petrol / 178h.p");
                     list.add("1.8 TSI MT / 1.8L / Petrol / 178h.p");
                     list.add("2.0 TDI AT / 2.0L / Diesel / 174.5h.p");
@@ -5655,7 +5669,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("207")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 65h.p");
                     list.add("3.0 / 3.0L / Diesel / 61h.p");
                     ArrayAdapter<String> dataAdapter462 = new ArrayAdapter<String>(getActivity(),
@@ -5666,7 +5680,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.7 / 0.7L / Diesel / 16h.p");
                     ArrayAdapter<String> dataAdapter463 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5676,7 +5690,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUPER ACE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
                     ArrayAdapter<String> dataAdapter464 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5686,7 +5700,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACE ZIP")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 / 0.6L / Diesel / 11h.p");
                     ArrayAdapter<String> dataAdapter465 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5696,7 +5710,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ACE REFRESH")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("CNG / 0.7L / Diesel / 21h.p");
                     list.add("DICOR / 0.8L / Diesel / 21h.p");
                     list.add("DICOR TURBO / 0.8L / Diesel / 40h.p");
@@ -5709,7 +5723,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ARIA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 4WD BSIII / 2.2L / Diesel / 138h.p");
                     list.add("2.2 4WD BSIV / 2.2L / Diesel / 138h.p");
                     list.add("2.2  BSIII / 2.2L / Diesel / 138h.p");
@@ -5722,7 +5736,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ARIA LET")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 147h.p");
                     list.add("2.2 4WD / 2.2L / Diesel / 147h.p");
                     ArrayAdapter<String> dataAdapter468 = new ArrayAdapter<String>(getActivity(),
@@ -5733,7 +5747,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOLT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 90h.p");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     ArrayAdapter<String> dataAdapter468 = new ArrayAdapter<String>(getActivity(),
@@ -5744,7 +5758,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("HEXA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 153.8h.p");
                     list.add("2.2 / 2.2L / Diesel / 147.9h.p");
                     ArrayAdapter<String> dataAdapter469 = new ArrayAdapter<String>(getActivity(),
@@ -5755,7 +5769,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA V2 XETA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 BSIII / 1.2L / Petrol / 65h.p");
                     list.add("1.4 BSIII / 1.4L / Petrol / 70h.p");
                     list.add("E-MAX / 1.2L / Petrol / 63h.p");
@@ -5769,7 +5783,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA EV2")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 BSIII / 1.4L / Diesel / 48h.pp");
                     list.add("1.4 BSIV / 1.4L / Diesel / 69h.p");
                     ArrayAdapter<String> dataAdapter471 = new ArrayAdapter<String>(getActivity(),
@@ -5780,7 +5794,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA V2")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 BSII / 1.4L / Diesel / 53h.p");
                     list.add("1.4 DiCOR / 1.4L / Diesel / 70h.p");
                     list.add("1.4 DiCOR REFRESHED / 1.4L / Diesel / 70h.p");
@@ -5795,7 +5809,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA VISTA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 65h.p");
                     list.add("1.2 BSIII / 1.2L / Petrol / 65h.p");
                     list.add("1.2 BSIV / 1.2L / Petrol / 65h.p");
@@ -5814,7 +5828,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA VISTA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 BSIV / 1.2L / Petrol / 65h.p");
                     list.add("1.3 BSIV / 1.3L / Diesel / 75h.p");
                     list.add("1.3 BSIV / 1.3L / Diesel / 90h.p");
@@ -5829,7 +5843,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDICA VISTA TECH")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 75h.p");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
                     ArrayAdapter<String> dataAdapter475 = new ArrayAdapter<String>(getActivity(),
@@ -5840,7 +5854,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDIGO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 BS3 / 1.3L / Diesel / 90h.p");
                     list.add("1.4 / 1.4L / Petrol / 85h.p");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
@@ -5854,7 +5868,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDIGO XL")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
                     list.add("1.4 / 1.4L / Petrol / 101h.p");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
@@ -5867,7 +5881,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDIGO CS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 65h.p");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
                     ArrayAdapter<String> dataAdapter478 = new ArrayAdapter<String>(getActivity(),
@@ -5878,7 +5892,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDIGO eCS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 55h.p");
                     list.add("1.2 / 1.2L / Petrol / 65h.p");
                     list.add("1.4 / 1.4L / Diesel / 70h.p");
@@ -5890,7 +5904,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INDIGO MARINA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 84h.p");
                     list.add("1.4 DiCOR/ 1.4L / Diesel / 70h.p");
                     list.add("1.4 MPFI / 1.4L / Petrol / 85h.p");
@@ -5903,7 +5917,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAGIC")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 / 0.6L / Diesel / 11h.p");
                     list.add("0.7 / 0.7L / Diesel / 21h.p");
                     list.add("0.7 CNG / 0.7L / Petrol / 28h.p");
@@ -5915,7 +5929,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MAGIC IRIS (2007")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 / 0.6L / Diesel / 11h.p");
                     list.add("0.7 / 0.7L / Diesel / 21h.p");
                     list.add("0.7 CNG / 0.7L / Petrol / 28h.p");
@@ -5927,7 +5941,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MANZA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 90h.p");
                     list.add("1.3 / 1.3L / Diesel / 89h.p");
                     list.add("1.3 CELEBRATION / 1.3L / Diesel / 89h.p");
@@ -5942,7 +5956,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MANZA CLUB CLASS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.3 / 1.3L / Diesel / 89h.p");
                     list.add("1.4 / 1.4L / Petrol / 89h.p");
                     ArrayAdapter<String> dataAdapter484 = new ArrayAdapter<String>(getActivity(),
@@ -5953,7 +5967,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MOVUS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
                     ArrayAdapter<String> dataAdapter485 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5963,7 +5977,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("NANO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 / 0.6L / Petrol / 38h.p");
                     list.add("0.6 CNG / 0.6L / Petrol / 38h.p");
                     ArrayAdapter<String> dataAdapter486 = new ArrayAdapter<String>(getActivity(),
@@ -5974,7 +5988,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("NANO TWIST")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6  / 0.6L / Petrol / 38h.p");
                     ArrayAdapter<String> dataAdapter487 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -5984,7 +5998,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("NANO Gen X")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("0.6 FTG / 0.6L / Petrol / 38h.p");
                     list.add("0.6 OTG / 0.6L / Petrol / 38h.p");
                     ArrayAdapter<String> dataAdapter488 = new ArrayAdapter<String>(getActivity(),
@@ -5995,7 +6009,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAFARI DiCOR")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 140h.p");
                     list.add("2.2 4WD / 2.2L / Diesel / 140h.p");
                     ArrayAdapter<String> dataAdapter490 = new ArrayAdapter<String>(getActivity(),
@@ -6006,7 +6020,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAFARI DiCOR F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 140h.p");
                     list.add("4.7 V8 / 4.7L / Petrol / 275h.p");
                     ArrayAdapter<String> dataAdapter491 = new ArrayAdapter<String>(getActivity(),
@@ -6017,7 +6031,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SAFARI STORME LET")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 133h.p");
                     list.add("4.0 / 4.0L / Petrol / 276h.p");
                     ArrayAdapter<String> dataAdapter491 = new ArrayAdapter<String>(getActivity(),
@@ -6028,7 +6042,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUMO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 68h.p");
                     list.add("3.0 / 3.0L / Diesel / 65h.p");
                     ArrayAdapter<String> dataAdapter492 = new ArrayAdapter<String>(getActivity(),
@@ -6039,7 +6053,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SPACIO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 65h.p");
                     list.add("3.0 / 3.0L / Diesel / 71h.p");
                     ArrayAdapter<String> dataAdapter493 = new ArrayAdapter<String>(getActivity(),
@@ -6050,7 +6064,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUMO VICTA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 69h.p");
                     ArrayAdapter<String> dataAdapter494 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6060,7 +6074,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUMO GOLD")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 84h.p");
                     list.add("3.0 / 3.0L / Diesel / 70h.p");
                     list.add("3.0 / 3.0L / Diesel / 84h.p");
@@ -6072,7 +6086,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("SUMO GRANDE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 90h.p");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
                     list.add("2.2 / 2.2L / Diesel / 120h.p");
@@ -6084,7 +6098,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TELCOLINE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 4WD / 2.0L / Diesel / 87h.p");
                     ArrayAdapter<String> dataAdapter497 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6094,7 +6108,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TIAGO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.1 / 1.1L / Diesel / 69h.p");
                     list.add("1.2 / 1.2L / Petrol / 84h.p");
                     ArrayAdapter<String> dataAdapter498 = new ArrayAdapter<String>(getActivity(),
@@ -6105,7 +6119,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TIGOR")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 84h.p");
                     list.add("1.5 / 1.5L / Diesel / 69h.p");
                     ArrayAdapter<String> dataAdapter498 = new ArrayAdapter<String>(getActivity(),
@@ -6116,7 +6130,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VENTURE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 71h.p");
                     list.add("1.4 NA / 1.4L / Diesel / 71h.p");
                     ArrayAdapter<String> dataAdapter499 = new ArrayAdapter<String>(getActivity(),
@@ -6127,7 +6141,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("WINGER")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 65h.p");
                     list.add("2.0 TCIC / 2.0L / Diesel / 90h.p");
                     ArrayAdapter<String> dataAdapter500 = new ArrayAdapter<String>(getActivity(),
@@ -6138,7 +6152,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XENON XT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Diesel / 140h.p");
                     list.add("2.2 4X4 / 2.2L / Diesel / 140h.p");
                     ArrayAdapter<String> dataAdapter501 = new ArrayAdapter<String>(getActivity(),
@@ -6149,7 +6163,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XENON")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 140h.p");
                     list.add("3.0 4SP TC BSIII / 3.0L / Diesel / 72h.p");
                     list.add("3.0 4SP TC BSIII / 3.0L / Diesel / 72h.p");
@@ -6161,7 +6175,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ZEST")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 89h.p");
                     list.add("1.3 / 1.3L / Diesel / 74h.p");
                     list.add("1.3 / 1.3L / Diesel / 89h.p");
@@ -6173,7 +6187,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAMRY XV30")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 150h.p");
                     list.add("2.4 / 2.4L / Petrol / 152h.p");
                     list.add("3.0 / 3.0L / Petrol / 186h.p");
@@ -6185,7 +6199,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAMRY XV40")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Petrol / 167h.p");
                     list.add("3.5 / 3.5L / Petrol / 272h.p");
                     ArrayAdapter<String> dataAdapter505 = new ArrayAdapter<String>(getActivity(),
@@ -6196,7 +6210,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAMRY XV50")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Petrol / 184h.p");
                     list.add("2.5 / 2.5L / Hybrid / 160h.p");
                     ArrayAdapter<String> dataAdapter506 = new ArrayAdapter<String>(getActivity(),
@@ -6207,7 +6221,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("COROLLA E120 (IX gen)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 125h.p");
                     ArrayAdapter<String> dataAdapter507 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6217,7 +6231,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("COROLLA ALTIS E140 (X gen)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 90h.p");
                     list.add("1.8 / 1.8L / Petrol / 132h.p");
                     list.add("1.8 / 1.8L / Petrol / 140h.p");
@@ -6229,7 +6243,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ETIOS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 90h.p");
                     list.add("1.8 / 1.8L / Petrol / 140h.p");
                     ArrayAdapter<String> dataAdapter509 = new ArrayAdapter<String>(getActivity(),
@@ -6240,7 +6254,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ETIOS LIVA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 80h.p");
                     list.add("1.4 / 1.4L / Diesel / 68h.p");
                     list.add("1.5 / 1.5L / Petrol / 92h.p");
@@ -6252,7 +6266,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ETIOS CROSS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 80h.p");
                     list.add("1.4 / 1.4L / Diesel / 68h.p");
                     list.add("1.5 / 1.5L / Petrol / 90h.p");
@@ -6264,7 +6278,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PLATINUM ETIOS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Diesel / 67.05h.p");
                     list.add("1.5 / 1.5L / Petrol / 88.7h.p");
                     ArrayAdapter<String> dataAdapter512 = new ArrayAdapter<String>(getActivity(),
@@ -6275,7 +6289,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ETIOS LIVA F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 79h.p");
                     list.add("1.4 / 1.4L / Diesel / 67h.p");
                     ArrayAdapter<String> dataAdapter513 = new ArrayAdapter<String>(getActivity(),
@@ -6287,7 +6301,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FORTUNER 1st GEN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 4WD / 3.0L / Diesel / 171h.p");
                     ArrayAdapter<String> dataAdapter514 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6297,7 +6311,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("FORTUNER 1st GEN F/L")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.5 / 2.5L / Diesel / 144h.p");
                     list.add("3.0 2WD / 3.0L / Diesel / 171h.p");
                     list.add("3.0 AT / 3.0L / Diesel / 171h.p");
@@ -6309,7 +6323,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INNOVA(2005-2012)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 136h.p");
                     list.add("2.5 / 2.5L / Diesel / 102h.p");
                     ArrayAdapter<String> dataAdapter516 = new ArrayAdapter<String>(getActivity(),
@@ -6320,7 +6334,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INNOVA(2012-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Petrol / 136h.p");
                     list.add("2.5 / 2.5L / Diesel / 102h.p");
                     ArrayAdapter<String> dataAdapter517 = new ArrayAdapter<String>(getActivity(),
@@ -6331,7 +6345,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("INNOVA CRYSTA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Diesel / 148h.p");
                     list.add("2.7 / 2.7L / Petrol / 164h.p");
                     list.add("2.8 / 2.8L / Diesel / 172h.p");
@@ -6343,7 +6357,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER J100")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.2 / 4.2L / Diesel / 204h.p");
                     list.add("4.7 / 4.7L / Petrol / 235h.p");
                     list.add("4.7 / 4.7L / Petrol / 238h.p");
@@ -6355,7 +6369,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER J200(2007-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.5 / 4.5L / Diesel / 265h.p");
                     list.add("4.7 V8 / 4.7L / Petrol / 275h.p");
                     ArrayAdapter<String> dataAdapter520 = new ArrayAdapter<String>(getActivity(),
@@ -6366,7 +6380,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER J200(2012-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 133h.p");
                     list.add("4.0 / 4.0L / Petrol / 276h.p");
                     ArrayAdapter<String> dataAdapter521 = new ArrayAdapter<String>(getActivity(),
@@ -6377,7 +6391,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER PRADO J120")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 133h.p");
                     list.add("4.0 / 4.0L / Petrol / 276h.p");
                     ArrayAdapter<String> dataAdapter522 = new ArrayAdapter<String>(getActivity(),
@@ -6388,7 +6402,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER PRADO J150(2009-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 173h.p");
                     ArrayAdapter<String> dataAdapter523 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6398,7 +6412,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("LAND CRUISER PRADO J150(2013-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Diesel / 173h.p");
                     ArrayAdapter<String> dataAdapter524 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6408,7 +6422,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PRIUS(2012-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Hybrid / 178h.p");
                     ArrayAdapter<String> dataAdapter525 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6418,7 +6432,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PRIUS(2017-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 97.8h.p");
                     ArrayAdapter<String> dataAdapter526 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6428,7 +6442,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S60(2011-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4 / 2.4L / Diesel / 205h.p");
                     list.add("D3/D4/D5 2.0  / 2.0L / Diesel / 163h.p");
                     list.add("D4 2.0  / 2.0L / Diesel / 181h.p");
@@ -6441,7 +6455,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S60 Cross Country")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D4 AWD 2.4  / 2.4L / Diesel / 187h.p");
                     ArrayAdapter<String> dataAdapter528 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6451,7 +6465,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S60(2016-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D4 2.0  / 2.0L / Diesel / 187h.p");
                     list.add("T6 2.0  / 2.0L / Petrol / 306h.p");
                     ArrayAdapter<String> dataAdapter529 = new ArrayAdapter<String>(getActivity(),
@@ -6462,7 +6476,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S80(1999-2006)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.4  / 2.4L / Petrol / 140h.p");
                     list.add("3.0  / 3.0L / Petrol / 196h.p");
                     ArrayAdapter<String> dataAdapter530 = new ArrayAdapter<String>(getActivity(),
@@ -6473,7 +6487,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S80(2007-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0  / 2.0L / Diesel / 163h.p");
                     list.add("D5 2.4  / 2.4L / Diesel / 205h.p");
                     list.add("D5 2.4  / 2.4L / Diesel / 215h.p");
@@ -6486,7 +6500,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("S90")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D4 2.0  / 2.0L / Diesel / 190h.p");
                     ArrayAdapter<String> dataAdapter532 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6496,7 +6510,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("V40 Cross Country")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D3 2.0  / 2.0L / Diesel / 150h.p");
                     list.add("D3 2.0  / 2.0L / Diesel / 150h.p");
                     list.add("T4 1.6  / 1.6L / Petrol / 180h.p");
@@ -6508,7 +6522,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("V40")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D3 2.0  / 2.0L / Diesel / 150h.p");
                     list.add("D3 2.0  / 2.0L / Diesel / 150h.p");
                     list.add("T4 1.6  / 1.6L / Petrol / 180h.p");
@@ -6520,7 +6534,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XC60(2008-2015)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D4 2.0  / 2.0L / Diesel / 161h.p");
                     list.add("D5 AWD 2.4  / 2.4L / Diesel / 185h.p");
                     list.add("D5 AWD 2.4  / 2.4L / Diesel / 202h.p");
@@ -6533,7 +6547,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XC60(2016-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D5 2.0  / 2.0L / Diesel / 190h.p");
                     list.add("D5 AWD 2.4  / 2.4L / Diesel / 220h.p");
                     ArrayAdapter<String> dataAdapter536 = new ArrayAdapter<String>(getActivity(),
@@ -6544,7 +6558,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XC90(2005-2014)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D5 AWD 2.4  / 2.4L / Diesel / 200h.p");
                     list.add("V8 4.4  / 4.4L / Petrol / 315h.p");
                     ArrayAdapter<String> dataAdapter537 = new ArrayAdapter<String>(getActivity(),
@@ -6555,7 +6569,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("XC90(2016-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("D5 AWD 2.0  / 2.0L / Diesel / 235h.p");
                     list.add("D5 AWD 2.0  / 2.0L / Diesel / 225h.p");
                     ArrayAdapter<String> dataAdapter538 = new ArrayAdapter<String>(getActivity(),
@@ -6567,7 +6581,7 @@ public class Home extends Fragment {
 
                 if (model.contentEquals("AMEO")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 MPI  / 1.2L / Petrol / 75h.p");
                     list.add("1.5 TDI  / 1.5L / Diesel / 110h.p");
                     ArrayAdapter<String> dataAdapter539 = new ArrayAdapter<String>(getActivity(),
@@ -6578,7 +6592,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BEETLE (9C1, 1C1)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 TDI / 2.0L / Diesel / 141h.p");
                     list.add("VW BEETLE (9C1,1C1)1.4 / 1.4L / Petrol / 75h.p");
                     list.add("VW BEETLE (9C1,1C1)1.6 / 1.6L / Petrol / 100h.p");
@@ -6602,7 +6616,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("JETTA 6")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 122h.p");
                     list.add("2.0 / 2.0L / Diesel / 140h.p");
                     list.add("2.0 / 2.0L / Diesel / 140h.p");
@@ -6617,7 +6631,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PASSAT (362)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 160h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 170h.p");
                     list.add("2.0 TDI / 2.0L / Diesel / 136h.p");
@@ -6630,7 +6644,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PASSAT")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 TSI / 1.4L / Petrol / 150h.p");
                     list.add("1.8 TSI / 1.8L / Petrol / 160h.p");
                     list.add("2.0 DSG / 2.0L / Diesel / 168h.p");
@@ -6645,7 +6659,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("PASSAT (A32)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.6 FSI / 3.6L / Petrol / 280h.p");
                     ArrayAdapter<String> dataAdapter544 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6655,7 +6669,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("POLO (6R, 6C)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 / 1.2L / Petrol / 70h.p");
                     list.add("1.2 / 1.2L / Petrol / 70h.p");
                     list.add("1.2 / 1.2L / Petrol / 60h.p");
@@ -6678,7 +6692,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("GTI")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.8 / 1.8L / Petrol / 189.3h.p");
                     ArrayAdapter<String> dataAdapter546 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6688,7 +6702,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TIGUAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.0 / 2.0L / Diesel / 141h.p");
                     ArrayAdapter<String> dataAdapter547 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6698,7 +6712,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("TOUAREG (7P5)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("VW TOUAREG (7P5) 3.0 v6 TDI-copy / 3.0L / Diesel ");
                     ArrayAdapter<String> dataAdapter548 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6708,7 +6722,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VENTO (60)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4 / 1.4L / Petrol / 85h.p");
                     list.add("1.6 / 1.6L / Petrol / 105h.p");
                     list.add("1.6 TDI / 1.6L / Diesel / 105h.p");
@@ -6720,7 +6734,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VENTO IV (162)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.2 TSI / 1.2L / Petrol / 105h.p");
                     ArrayAdapter<String> dataAdapter550 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6730,7 +6744,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("ASTRA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("1.4/ 1.4L / Petrol / 75h.p");
                     ArrayAdapter<String> dataAdapter551 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6740,7 +6754,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CORSA")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("OPEL CORSA CLASSIC Saloon 1.4 / 1.4L / Petrol / 90");
                     list.add("OPEL CORSA CLASSIC Saloon 1.6 / 1.6L / Petrol / 10");
                     ArrayAdapter<String> dataAdapter552 = new ArrayAdapter<String>(getActivity(),
@@ -6751,7 +6765,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("VECTRA C (2002)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.2 / 2.2L / Petrol / 147h.p");
                     ArrayAdapter<String> dataAdapter553 = new ArrayAdapter<String>(getActivity(),
                             android.R.layout.simple_spinner_item, list);
@@ -6761,7 +6775,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (997)(2004-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.6 / 3.6L / Petrol / 325h.p");
                     list.add("4.0 / 4.0L / Petrol / 500h.p");
                     ArrayAdapter<String> dataAdapter554 = new ArrayAdapter<String>(getActivity(),
@@ -6772,7 +6786,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (997)(2005-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.6 / 3.6L / Petrol / 480h.p");
                     list.add("3.6 Carrera 4 / 3.6L / Petrol / 350h.p");
                     list.add("3.6 Carrera S / 3.8L / Petrol / 500h.p");
@@ -6784,7 +6798,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (997)(2006-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.6 / 3.6L / Petrol / 325h.p");
                     list.add("3.8 / 3.8L / Petrol / 385h.p");
                     list.add("3.8 / 3.8L / Petrol / 355h.p");
@@ -6796,7 +6810,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (997)(2006-now)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.4 Carrera / 3.4L / Petrol / 350h.p");
                     list.add("3.6 Carrera 4 / 3.6L / Petrol / 537h.p");
                     list.add("3.8 Carrera GTS / 3.8L / Petrol / 413h.p");
@@ -6808,7 +6822,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (991)Body type: Convertible")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.4 Carrera / 3.4L / Petrol / 350h.p");
                     list.add("3.6 Carrera 4 / 3.6L / Petrol / 537h.p");
                     list.add("3.8 Turbo / 3.8L / Petrol / 520h.p");
@@ -6820,7 +6834,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("911 (991)Body type: Coupe")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.4 / 3.4L / Petrol / 355h.p");
                     list.add("3.8 / 3.8L / Petrol / 507h.p");
                     list.add("3.8 / 3.8L / Petrol / 560h.p");
@@ -6832,7 +6846,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("BOXSTER (987)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("2.7 / 2.7L / Petrol / 240h.p");
                     list.add("2.7 / 2.7L / Petrol / 243h.p");
                     list.add("3.2 / 3.2L / Petrol / 253h.p");
@@ -6844,7 +6858,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAYENNE")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 / 3.0L / Hybrid /333h.p");
                     list.add("3.0 / 3.0L / Diesel / 239h.p");
                     list.add("3.0 / 3.0L / Petrol / 333h.p");
@@ -6856,7 +6870,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAYMAN (987)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.4 / 3.4L / Petrol / 295h.p");
                     list.add("3.4 / 3.4L / Petrol / 330h.");
                     list.add("3.4 / 3.4L / Petrol / 329h.p");
@@ -6868,7 +6882,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("CAYMAN (981)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.4 / 3.4L / Petrol / 325h.p");
                     list.add("3.4 / 3.4L / Petrol / 340h.p");
                     ArrayAdapter<String> dataAdapter563 = new ArrayAdapter<String>(getActivity(),
@@ -6879,7 +6893,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MACAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("3.0 S / 3.0L / Petrol / 340h.p");
                     list.add("3.6 TURBO / 3.6L / Petrol / 400h.p");
                     ArrayAdapter<String> dataAdapter564 = new ArrayAdapter<String>(getActivity(),
@@ -6890,7 +6904,7 @@ public class Home extends Fragment {
                 }
                 if (model.contentEquals("MACAN")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("Please Select");
+                    list.add("Variant");
                     list.add("4.8 / 4.8L / Petrol / 570h.p");
                     list.add("4.8 / 4.8L / Petrol / 435h.p");
                     ArrayAdapter<String> dataAdapter565 = new ArrayAdapter<String>(getActivity(),
@@ -6913,18 +6927,26 @@ public class Home extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 String sbrand = s1.getSelectedItem().toString();
                 String syear = s2.getSelectedItem().toString();
                 String smodel = s3.getSelectedItem().toString();
                 String svariant = s4.getSelectedItem().toString();
+
+
+
+                if(sbrand.contains("Brand")||syear.contains("Year")||smodel.contains("Model")||svariant.contains("Variant"))
+                {
+                    Toast.makeText(getActivity(),"Please select the Brand, Year, Model and Variant",Toast.LENGTH_SHORT).show();
+                }
+                else {
+
 
                 Intent intent = new Intent(getActivity(), Step2.class);
                 intent.putExtra("BRAND", sbrand);
                 intent.putExtra("YEAR", syear);
                 intent.putExtra("MODEL", smodel);
                 intent.putExtra("VARIANT", svariant);
-                getActivity().startActivity(intent);
+                getActivity().startActivity(intent);}
 
             }
         });

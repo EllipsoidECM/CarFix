@@ -6,8 +6,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.provider.ContactsContract;
 import android.support.design.widget.Snackbar;
 //import android.graphics.drawable.DrawableWrapper;
 import android.graphics.drawable.LayerDrawable;
@@ -25,14 +27,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.ellipsoidecm.carfix.NOT_API.Noty_API;
 import com.ellipsoidecm.carfix.R;
 import com.ellipsoidecm.carfix.cartAPI.API;
 import com.ellipsoidecm.carfix.fragment.AboutUs;
@@ -43,7 +49,10 @@ import com.ellipsoidecm.carfix.fragment.PrivacyPolicy;
 import com.ellipsoidecm.carfix.fragment.Wallet;
 import com.ellipsoidecm.carfix.listItems.Hero;
 import com.ellipsoidecm.carfix.others.MySingleton;
+import com.ellipsoidecm.carfix.others.NotificationModel;
 import com.ellipsoidecm.carfix.others.RequestHandler;
+import com.ellipsoidecm.carfix.others.SharedPrefManager;
+import com.ellipsoidecm.carfix.others.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,26 +64,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    View actionView;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    View actionView,actionView1;
     TextView textCartItemCount;
-//    public static int mCartItemCount = 0;
-private static final int CODE_GET_REQUEST = 1024;
+    //    public static int mCartItemCount = 0;
+    private static final int CODE_GET_REQUEST = 1024;
     private static final int CODE_POST_REQUEST = 1025;
     public List<Hero> heroList;
-
+    public List<NotificationModel> heroList1;
 
 
     private BroadcastReceiver broadcastReceiver;
     Drawable drawable;
-    LayerDrawable iconLayer= null;
+    LayerDrawable iconLayer = null;
 
     public static int navItemIndex = 0;
 
-    public static int mCartCount=0;
+    public static int mCartCount = 0;
 
-  //  public static final String TOKEN_BROADCAST = "myfcmtokenbroadcast";
+    public static int mNotyCount = 0;
+
+    //  public static final String TOKEN_BROADCAST = "myfcmtokenbroadcast";
 
 
     @Override
@@ -82,21 +92,28 @@ private static final int CODE_GET_REQUEST = 1024;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         heroList = new ArrayList<>();
 
+        heroList1 = new ArrayList<>();
 
 
-        readHeroes();
+        User user = SharedPrefManager.getInstance(this).getUser();
+
+        performreq("http://ellipsoid.esy.es/repairstation_API/showcart.php?id=" + user.getId());
+        performreq1(Noty_API.URL_VIEW+user.getId());
 
 
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Select Car Details", Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Select Car Details", Snackbar.LENGTH_SHORT);
         snackbar.show();
 
-        SharedPreferences sharedPreferences= getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
 
 
-     //   Log.d("tokenbroad",sharedPreferences.getString())
+        //   Log.d("tokenbroad",sharedPreferences.getString())
 
 
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
@@ -104,7 +121,7 @@ private static final int CODE_GET_REQUEST = 1024;
         tx.commit();
 
         SharedPreferences.Editor editor = getSharedPreferences("default", MODE_PRIVATE).edit();
-        editor.putString("isLoggedIn", "true");
+        editor.putBoolean("isLoggedIn", true);
         editor.commit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -133,20 +150,16 @@ private static final int CODE_GET_REQUEST = 1024;
     }
 
 
-
     private void loadHomeFragment() {
 
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+
     }
+
+    TextView textNotyItemCount;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -155,12 +168,18 @@ private static final int CODE_GET_REQUEST = 1024;
         getMenuInflater().inflate(R.menu.main, menu);
 
         final MenuItem menuItem = menu.findItem(R.id.action_cart);
+        final MenuItem menuItem1 = menu.findItem(R.id.action_notification);
+
 
         try {
             actionView = MenuItemCompat.getActionView(menuItem);
+            actionView1 = MenuItemCompat.getActionView(menuItem1);
 
             textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
             setupBadge();
+
+            textNotyItemCount = (TextView) actionView1.findViewById(R.id.notification_badge);
+            setupBadge1();
 
             actionView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -169,9 +188,15 @@ private static final int CODE_GET_REQUEST = 1024;
                 }
             });
 
-        }catch (Exception e){}
+            actionView1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onOptionsItemSelected(menuItem1);
+                }
+            });
 
-
+        } catch (Exception e) {
+        }
 
 
         return true;
@@ -193,6 +218,22 @@ private static final int CODE_GET_REQUEST = 1024;
         }
     }
 
+    private void setupBadge1() {
+
+        if (textNotyItemCount != null) {
+            if (mNotyCount == 0) {
+                if (textNotyItemCount.getVisibility() != View.GONE) {
+                    textNotyItemCount.setVisibility(View.GONE);
+                }
+            } else {
+                textNotyItemCount.setText(String.valueOf(Math.min(mNotyCount, 99)));
+                if (textNotyItemCount.getVisibility() != View.VISIBLE) {
+                    textNotyItemCount.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -205,13 +246,6 @@ private static final int CODE_GET_REQUEST = 1024;
             case R.id.action_notification:
                 bellIcon();
                 return true;
-            case R.id.mainlogout:
-
-                SharedPreferences.Editor editor = getSharedPreferences("default", MODE_PRIVATE).edit();
-                editor.putString("isLoggedIn", "false");
-                editor.commit();
-                startActivity(new Intent(MainActivity.this, Login.class));
-                return true;
 
         }
 
@@ -219,12 +253,12 @@ private static final int CODE_GET_REQUEST = 1024;
     }
 
     private void bellIcon() {
-
+        startActivity(new Intent(MainActivity.this, NotificationActivity.class));
     }
 
     private void cartIcon() {
 
-        Intent intent = new Intent(MainActivity.this,Cart.class);
+        Intent intent = new Intent(MainActivity.this, Cart.class);
         startActivity(intent);
         finish();
     }
@@ -239,9 +273,7 @@ private static final int CODE_GET_REQUEST = 1024;
             case R.id.nav_home:
                 fragment = new Home();
                 break;
-            case R.id.nav_wallet:
-                fragment = new Wallet();
-                break;
+
             case R.id.nav_cart:
                 startActivity(new Intent(MainActivity.this, Cart.class));
                 break;
@@ -252,7 +284,7 @@ private static final int CODE_GET_REQUEST = 1024;
                 startActivity(new Intent(MainActivity.this, Orders.class));
                 break;
             case R.id.nav_profile:
-                fragment = new MyAccount();
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 break;
             case R.id.nav_aboutus:
                 fragment = new AboutUs();
@@ -261,7 +293,7 @@ private static final int CODE_GET_REQUEST = 1024;
                 fragment = new PrivacyPolicy();
                 break;
             case R.id.nav_help:
-                fragment = new PrivacyPolicy();
+                startActivity(new Intent(MainActivity.this, FeedBack.class));
                 break;
             case R.id.nav_how:
                 startActivity(new Intent(MainActivity.this, HowItWorks.class));
@@ -269,9 +301,10 @@ private static final int CODE_GET_REQUEST = 1024;
             case R.id.nav_logout:
 
                 SharedPreferences.Editor editor = getSharedPreferences("default", MODE_PRIVATE).edit();
-                editor.putString("isLoggedIn", "false");
+                editor.putBoolean("isLoggedIn", false);
                 editor.commit();
-                startActivity(new Intent(MainActivity.this, Login.class));
+
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }
 
@@ -295,84 +328,186 @@ private static final int CODE_GET_REQUEST = 1024;
         return true;
     }
 
-    private void readHeroes() {
-        MainActivity.PerformNetworkRequest request = new MainActivity.PerformNetworkRequest(API.URL_READ_HEROES, null, CODE_GET_REQUEST);
-        request.execute();
+    JSONArray object;
+
+    private void performreq(String url) {
+
+        User user = SharedPrefManager.getInstance(this).getUser();
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(Cart.this, response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+                            object = new JSONArray(response);
+
+                            refreshHeroList(object);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+        try {
+            refreshHeroList(object);
+
+        } catch (Exception e) {
+        }
+
+
     }
 
-    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
-        String url;
-        HashMap<String, String> params;
-        int requestCode;
 
-        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
+    private void refreshHeroList(JSONArray heroes) throws JSONException {
+        // heroList.clear();
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                JSONObject object = new JSONObject(s);
-                if (!object.getBoolean("error")) {
-                   // Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    refreshHeroList(object.getJSONArray("heroes"));
+        try {
+            for (int i = 0; i < heroes.length(); i++) {
 
-                }
-                else {                    Toast.makeText(getApplicationContext(),"Check Internet Connection", Toast.LENGTH_SHORT).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+                JSONObject obj = heroes.getJSONObject(i);
+
+                heroList.add(new Hero(
+                        obj.getInt("id"),
+                        obj.getString("slc"),
+                        obj.getString("brand"),
+                        obj.getString("model"),
+                        obj.getString("date")
+                ));
+
+
+                mCartCount = heroList.size();
+
+                setupBadge();
+            }
+
+        }catch(Exception e){
             }
         }
 
-        @Override
-        protected String doInBackground(Void... voids) {
-            RequestHandler requestHandler = new RequestHandler();
+    private void performreq1(String url) {
 
-            if (requestCode == CODE_POST_REQUEST)
-                return requestHandler.sendPostRequest(url, params);
+//        User user = SharedPrefManager.getInstance(this).getUser();
 
 
-            if (requestCode == CODE_GET_REQUEST)
-                return requestHandler.sendGetRequest(url);
 
-            return null;
-        }
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+                            object = new JSONArray(response);
+
+                            refreshlist(object);
+
+
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+        refreshlist(object);
 
 
     }
 
-    private void refreshHeroList(JSONArray heroes) throws JSONException {
-       // heroList.clear();
 
-        for (int i = 0; i < heroes.length(); i++) {
-            JSONObject obj = heroes.getJSONObject(i);
+    private void refreshlist(JSONArray array) {
+       heroList1.clear();
 
-            heroList.add(new Hero(
-                    obj.getInt("id"),
-                    obj.getString("partname"),
-                    obj.getString("brand"),
-                    obj.getString("model"),
-                    obj.getString("date")
-            ));
-        }
+        try {
+            for (int i = 0; i < array.length(); i++) {
 
-        mCartCount=heroList.size();
-        setupBadge();
+                JSONObject obj = array.getJSONObject(i);
+
+                heroList1.add(new NotificationModel(
+                        obj.getString("ticket_id"),
+                        obj.getString("oe_price"),
+                        obj.getString("branded_price"),
+                        obj.getString("local_price"),
+                        obj.getString("used_price")
+                ));
+            }
+
+            Toast.makeText(getApplicationContext(), array.length() + "", Toast.LENGTH_SHORT).show();
+
+            //   Toast.makeText(getApplicationContext(),heroList.get(1).getTicket_id(),Toast.LENGTH_SHORT).show();
+
+            mNotyCount = array.length();
+
+            setupBadge1();
+        }catch (Exception e){}
+
+
     }
 
 
 
+}
 
-    }
+
+
+
+
 
 
 

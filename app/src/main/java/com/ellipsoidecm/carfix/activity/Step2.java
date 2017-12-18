@@ -3,10 +3,12 @@ package com.ellipsoidecm.carfix.activity;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,14 +19,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ellipsoidecm.carfix.R;
@@ -62,8 +67,9 @@ import android.widget.Toast;
 
 public class Step2 extends AppCompatActivity {
 
-    String shc ="";
-    String slc ="";
+    String shc = "";
+    String slc = "";
+    String sp="";
 
 
     String sname="";
@@ -71,8 +77,10 @@ public class Step2 extends AppCompatActivity {
     String spartnumer="";
 
     Spinner sh, sl, spart;
-    Button next1, refresh;
+    Button  refresh;
+    Button next1;
     EditText et1, et4;
+    TextView brand,Year,Model,Varient;
 
 
     private Uri fileUri;
@@ -87,6 +95,7 @@ public class Step2 extends AppCompatActivity {
     public static final int MY_REQUEST_GALLERY   = 15;
 
     private BottomSheetBehavior selectPhotoBehaviour;
+    ImageButton back_button;
 
     public File filen = null;
 
@@ -96,14 +105,39 @@ public class Step2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step2);
 
+        setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
         final String brandname = getIntent().getStringExtra("BRAND");
         final String yearname = getIntent().getStringExtra("YEAR");
         final String modelname = getIntent().getStringExtra("MODEL");
         final String variantname = getIntent().getStringExtra("VARIANT");
 
+        brand = (TextView) findViewById(R.id.s2_brand);
+        Year = (TextView) findViewById(R.id.s2_year);
+        Model = (TextView) findViewById(R.id.s2_model);
+        Varient = (TextView) findViewById(R.id.s2_varient);
+
+        brand.setText(brandname);
+        Year.setText(yearname);
+        Model.setText(modelname);
+        Varient.setText(variantname);
+
+
+
         sh = (Spinner) findViewById(R.id.spinnerhc);
         sl = (Spinner) findViewById(R.id.spinnerlc);
         spart = (Spinner) findViewById(R.id.spinnerpart);
+        back_button = (ImageButton) findViewById(R.id.s2_back);
+
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Step2.this,MainActivity.class));
+            }
+        });
+
 
 
         sh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1005,15 +1039,30 @@ public class Step2 extends AppCompatActivity {
         et1 = (EditText) findViewById(R.id.et1);
         et4 = (EditText) findViewById(R.id.et4);
 
-        next1 = (Button) findViewById(R.id.nexts);
-        refresh = (Button) findViewById(R.id.refresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
+        et1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                et1.setText("");
-                et4.setText("");
+                et1.setFocusable(true);
             }
         });
+
+        et4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                et4.setFocusable(true);
+            }
+        });
+
+        next1 = (Button) findViewById(R.id.nexts);
+
+//        refresh = (Button) findViewById(R.id.refresh);
+//        refresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                et1.setText("");
+//                et4.setText("");
+//            }
+//        });
 
         next1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1029,6 +1078,10 @@ public class Step2 extends AppCompatActivity {
                      shc = sh.getSelectedItem().toString();
                       slc = sl.getSelectedItem().toString();
 
+                      sp=spart.getSelectedItem().toString();
+
+
+
 
                      sname = et1.getText().toString();
 
@@ -1037,6 +1090,7 @@ public class Step2 extends AppCompatActivity {
                 Intent intent = new Intent(Step2.this, Step3.class);
                 intent.putExtra("HC", shc);
                 intent.putExtra("LC", slc);
+                intent.putExtra("SP",sp);
                 intent.putExtra("SNAME", sname);
                 intent.putExtra("SPARTNUMBER", spartnumer);
                 intent.putExtra("SBRAND", brandname);
@@ -1201,7 +1255,10 @@ public class Step2 extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        //do nothing
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

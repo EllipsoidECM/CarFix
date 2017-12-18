@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.ellipsoidecm.carfix.activity.Login;
+import com.ellipsoidecm.carfix.activity.LoginActivity;
 
 
 public class SharedPrefManager {
@@ -66,7 +66,7 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-        mCtx.startActivity(new Intent(mCtx, Login.class));
+        mCtx.startActivity(new Intent(mCtx, LoginActivity.class));
     }
 
     //this method will save the device token to shared preferences

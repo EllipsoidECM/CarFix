@@ -22,19 +22,60 @@
             android:textSize="30dp" />
 
         <EditText
-            android:id="@+id/editTextUsername"
+            android:id="@+id/reg_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:hint="Username"
+            android:hint="Name"
+
             android:inputType="text"
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black" />
+            />
+
 
         <EditText
-            android:id="@+id/editTextEmail"
+            android:id="@+id/reg_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Mobile no"
+
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+           />
+
+        <EditText
+            android:id="@+id/reg_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Shipping Address"
+
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+           />
+
+        <EditText
+            android:id="@+id/reg_bname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Business Name"
+
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/reg_mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -42,11 +83,11 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:textColor="@color/black"
-            android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black" />
+
+             />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/reg_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -56,31 +97,31 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
-            android:textColorHint="@color/black" />
+        />
 
-        <RadioGroup
-            android:id="@+id/radioGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+        <!--<RadioGroup-->
+            <!--android:id="@+id/radioGender"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:orientation="horizontal">-->
 
-            <RadioButton
-                android:id="@+id/radioButtonMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Male" />
+            <!--<RadioButton-->
+                <!--android:id="@+id/radioButtonMale"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:checked="true"-->
+                <!--android:text="Male" />-->
 
 
-            <RadioButton
-                android:id="@+id/radioButtonFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female" />
+            <!--<RadioButton-->
+                <!--android:id="@+id/radioButtonFemale"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Female" />-->
 
-        </RadioGroup>
+        <!--</RadioGroup>-->
 
         <Button
             android:id="@+id/buttonRegister"

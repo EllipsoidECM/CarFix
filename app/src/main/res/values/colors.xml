@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#c9202d</color>
-    <color name="colorPrimaryDark">#CC1D1D</color>
+    <color name="colorPrimary">#d81f2c</color>
+    <color name="colorPrimaryDark">#484848</color>
     <color name="colorAccent">#484848</color>
 
     <color name="grey">#484848</color>
@@ -20,6 +20,7 @@
     <color name="slide2">#ff5e5d</color>
     <color name="slide3">#1996d6</color>
     <color name="slide4">#00b35a</color>
+    <color name="divideline">#b0afb0</color>
 
     <color name="genre">#666666</color>
     <color name="year">#888888</color>

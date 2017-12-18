@@ -22,15 +22,18 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void run() {
+
+
                 SharedPreferences preferences = getSharedPreferences("default", MODE_PRIVATE);
-                String isLoggedIn = preferences.getString("isLoggedIn", "");
-                if ("true".equals(isLoggedIn)) {
+                Boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
+
+                if (isLoggedIn) {
                     Intent i = new Intent(Splash.this, MainActivity.class);
                     startActivity(i);
                     overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 } else {
 
-                    Intent i = new Intent(Splash.this, Login.class);
+                    Intent i = new Intent(Splash.this, LoginActivity.class);
                     startActivity(i);
                     overridePendingTransition(R.anim.push_left_out, R.anim.push_left_in);
                 }

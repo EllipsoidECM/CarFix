@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 
 import com.ellipsoidecm.carfix.R;
 import com.ellipsoidecm.carfix.activity.MainActivity;
+import com.ellipsoidecm.carfix.activity.NotificationActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -25,7 +26,7 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         String title = remoteMessage.getNotification().getTitle();
         String message = remoteMessage.getNotification().getBody();
 
-        Intent intent= new Intent(this, MainActivity.class);
+        Intent intent= new Intent(this,NotificationActivity.class);
         intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent= PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this);
@@ -36,4 +37,5 @@ public class MyFirebaseMessagingService  extends FirebaseMessagingService {
         notificationBuilder.setContentIntent(pendingIntent);
         NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,notificationBuilder.build());
+        startActivity(intent);
     }}

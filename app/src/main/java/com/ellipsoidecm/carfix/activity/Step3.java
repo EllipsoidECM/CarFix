@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -21,13 +22,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ellipsoidecm.carfix.R;
+import com.ellipsoidecm.carfix.others.SharedPrefManager;
+import com.ellipsoidecm.carfix.others.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Step3 extends AppCompatActivity {
 
-    TextView brand, year, model, variant, classification, type, sparename, partnumber;
+    TextView brand, year, model, variant, hc, lc, slc, partnumber,part,partdescription;
 
     ImageView finalimage;
 
@@ -38,24 +41,32 @@ public class Step3 extends AppCompatActivity {
     public static final String KEY_YEAR = "year";
     public static final String KEY_MODEL = "model";
     public static final String KEY_VARIANT = "variant";
-    public static final String KEY_BODY = "body";
-    public static final String KEY_PART = "part";
-    public static final String KEY_PARTNAME = "partname";
+    public static final String KEY_HC = "hc";
+    public static final String KEY_LC = "lc";
+    public static final String KEY_SLC ="slc";
+    public static final String KEY_PARTNAME = "partdescription";
     public static final String KEY_PARTNUMBER = "partnumber";
+        String finalbrand,finalyear,finalmodel,finalvariant,finalHC,finalLC,finalSP,finalpartname,finalpartnumer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step3);
 
+        setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         brand = (TextView) findViewById(R.id.cbrand);
         year = (TextView) findViewById(R.id.cyear);
         model = (TextView) findViewById(R.id.cmodel);
         variant = (TextView) findViewById(R.id.cvariant);
-        classification = (TextView) findViewById(R.id.cclassification);
-        type = (TextView) findViewById(R.id.ctype);
-        sparename = (TextView) findViewById(R.id.cpartname);
-        partnumber = (TextView) findViewById(R.id.cpartno);
+        hc = (TextView) findViewById(R.id.cclassification);
+        lc = (TextView) findViewById(R.id.ctype);
+        slc = (TextView) findViewById(R.id.cpartname);
+        part = (TextView) findViewById(R.id.subpart);
+        partnumber = (TextView) findViewById(R.id.cpartnumber);
+        partdescription = (TextView) findViewById(R.id.csubpart);
+
+
 
         finalimage = (ImageView) findViewById(R.id.finalimage);
 
@@ -64,34 +75,44 @@ public class Step3 extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         finalimage.setImageBitmap(bmp);
 
-        String finalbrand = getIntent().getStringExtra("SBRAND");
-        String finalyear = getIntent().getStringExtra("SYEAR");
-        String finalmodel = getIntent().getStringExtra("SMODEL");
-        String finalvariant = getIntent().getStringExtra("SVARIANT");
-        String finalclassification = getIntent().getStringExtra("HC");
-        String finaltype = getIntent().getStringExtra("LC");
-        String finalpartname = getIntent().getStringExtra("SNAME");
-        String finalpartnumer = getIntent().getStringExtra("SPARTNUMBER");
+          finalbrand = getIntent().getStringExtra("SBRAND");
+         finalyear = getIntent().getStringExtra("SYEAR");
+         finalmodel = getIntent().getStringExtra("SMODEL");
+         finalvariant = getIntent().getStringExtra("SVARIANT");
+         finalHC = getIntent().getStringExtra("HC");
+         finalLC = getIntent().getStringExtra("LC");
+         finalSP = getIntent().getStringExtra("SP");
+         finalpartname = getIntent().getStringExtra("SNAME");
+         finalpartnumer = getIntent().getStringExtra("SPARTNUMBER");
 
 
         brand.setText(finalbrand);
         year.setText(finalyear);
         model.setText(finalmodel);
         variant.setText(finalvariant);
-        classification.setText(finalclassification);
-        type.setText(finaltype);
-        sparename.setText(finalpartname);
+        hc.setText(finalHC);
+        lc.setText(finalLC);
+        slc.setText(finalSP);
         partnumber.setText(finalpartnumer);
+        partdescription.setText(finalpartname);
+      //  partnumber.setText(finalpartnumer);
+        part.setText(finalSP);
 
         edit = (Button) findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Step3.this, Step2.class);
+                intent.putExtra("BRAND",finalbrand);
+                intent.putExtra("YEAR",finalyear);
+                intent.putExtra("MODEL",finalmodel);
+                intent.putExtra("VARIANT",finalvariant);
+
                 startActivity(intent);
                 finish();
             }
         });
+
         cont = (Button) findViewById(R.id.cont);
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,16 +145,23 @@ public class Step3 extends AppCompatActivity {
         });
     }
 
-    private void addtocart() {
+    String fbrand="",fyear="",fmodel="",fvariant="",fhc="",flc="",fslc="",fpartnumber="",fpart="";
 
-        final String fbrand = brand.getText().toString();
-        final String fyear = year.getText().toString();
-        final String fmodel = model.getText().toString();
-        final String fvariant = variant.getText().toString();
-        final String fclassification = classification.getText().toString();
-        final String ftype = type.getText().toString();
-        final String fpartname = sparename.getText().toString();
-        final String fpartnumber = partnumber.getText().toString();
+
+    User user;
+
+    private void addtocart() {
+        user = SharedPrefManager.getInstance(this).getUser();
+
+        fbrand = brand.getText().toString();
+        fyear = year.getText().toString();
+        fmodel = model.getText().toString();
+        fvariant = variant.getText().toString();
+        fhc = hc.getText().toString();
+        flc = lc.getText().toString();
+        fslc = slc.getText().toString();
+        fpartnumber = partnumber.getText().toString();
+        fpart = part.getText().toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, INSERT_URL,
                 new Response.Listener<String>() {
@@ -148,16 +176,21 @@ public class Step3 extends AppCompatActivity {
                         Toast.makeText(Step3.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
+
             @Override
             protected Map<String, String> getParams() {
+
+
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("mechanic_id",user.getId()+"");
                 params.put(KEY_BRAND, fbrand);
                 params.put(KEY_YEAR, fyear);
                 params.put(KEY_MODEL, fmodel);
                 params.put(KEY_VARIANT, fvariant);
-                params.put(KEY_BODY, fclassification);
-                params.put(KEY_PART, ftype);
-                params.put(KEY_PARTNAME, fpartname);
+                params.put(KEY_HC, fhc);
+                params.put(KEY_LC,flc);
+                params.put(KEY_SLC, fslc);
+                params.put(KEY_PARTNAME, fpart);
                 params.put(KEY_PARTNUMBER, fpartnumber);
                 return params;
             }
@@ -169,6 +202,11 @@ public class Step3 extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 

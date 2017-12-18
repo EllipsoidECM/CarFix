@@ -1,21 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--&gt;-->
+
+
+<!--<LinearLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_centerVertical="true"--><!--android:orientation="vertical"--><!--android:padding="10dp">-->
+
+
+<!--<EditText--><!--android:id="@+id/editTextUsername"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_marginBottom="8dp"--><!--android:layout_marginTop="8dp"--><!--android:hint="Username"--><!--android:inputType="text" />-->
+
+<!--<EditText--><!--android:id="@+id/editTextPassword"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_marginBottom="8dp"--><!--android:layout_marginTop="8dp"--><!--android:fontFamily="sans-serif"--><!--android:hint="Password"--><!--android:inputType="textPassword" />-->
+
+<!--<Button--><!--android:id="@+id/buttonLogin"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_marginBottom="8dp"--><!--android:layout_marginTop="8dp"--><!--android:text="Login" />-->
+
+<!--<TextView--><!--android:id="@+id/textViewRegister"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_marginBottom="8dp"--><!--android:layout_marginTop="8dp"--><!--android:text="Dont' have an account?\nRegister Here"--><!--android:textAlignment="center"--><!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />-->
+
+<!--</LinearLayout>-->
+
+<!--<ProgressBar--><!--android:visibility="gone"--><!--android:id="@+id/progressBar"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_centerHorizontal="true"--><!--android:layout_centerVertical="true" />--><!--</RelativeLayout>-->
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    tools:context="com.ellipsoidecm.carfix.activity.Login">
+    android:background="@color/colorPrimary"
+    tools:context="com.ellipsoidecm.carfix.activity.LoginActivity">
 
     <TextView
         android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:textAlignment="center"
         android:layout_alignParentRight="true"
-        android:textAllCaps="true"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
+        android:text="Sign Up"
+        android:textAlignment="center"
+        android:textAllCaps="true"
         android:textColor="@color/white" />
 
     <ImageView
@@ -27,9 +47,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/logo_white" />
 
-
     <EditText
-        android:id="@+id/mobilenumber"
+        android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_login"
@@ -39,25 +58,23 @@
         android:layout_marginTop="40dp"
         android:drawableLeft="@drawable/ic_phone_symbol_of_an_auricular_inside_a_circle"
         android:hint="Mobile Number"
-        android:inputType="number"
-        android:maxLength="10"
+        android:inputType="text"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/mobilenumber"
+        android:layout_below="@+id/editTextUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/ic_padlock"
         android:hint="Password"
-        android:inputType="numberPassword"
-        android:maxLength="6"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
@@ -67,23 +84,25 @@
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/editTextPassword"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:layout_marginTop="40dp">
 
+
         <TableRow>
 
             <Button
-                android:id="@+id/login_button"
+                android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/password"
                 android:layout_weight="1"
                 android:background="@drawable/curevedbutton_white_background"
                 android:text="Sign in"
                 android:textColor="@color/colorPrimary" />
+
         </TableRow>
+
     </TableLayout>
 
     <TextView
@@ -98,11 +117,11 @@
         android:textColor="@color/white" />
 
     <ProgressBar
-        android:visibility="gone"
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
 
 </RelativeLayout>

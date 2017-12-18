@@ -1,215 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#f0f0f0"
+    android:background="@color/milkywhite"
     android:orientation="vertical">
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <ImageView
+
         android:id="@+id/flogo"
-        android:layout_width="match_parent"
+        android:layout_marginTop="-5dp"
+        android:layout_centerInParent="true"
+        android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_below="@+id/table2"
-        android:src="@drawable/slide" />
+        android:background="@drawable/shadow"
+        android:src="@drawable/logo_icon" />
 
-    <TableLayout
-        android:id="@+id/table2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="5dp">
-
-        <TableRow>
-
-            <RadioButton
-                android:id="@+id/spareparts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="true"
-                android:text="Spare Parts"
-                android:textColorHighlight="@color/colorPrimary" />
-
-            <RadioButton
-                android:id="@+id/ecm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorPrimary"
-                android:text="ECM Repair"
-                android:textColorHighlight="@color/colorPrimary" />
-
-        </TableRow>
-    </TableLayout>
+</RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/next"
-        android:layout_below="@id/flogo"
-        android:background="@color/milkywhite">
+        android:layout_height="wrap_content">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/iron">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/milkywhite">
-
-                    <ImageView
-                        android:id="@+id/fbrand"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/brand" />
-
-                    <Spinner
-                        android:id="@+id/spinner1"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_below="@+id/fbrand"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="3dp"
-                        android:entries="@array/brands"
-                        android:textAlignment="center">
-
-                    </Spinner>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/milkywhite">
-
-                    <ImageView
-                        android:id="@+id/fyear"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/year" />
-
-                    <Spinner
-                        android:id="@+id/spinner2"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/fyear"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="3dp"
-                        android:entries="@array/years"
-                        android:textAlignment="center">
-
-                    </Spinner>
-
-                </RelativeLayout>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/milkywhite">
-
-                    <ImageView
-                        android:id="@+id/fmodel"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/model" />
-
-                    <Spinner
-                        android:id="@+id/spinner3"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/fmodel"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="3dp"
-                        android:entries="@array/model"
-                        android:textAlignment="center">
-
-                    </Spinner>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/milkywhite">
-
-                    <ImageView
-                        android:id="@+id/fvariant"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/variant" />
-
-                    <Spinner
-                        android:id="@+id/spinner4"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_below="@+id/fvariant"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="3dp"
-                        android:entries="@array/varaint"
-                        android:textAlignment="center">
-
-                    </Spinner>
-                </RelativeLayout>
-            </TableRow>
-
-        </TableLayout>
+  <TextView
+      android:layout_marginTop="10dp"
+      android:id="@+id/main_about"
+      android:textAlignment="center"
+      android:textColor="#c5c5c5"
+      android:layout_centerHorizontal="true"
+      android:layout_width="wrap_content"
+      android:layout_height="50dp" />
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/next"
+    <!--<RelativeLayout-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/table2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginRight="40dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--&gt;-->
+
+
+
+            <!--<Button-->
+                <!--android:layout_marginLeft="70dp"-->
+                <!--android:id="@+id/spareparts"-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="76.8dp"-->
+                <!--android:layout_height="33.6dp"-->
+                <!--android:background="@drawable/mybutton"-->
+                <!--android:layout_marginRight="50dp"-->
+                <!--android:text="Parts"-->
+                <!--android:textColorHighlight="@color/colorPrimary" />-->
+
+            <!--<Button-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:background="@drawable/mybutton2"-->
+                <!--android:id="@+id/ecm"-->
+                <!--android:layout_width="76.8dp"-->
+                <!--android:layout_height="33.6dp"-->
+
+                <!--android:text="ECM"-->
+                <!--android:textColorHighlight="@color/colorPrimary" />-->
+
+
+    <!--</LinearLayout>-->
+
+    <!--</RelativeLayout>-->
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/milkywhite">
+
+            <TableLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/iron">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/milkywhite">
+
+                        <ImageView
+                            android:id="@+id/fbrand"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/brand" />
+
+                        <Spinner
+                            android:id="@+id/spinner1"
+                            android:layout_width="140dp"
+                            android:layout_height="48dp"
+                            android:layout_alignStart="@+id/fbrand"
+
+                            android:layout_below="@+id/fbrand"
+                            android:entries="@array/brands"
+                            android:textAlignment="center">
+
+                        </Spinner>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/milkywhite">
+
+                        <ImageView
+                            android:id="@+id/fyear"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/year" />
+
+                        <Spinner
+                            android:id="@+id/spinner2"
+                            android:layout_width="140dp"
+                            android:layout_height="50dp"
+                            android:layout_alignStart="@+id/fyear"
+                            android:layout_below="@+id/fyear"
+                            android:entries="@array/years"
+                            android:textAlignment="center">
+
+                        </Spinner>
+
+                    </RelativeLayout>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/milkywhite">
+
+                        <ImageView
+                            android:id="@+id/fmodel"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/model" />
+
+                        <Spinner
+                            android:id="@+id/spinner3"
+                            android:layout_width="140dp"
+                            android:layout_height="50dp"
+                            android:layout_alignStart="@+id/fmodel"
+                            android:layout_below="@+id/fmodel"
+                            android:entries="@array/model"
+                            android:textAlignment="center">
+
+                        </Spinner>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="1dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/milkywhite">
+
+                        <ImageView
+                            android:id="@+id/fvariant"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/variant" />
+
+                        <Spinner
+                            android:id="@+id/spinner4"
+                            android:layout_width="140dp"
+                            android:layout_height="50dp"
+                            android:layout_alignStart="@+id/fvariant"
+                            android:layout_below="@+id/fvariant"
+                            android:entries="@array/varaint"
+                            android:textAlignment="center">
+
+                        </Spinner>
+                    </RelativeLayout>
+                </TableRow>
+
+            </TableLayout>
+
+
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+        android:id="@+id/next"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/green"
+        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/mybutton"
         android:text="Continue"
         android:textColor="@color/white" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
