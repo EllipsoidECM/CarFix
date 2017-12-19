@@ -117,30 +117,9 @@ public class Step3 extends AppCompatActivity {
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final Dialog step3 = new Dialog(Step3.this);
-                step3.setContentView(R.layout.dialog_step3);
-
-                step3.show();
-
-                Button cancel = (Button) step3.findViewById(R.id.cancel);
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        step3.dismiss();
-                    }
-                });
-
-                Button cart = (Button) step3.findViewById(R.id.cart);
-                cart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        addtocart();
-                        step3.dismiss();
-                        Intent intent = new Intent(Step3.this, Cart.class);
-                        startActivity(intent);
-                    }
-                });
+                addtocart();
+                Intent intent = new Intent(Step3.this, Cart.class);
+                startActivity(intent);
             }
         });
     }

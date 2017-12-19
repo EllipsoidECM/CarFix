@@ -5,19 +5,45 @@
     android:background="@color/milkywhite"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
+    android:layout_height="120dp">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        >
+
+
 
     <ImageView
 
         android:id="@+id/flogo"
-        android:layout_marginTop="-5dp"
-        android:layout_centerInParent="true"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:background="@drawable/shadow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:elevation="20dp"
         android:src="@drawable/logo_icon" />
+
+    </FrameLayout>
 
 </RelativeLayout>
 
@@ -32,7 +58,7 @@
       android:textColor="#c5c5c5"
       android:layout_centerHorizontal="true"
       android:layout_width="wrap_content"
-      android:layout_height="50dp" />
+      android:layout_height="70dp" />
 
     </RelativeLayout>
 
@@ -119,9 +145,9 @@
                             android:id="@+id/spinner1"
                             android:layout_width="140dp"
                             android:layout_height="48dp"
-                            android:layout_alignStart="@+id/fbrand"
 
                             android:layout_below="@+id/fbrand"
+                            android:layout_centerHorizontal="true"
                             android:entries="@array/brands"
                             android:textAlignment="center">
 
@@ -149,9 +175,10 @@
                         <Spinner
                             android:id="@+id/spinner2"
                             android:layout_width="140dp"
+                            android:layout_below="@id/fyear"
+                            android:layout_centerInParent="true"
                             android:layout_height="50dp"
-                            android:layout_alignStart="@+id/fyear"
-                            android:layout_below="@+id/fyear"
+                            android:layout_marginEnd="27dp"
                             android:entries="@array/years"
                             android:textAlignment="center">
 
@@ -185,8 +212,8 @@
                             android:id="@+id/spinner3"
                             android:layout_width="140dp"
                             android:layout_height="50dp"
-                            android:layout_alignStart="@+id/fmodel"
-                            android:layout_below="@+id/fmodel"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:entries="@array/model"
                             android:textAlignment="center">
 
@@ -214,7 +241,7 @@
                             android:id="@+id/spinner4"
                             android:layout_width="140dp"
                             android:layout_height="50dp"
-                            android:layout_alignStart="@+id/fvariant"
+                            android:layout_centerInParent="true"
                             android:layout_below="@+id/fvariant"
                             android:entries="@array/varaint"
                             android:textAlignment="center">
@@ -242,11 +269,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/mybutton"
+
+        android:background="@drawable/mybutton4"
         android:text="Continue"
         android:textColor="@color/white" />
 
     </RelativeLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

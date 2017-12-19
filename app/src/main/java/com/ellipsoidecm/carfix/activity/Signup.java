@@ -231,12 +231,27 @@ public class Signup extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(Signup.this, response, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(Signup.this, response, Toast.LENGTH_LONG).show();
 
-                        if(response.contains("successful"))
-                        {
-                            startActivity(new Intent(Signup.this,LoginActivity.class));
 
+                        try {
+
+                            JSONObject root = new JSONObject(response);
+                            String error = root.getString("error");
+
+                            JSONObject user = root.getJSONObject("user");
+                            String username = user.getString("username");
+                            Toast.makeText(Signup.this,""+error,Toast.LENGTH_SHORT).show();
+
+                            if (error.contains("false")) {
+                                Intent intent = new Intent(Signup.this, Register_end.class);
+                                intent.putExtra("username", username);
+                                startActivity(intent);
+
+                            }
+
+                        }catch (Exception e){
+                            Toast.makeText(Signup.this,"error in Json",Toast.LENGTH_SHORT).show();
                         }
                     }
                 },

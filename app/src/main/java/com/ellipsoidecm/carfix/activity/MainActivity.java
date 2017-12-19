@@ -488,9 +488,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ));
             }
 
-            Toast.makeText(getApplicationContext(), array.length() + "", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(getApplicationContext(), array.length() + "", Toast.LENGTH_SHORT).show();
 
-            //   Toast.makeText(getApplicationContext(),heroList.get(1).getTicket_id(),Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(getApplicationContext(),heroList.get(1).getTicket_id(),Toast.LENGTH_SHORT).show();
 
             mNotyCount = array.length();
 

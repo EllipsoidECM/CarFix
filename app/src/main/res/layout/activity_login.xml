@@ -23,35 +23,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     tools:context="com.ellipsoidecm.carfix.activity.LoginActivity">
 
-    <TextView
-        android:id="@+id/signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:text="Sign Up"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/up"
+        android:layout_width="match_parent"
+
+        android:layout_height="120dp">
+
+        <RelativeLayout
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="85dp">
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            >
+
+
+
+            <ImageView
+
+                android:id="@+id/flogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="20dp"
+                android:src="@drawable/logo_icon" />
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
 
     <ImageView
         android:id="@+id/logo_login"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_below="@id/up"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_white" />
+        android:src="@drawable/logo" />
+
+    <RelativeLayout
+        android:id="@+id/lines1"
+        android:layout_width="match_parent"
+        android:layout_below="@id/logo_login"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/login_about"
+            android:textAlignment="center"
+            android:textColor="#c5c5c5"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp" />
+
+    </RelativeLayout>
+
+
+
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo_login"
+        android:layout_below="@+id/lines1"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -60,8 +106,7 @@
         android:hint="Mobile Number"
         android:inputType="text"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -75,9 +120,10 @@
         android:drawableLeft="@drawable/ic_padlock"
         android:hint="Password"
         android:inputType="textPassword"
+
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        />
 
 
     <TableLayout
@@ -94,27 +140,41 @@
 
             <Button
                 android:id="@+id/buttonLogin"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/curevedbutton_white_background"
-                android:text="Sign in"
-                android:textColor="@color/colorPrimary" />
+                android:background="@drawable/mybutton"
+                android:text="Login"
+                android:textColor="@color/white" />
 
         </TableRow>
 
     </TableLayout>
 
+
     <TextView
-        android:id="@+id/forgotpassword"
-        android:layout_width="match_parent"
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/table_layout"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:layout_weight="0.7"
-        android:text="forgot password?"
+        android:text="Register"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/table_layout"
         android:textAlignment="center"
-        android:textColor="@color/white" />
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimary" />
+
+    <!--<TextView-->
+        <!--android:id="@+id/forgotpassword"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/table_layout"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_weight="0.7"-->
+        <!--android:text="forgot password?"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@color/white" />-->
 
     <ProgressBar
         android:id="@+id/progressBar"

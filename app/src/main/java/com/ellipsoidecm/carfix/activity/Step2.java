@@ -1,6 +1,7 @@
 package com.ellipsoidecm.carfix.activity;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -10,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,6 +20,7 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ellipsoidecm.carfix.R;
+import com.ellipsoidecm.carfix.others.RequestHandler;
 import com.ellipsoidecm.carfix.others.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 
@@ -43,6 +47,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -1128,6 +1133,8 @@ public class Step2 extends AppCompatActivity {
 
     }
 
+    Bitmap bitmap;
+
 
     private void checkPermissionCW(){
         int permissionCheck = ContextCompat.checkSelfPermission(Step2.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -1198,9 +1205,15 @@ public class Step2 extends AppCompatActivity {
                 fileUri=Uri.parse("file:///" + filen);
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inSampleSize = 8;
-                final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
+                 bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
                     options);
                 imgPreview.setImageBitmap(bitmap);
+
+                SharedPreferences.Editor editor = getSharedPreferences("default", MODE_PRIVATE).edit();
+                editor.putString("bitmap",getStringImage(bitmap));
+
+
+
 
                 break;
 
@@ -1224,6 +1237,55 @@ public class Step2 extends AppCompatActivity {
 
         }
     }
+
+    public static final String UPLOAD_KEY = "image";
+
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String> {
+
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Step2.this, "Uploading...", null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Bitmap bitmap = params[0];
+                String uploadImage = getStringImage(bitmap);
+
+                HashMap<String,String> data = new HashMap<>();
+
+                data.put(UPLOAD_KEY, uploadImage);
+                String result = rh.sendPostRequest("http://ellipsoid.esy.es/repairstation_API/upload_image.php",data);
+
+                return result;
+            }
+        }
+
+        UploadImage ui = new UploadImage();
+        ui.execute(bitmap);
+    }
+
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+
 
 //
 //    private void checkPermissionWG(){

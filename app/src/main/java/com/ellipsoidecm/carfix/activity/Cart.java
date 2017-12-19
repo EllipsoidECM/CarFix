@@ -1,15 +1,18 @@
 package com.ellipsoidecm.carfix.activity;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +48,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -244,31 +248,8 @@ public class Cart extends AppCompatActivity {
             checkout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    final Dialog checkout = new Dialog(Cart.this);
-                    checkout.setContentView(R.layout.dialog_checkout);
-
-                    Button cancel = (Button) checkout.findViewById(R.id.cancelcheckout);
-                    cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            checkout.dismiss();
-                        }
-                    });
-
-                    Button check = (Button) checkout.findViewById(R.id.checkoutbutton);
-                    check.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            movehero(hero.getId());
-                            movehome();
-                            checkout.dismiss();
-
-
-                        }
-                    });
-
-                    checkout.show();
+                    movehero(hero.getId());
+                    movehome();
                 }
             });
             
@@ -308,6 +289,57 @@ public class Cart extends AppCompatActivity {
         finish();
 
     }
+
+
+    public static final String UPLOAD_KEY = "image";
+
+    private void uploadImage(){
+        class UploadImage extends AsyncTask<Bitmap,Void,String> {
+
+            ProgressDialog loading;
+            RequestHandler rh = new RequestHandler();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Cart.this, "Uploading...", null,true,true);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Bitmap... params) {
+                Bitmap bitmap = params[0];
+                String uploadImage = getStringImage(bitmap);
+
+                HashMap<String,String> data = new HashMap<>();
+
+                data.put(UPLOAD_KEY, uploadImage);
+                String result = rh.sendPostRequest("http://ellipsoid.esy.es/repairstation_API/upload_image.php",data);
+
+                return result;
+            }
+        }
+
+        UploadImage ui = new UploadImage();
+     //   ui.execute(bitmap);
+    }
+
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+
+
 
     private void deleteHero(int id) {
 

@@ -1,9 +1,11 @@
 package com.ellipsoidecm.carfix.activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,22 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
         signup = (TextView) findViewById(R.id.signup);
+
+        TextView tx = (TextView)findViewById(R.id.login_about);
+
+        Typeface custom_font = Typeface.createFromAsset(LoginActivity.this.getAssets(),  "fonts/chaparral.ttf");
+
+        tx.setTypeface(custom_font);
+
+        String str2 = "";
+
+        String str1 ="";
+
+
+        tx.setText(Html.fromHtml("Buy spare parts at <font color=#cc0029>Carfix</font> <br/> with cheaper price. Providing all car brands spare parts."));
+
+
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,4 +172,12 @@ public class LoginActivity extends AppCompatActivity {
         UserLogin ul = new UserLogin();
         ul.execute();
     }
+
+
+    int count=0;
+    @Override
+    public void onBackPressed() {
+       super.onBackPressed();
+    }
+
 }
