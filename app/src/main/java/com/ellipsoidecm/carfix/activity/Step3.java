@@ -119,6 +119,11 @@ public class Step3 extends AppCompatActivity {
             public void onClick(View view) {
                 addtocart();
                 Intent intent = new Intent(Step3.this, Cart.class);
+                intent.putExtra("BRAND",finalbrand);
+                intent.putExtra("YEAR",finalyear);
+                intent.putExtra("MODEL",finalmodel);
+                intent.putExtra("VARIANT",finalvariant);
+
                 startActivity(intent);
             }
         });

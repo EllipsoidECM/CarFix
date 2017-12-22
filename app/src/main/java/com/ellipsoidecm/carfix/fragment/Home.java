@@ -1,12 +1,15 @@
 package com.ellipsoidecm.carfix.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,20 +22,44 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ellipsoidecm.carfix.R;
+import com.ellipsoidecm.carfix.activity.Cart;
 import com.ellipsoidecm.carfix.activity.ECM;
 import com.ellipsoidecm.carfix.activity.Step2;
+import com.ellipsoidecm.carfix.listItems.Hero;
+import com.ellipsoidecm.carfix.others.LoadImageTask;
+import com.ellipsoidecm.carfix.others.SharedPrefManager;
+import com.ellipsoidecm.carfix.others.SpinnerModel;
+import com.ellipsoidecm.carfix.adapter.SpinnerAdapter;
+import com.ellipsoidecm.carfix.others.User;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
-public class Home extends Fragment {
+public class Home extends Fragment  {
 
     Spinner s1, s2, s3, s4;
     Button next;
 
     Button  sparesscreen ;
+    ArrayList<SpinnerModel> list;
+    SpinnerAdapter adapter;
 
     public Home() {
     }
@@ -49,7 +76,7 @@ public class Home extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-
+        list=new ArrayList<>();
 
 
         TextView tx = (TextView)view.findViewById(R.id.main_about);
@@ -69,62 +96,14 @@ public class Home extends Fragment {
 
 
         s1 = (Spinner) view.findViewById(R.id.spinner1);
+
+    //    performreq("http://ellipsoid.esy.es/repairstation_API/brands.php");
+
         s2 = (Spinner) view.findViewById(R.id.spinner2);
         s3 = (Spinner) view.findViewById(R.id.spinner3);
         s4 = (Spinner) view.findViewById(R.id.spinner4);
 
 
-        s1.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-
-                    Snackbar snackbar1 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Select Year Details", Snackbar.LENGTH_LONG);
-                    snackbar1.show();               }
-                return false;
-            }
-        });
-
-        s2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Snackbar snackbar2 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Select Variant", Snackbar.LENGTH_LONG);
-                    snackbar2.show();
-                }
-
-                return false;
-            }
-        });
-
-
-
-        s3.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Snackbar snackbar3 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Fuel details", Snackbar.LENGTH_LONG);
-                    snackbar3.show();
-
-                }
-
-                return false;
-            }
-        });
-
-
-
-        s4.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    Snackbar snackbar4 = Snackbar.make(getActivity().findViewById(android.R.id.content), "Next, Click on continue", Snackbar.LENGTH_LONG);
-                    snackbar4.show();
-                }
-
-                return false;
-            }
-        });
 
         s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -6953,4 +6932,98 @@ public class Home extends Fragment {
 
         return view;
     }
+
+    JSONArray object;
+
+    private void performreq(String url) {
+
+        User user = SharedPrefManager.getInstance(getActivity()).getUser();
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+                            object = new JSONArray(response);
+
+                            refreshlist(object);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        requestQueue.add(stringRequest);
+
+
+        refreshlist(object);
+
+
+    }
+
+    URL url1;
+
+    private void refreshlist(JSONArray array) {
+        Toast.makeText(getActivity(),"In refresh list",Toast.LENGTH_SHORT).show();
+        try {
+            for (int i = 0; i < array.length(); i++) {
+
+                JSONObject obj = array.getJSONObject(i);
+
+
+                String url = obj.getString("brand_img_url");
+
+                 //url1 =  new URL(url);
+
+                //new LoadImageTask(this).execute(url);
+
+
+                list.add(new SpinnerModel(
+                        obj.getString("brand_name"),
+                         url
+                ));
+
+
+            }
+            JSONObject obj = array.getJSONObject(0);
+
+            Toast.makeText(getActivity(),obj.getString("brand_name"),Toast.LENGTH_LONG).show();
+            adapter = new SpinnerAdapter(getActivity(),R.layout.custom_spinner,R.id.txt,list);
+            s1.setAdapter(adapter);
+
+
+        }catch(Exception e){Toast.makeText(getActivity(),"in error"+e.toString(),Toast.LENGTH_SHORT).show();
+            Log.e("In error",e.toString());
+        }
+    }
+
+
 }

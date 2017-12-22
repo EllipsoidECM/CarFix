@@ -241,7 +241,7 @@ public class Signup extends AppCompatActivity {
 
                             JSONObject user = root.getJSONObject("user");
                             String username = user.getString("username");
-                            Toast.makeText(Signup.this,""+error,Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(Signup.this,""+error,Toast.LENGTH_SHORT).show();
 
                             if (error.contains("false")) {
                                 Intent intent = new Intent(Signup.this, Register_end.class);

@@ -26,6 +26,13 @@
     android:background="@color/white"
     tools:context="com.ellipsoidecm.carfix.activity.LoginActivity">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/up"
@@ -65,11 +72,11 @@
 
     <ImageView
         android:id="@+id/logo_login"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:layout_below="@id/up"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="25dp"
         android:scaleType="fitCenter"
         android:src="@drawable/logo" />
 
@@ -86,7 +93,7 @@
             android:textColor="#c5c5c5"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
-            android:layout_height="70dp" />
+            android:layout_height="50dp" />
 
     </RelativeLayout>
 
@@ -101,10 +108,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:drawableLeft="@drawable/ic_phone_symbol_of_an_auricular_inside_a_circle"
         android:hint="Mobile Number"
-        android:inputType="text"
+        android:inputType="phone"
         android:textAlignment="center"
         android:textColor="@color/black" />
 
@@ -133,7 +140,7 @@
         android:layout_below="@+id/editTextPassword"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="25dp">
 
 
         <TableRow>
@@ -183,5 +190,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="gone" />
+
+</RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

@@ -8,6 +8,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -30,7 +31,6 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ForgotPassword" />
         <activity
@@ -70,7 +70,9 @@
 
         <activity android:name=".activity.Notification_Details" />
         <activity android:name=".activity.FeedBack" />
-        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.ProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".activity.ThankYou"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -85,7 +87,12 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".activity.Register_end"></activity>
+        <activity android:name=".activity.Register_end" />
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_unBJOa2v2Kjq3T" />
+
     </application>
 
 </manifest>

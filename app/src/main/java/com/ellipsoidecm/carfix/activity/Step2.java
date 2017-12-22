@@ -1,17 +1,21 @@
 package com.ellipsoidecm.carfix.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -1092,6 +1096,12 @@ public class Step2 extends AppCompatActivity {
 
                  spartnumer = et4.getText().toString();
 
+
+                 if(checkImageResource(Step2.this,imgPreview,R.drawable.ic_fix)){
+                     Toast.makeText(Step2.this,"Please capture image of the part",Toast.LENGTH_SHORT).show();
+                 }
+
+
                 Intent intent = new Intent(Step2.this, Step3.class);
                 intent.putExtra("HC", shc);
                 intent.putExtra("LC", slc);
@@ -1103,6 +1113,8 @@ public class Step2 extends AppCompatActivity {
                 intent.putExtra("SMODEL", modelname);
                 intent.putExtra("SVARIANT", variantname);
                 intent.putExtra("CAPTUREDIMAGE", byteArray);
+
+
 
                 startActivity(intent);}
                 catch (Exception e){Log.d("in next",e.toString());}
@@ -1131,6 +1143,32 @@ public class Step2 extends AppCompatActivity {
         }
 
 
+    }
+
+    @SuppressWarnings("deprecation")
+    @SuppressLint("NewApi")
+    public static boolean checkImageResource(Context ctx, ImageView imageView,
+                                             int imageResource) {
+        boolean result = false;
+
+        if (ctx != null && imageView != null && imageView.getDrawable() != null) {
+            Drawable.ConstantState constantState;
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                constantState = ctx.getResources()
+                        .getDrawable(imageResource, ctx.getTheme())
+                        .getConstantState();
+            } else {
+                constantState = ctx.getResources().getDrawable(imageResource)
+                        .getConstantState();
+            }
+
+            if (imageView.getDrawable().getConstantState() == constantState) {
+                result = true;
+            }
+        }
+
+        return result;
     }
 
     Bitmap bitmap;

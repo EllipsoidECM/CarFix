@@ -19,6 +19,8 @@ import com.ellipsoidecm.carfix.R;
 import com.ellipsoidecm.carfix.adapter.CompletedTicketAdapter;
 import com.ellipsoidecm.carfix.config.ConfigTickets;
 import com.ellipsoidecm.carfix.listItems.CompletedTicketItems;
+import com.ellipsoidecm.carfix.others.SharedPrefManager;
+import com.ellipsoidecm.carfix.others.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,15 +70,16 @@ public class CompletedOrders extends Fragment {
     }
 
     private void getCompletedTickets() {
-        final ProgressDialog loading = ProgressDialog.show(getActivity(), "Loading Data", "Please wait...", false, false);
+     //   final ProgressDialog loading = ProgressDialog.show(getActivity(), "Loading Data", "Please wait...", false, false);
+        User user = SharedPrefManager.getInstance(getActivity()).getUser();
 
         //Creating a json array request
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(ConfigTickets.COMPLETED_TICKET_URL,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(ConfigTickets.COMPLETED_TICKET_URL+user.getId(),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
                         //Dismissing progress dialog
-                        loading.dismiss();
+         //               loading.dismiss();
 
                         //calling method to parse json array
                         parseCompletedTickets(response);

@@ -7,14 +7,46 @@ package com.ellipsoidecm.carfix.others;
 public class User {
 
     private int id;
-    private String username, email, gender;
+    private String username;
+    private String email;
+    private String address;
+    private String bname;
 
-    public User(int id, String username, String email, String gender) {
+
+
+    private String name;
+
+    public User(int id, String username, String email, String address, String bname, String name) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.gender = gender;
+        this.name= name;
+        this.bname = bname;
+        this.address = address;
+
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBname() {
+        return bname;
+    }
+
+    public void setBname(String bname) {
+        this.bname = bname;
+    }
+
+    public String getname() {
+        return name;
+    }
+
+
 
 
     public int getId() {
@@ -29,7 +61,4 @@ public class User {
         return email;
     }
 
-    public String getGender() {
-        return gender;
-    }
 }

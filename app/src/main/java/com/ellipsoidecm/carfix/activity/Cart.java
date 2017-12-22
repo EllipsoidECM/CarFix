@@ -1,11 +1,8 @@
 package com.ellipsoidecm.carfix.activity;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -25,8 +22,6 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,14 +29,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ellipsoidecm.carfix.R;
-import com.ellipsoidecm.carfix.adapter.CompletedTicketAdapter;
-import com.ellipsoidecm.carfix.cartAPI.API;
-import com.ellipsoidecm.carfix.config.ConfigTickets;
-import com.ellipsoidecm.carfix.listItems.CompletedTicketItems;
 import com.ellipsoidecm.carfix.listItems.Hero;
 import com.ellipsoidecm.carfix.others.RequestHandler;
 import com.ellipsoidecm.carfix.others.SharedPrefManager;
-import com.ellipsoidecm.carfix.others.URLs;
 import com.ellipsoidecm.carfix.others.User;
 
 import org.json.JSONArray;
@@ -76,6 +66,9 @@ public class Cart extends AppCompatActivity {
     User user;
 
 
+    String finalmodel,finalbrand,finalyear,finalvariant;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,11 +90,20 @@ public class Cart extends AppCompatActivity {
         heroList = new ArrayList<>();
         setTitle("Checkout");
 
+        finalbrand = getIntent().getStringExtra("BRAND");
+        finalyear = getIntent().getStringExtra("YEAR");
+        finalmodel = getIntent().getStringExtra("MODEL");
+        finalvariant = getIntent().getStringExtra("VARIANT");
+
         shop = (Button) findViewById(R.id.shop);
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Cart.this,Step2.class);
+                i.putExtra("BRAND",finalbrand);
+                i.putExtra("YEAR",finalyear);
+                i.putExtra("MODEL",finalmodel);
+                i.putExtra("VARIANT",finalvariant);
                 startActivity(i);
                 finish();
             }

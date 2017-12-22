@@ -1,9 +1,13 @@
 package com.ellipsoidecm.carfix.activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ellipsoidecm.carfix.R;
@@ -12,7 +16,8 @@ import com.ellipsoidecm.carfix.others.User;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    TextView textViewId, textViewUsername, textViewEmail, textViewGender;
+    TextView textViewId, textViewUsername, textViewEmail, textViewAddress,textViewName,textViewBName;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,20 @@ public class ProfileActivity extends AppCompatActivity {
         textViewId = (TextView) findViewById(R.id.textViewId);
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
         textViewEmail = (TextView) findViewById(R.id.textViewEmail);
-        textViewGender = (TextView) findViewById(R.id.textViewGender);
+        textViewAddress = (TextView) findViewById(R.id.textViewAdress);
+        textViewName = (TextView) findViewById(R.id.textViewName);
+        textViewBName = (TextView) findViewById(R.id.textViewBusinessName);
+
+        back = (ImageView) findViewById(R.id.back_profile);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,MainActivity.class));
+            }
+        });
+
+
 
 
         //getting the current user
@@ -38,7 +56,10 @@ public class ProfileActivity extends AppCompatActivity {
         textViewId.setText(String.valueOf(user.getId()));
         textViewUsername.setText(user.getUsername());
         textViewEmail.setText(user.getEmail());
-        textViewGender.setText(user.getGender());
+        textViewBName.setText(user.getBname());
+        textViewAddress.setText(user.getAddress());
+        textViewName.setText(user.getname());
+
 
         //when the user presses logout button
         //calling the logout method

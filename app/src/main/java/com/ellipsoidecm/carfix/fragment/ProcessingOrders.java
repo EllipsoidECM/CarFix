@@ -19,6 +19,8 @@ import com.ellipsoidecm.carfix.R;
 import com.ellipsoidecm.carfix.adapter.ProcessingTicketAdapter;
 import com.ellipsoidecm.carfix.config.ConfigTickets;
 import com.ellipsoidecm.carfix.listItems.ProcessingTicketItems;
+import com.ellipsoidecm.carfix.others.SharedPrefManager;
+import com.ellipsoidecm.carfix.others.User;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,9 +71,10 @@ public class ProcessingOrders extends Fragment {
 
     private void getCompletedTickets() {
         final ProgressDialog loading = ProgressDialog.show(getActivity(), "Loading Data", "Please wait...", false, false);
+        User user = SharedPrefManager.getInstance(getActivity()).getUser();
 
         //Creating a json array request
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(ConfigTickets.PROCESSING_TICKET_URL,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(ConfigTickets.PROCESSING_TICKET_URL+user.getId(),
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -97,8 +100,11 @@ public class ProcessingOrders extends Fragment {
     }
 
     private void parseProcessingTickets(JSONArray array) {
+
+
         for (int i = 0; i < array.length(); i++) {
             ProcessingTicketItems processingTicketItems = new ProcessingTicketItems();
+
             JSONObject json = null;
             try {
                 json = array.getJSONObject(i);

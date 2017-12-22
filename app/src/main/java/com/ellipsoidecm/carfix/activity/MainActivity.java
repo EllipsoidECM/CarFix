@@ -2,6 +2,7 @@ package com.ellipsoidecm.carfix.activity;
 
 
 import android.app.ActionBar;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -105,10 +106,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         performreq("http://ellipsoid.esy.es/repairstation_API/showcart.php?id=" + user.getId());
         performreq1(Noty_API.URL_VIEW+user.getId());
+//        setupBadge1();
+//        setupBadge();
 
-
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Select Car Details", Snackbar.LENGTH_SHORT);
-        snackbar.show();
+//
+//        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Select Car Details", Snackbar.LENGTH_SHORT);
+//        snackbar.show();
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
 
@@ -156,6 +159,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        User user = SharedPrefManager.getInstance(this).getUser();
+
+        performreq("http://ellipsoid.esy.es/repairstation_API/showcart.php?id=" + user.getId());
+        performreq1(Noty_API.URL_VIEW+user.getId());
 
     }
 
@@ -306,6 +313,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
+
+            case R.id.nav_notiications:
+                startActivity(new Intent(MainActivity.this, Notification.class));
+
+                break;
         }
 
         //replacing the fragment
@@ -326,6 +338,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //calling the method displayselectedscreen and passing the id of selected menu
         displaySelectedScreen(item.getItemId());
         return true;
+    }
+
+
+    @Override
+    public void onResume(){
+
+        super.onResume();
+
     }
 
     JSONArray object;
@@ -404,12 +424,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ));
 
 
-                mCartCount = heroList.size();
+
+                mCartCount = heroes.length();
 
                 setupBadge();
             }
 
         }catch(Exception e){
+            mCartCount=0;
             }
         }
 

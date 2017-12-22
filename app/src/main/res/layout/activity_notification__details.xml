@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.ellipsoidecm.carfix.activity.Notification_Details">
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="120dp"
@@ -14,42 +15,51 @@
         android:background="@drawable/carfix_bg"
         />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_height="40dp">
 
 
         <TextView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:layout_marginLeft="25dp"
             android:text="O.E" />
 
         <TextView
+
             android:id="@+id/OE_value"
             android:layout_width="90dp"
             android:textAlignment="center"
             android:background="@color/border"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:inputType="none"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="20dp"/>
 
-        <CheckBox
-            android:layout_width="50dp"
-            android:layout_marginLeft="25dp"
-            android:id="@+id/OE_box"
-            android:onClick="checkBoxSelection"
-            android:layout_height="50dp" />
 
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_height="40dp">
 
@@ -69,15 +79,8 @@
             android:inputType="none"
             android:textAlignment="center"
             android:background="@color/border"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="20dp"/>
 
-        <CheckBox
-            android:layout_width="50dp"
-            android:id="@+id/Brand_box"
-            android:layout_marginLeft="25dp"
-            android:onClick="checkBoxSelection"
-
-            android:layout_height="50dp" />
 
 
 
@@ -85,7 +88,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_height="40dp">
 
@@ -105,15 +108,8 @@
             android:textAlignment="center"
             android:background="@color/border"
             android:inputType="none"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="20dp"/>
 
-        <CheckBox
-            android:layout_width="50dp"
-            android:id="@+id/Local_box"
-            android:onClick="checkBoxSelection"
-
-            android:layout_marginLeft="25dp"
-            android:layout_height="50dp" />
 
 
 
@@ -121,7 +117,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp">
 
 
@@ -140,15 +136,8 @@
             android:background="@color/border"
             android:textAlignment="center"
             android:inputType="none"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="20dp"/>
 
-        <CheckBox
-            android:layout_width="50dp"
-            android:id="@+id/Used_box"
-            android:onClick="checkBoxSelection"
-
-            android:layout_marginLeft="25dp"
-            android:layout_height="50dp" />
 
 
 
@@ -156,9 +145,55 @@
 
     </LinearLayout>
 
+
+        </LinearLayout>
+
+
     <LinearLayout
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:orientation="vertical"
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <CheckBox
+        android:layout_width="40dp"
+        android:id="@+id/OE_box"
+        android:onClick="checkBoxSelection"
+        android:layout_marginBottom="20dp"
+        android:layout_height="40dp" />
+
+    <CheckBox
+        android:layout_width="40dp"
+        android:id="@+id/Brand_box"
+        android:onClick="checkBoxSelection"
+        android:layout_marginBottom="20dp"
+        android:layout_height="40dp" />
+
+    <CheckBox
+        android:layout_width="40dp"
+        android:id="@+id/Local_box"
+        android:onClick="checkBoxSelection"
+        android:layout_marginBottom="20dp"
+        android:layout_height="40dp" />
+    <CheckBox
+        android:layout_width="40dp"
+        android:id="@+id/Used_box"
+        android:onClick="checkBoxSelection"
+
+        android:layout_height="40dp" />
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content">
 
         <Button
@@ -166,23 +201,26 @@
             android:layout_width="100dp"
             android:textColor="@color/white"
 
-            android:layout_marginLeft="50dp"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="70dp"
             android:id="@+id/reject_proc"
             android:layout_height="wrap_content"
             android:background="@drawable/mybutton" />
 
 
         <Button
-            android:layout_marginLeft="60dp"
             android:layout_width="100dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:id="@+id/accept_proc"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="70dp"
+            android:layout_alignParentEnd="true"
             android:background="@drawable/mybutton"
-            android:text="Accept" />
+            android:text="Pay" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+
+
+
 
 </LinearLayout>
