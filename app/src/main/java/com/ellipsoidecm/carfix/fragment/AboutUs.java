@@ -57,7 +57,7 @@ public class AboutUs extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent browserIntent =
-                        new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/ellipsoidecm"));
+                        new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/CarFixParts/"));
                 startActivity(browserIntent);
             }
         });
@@ -66,7 +66,7 @@ public class AboutUs extends Fragment {
         instagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent brower = new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.instagram.com/ecmellipsoid/"));
+                Intent brower = new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.instagram.com/carfixparts/"));
                 startActivity(brower);
             }
         });

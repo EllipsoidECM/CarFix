@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -55,21 +56,31 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         listView= (ListView) findViewById(R.id.notify_list);
         heroList = new ArrayList<>();
         setTitle("Notifications");
 
-        setRequestedOrientation(
-                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         user = SharedPrefManager.getInstance(this).getUser();
 
 
         performreq(Noty_API.URL_VIEW+user.getId());
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this,MainActivity.class));
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 
 
@@ -148,7 +159,11 @@ public class NotificationActivity extends AppCompatActivity {
                         obj.getString("oe_price"),
                         obj.getString("branded_price"),
                         obj.getString("local_price"),
-                        obj.getString("used_price")
+                        obj.getString("used_price"),
+                        obj.getString("oe_name"),
+                        obj.getString("branded_name"),
+                        obj.getString("local_name"),
+                        obj.getString("used_name")
                 ));
             }
 
@@ -211,6 +226,10 @@ public class NotificationActivity extends AppCompatActivity {
                     intent.putExtra("Brand_value",noty.getBrand_price());
                     intent.putExtra("Local_value",noty.getLocal_price());
                     intent.putExtra("Used_value",noty.getUsed_price());
+                    intent.putExtra("oe_name",noty.getOe_name());
+                    intent.putExtra("branded_name",noty.getBranded_name());
+                    intent.putExtra("local_name",noty.getLocal_name());
+                    intent.putExtra("used_name",noty.getUsed_name());
                     startActivity(intent);
                 }
             });

@@ -1,6 +1,7 @@
 package com.ellipsoidecm.carfix.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -22,11 +24,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ellipsoidecm.carfix.Manifest;
 import com.ellipsoidecm.carfix.NOT_API.Noty_API;
 import com.ellipsoidecm.carfix.R;
+import com.ellipsoidecm.carfix.listItems.Hero;
+import com.ellipsoidecm.carfix.others.CustomVolleyRequest;
 import com.ellipsoidecm.carfix.others.SharedPrefManager;
 import com.ellipsoidecm.carfix.others.URLs;
 import com.ellipsoidecm.carfix.others.User;
@@ -42,8 +48,10 @@ import java.util.Map;
 
 public class Notification_Details extends AppCompatActivity implements PaymentResultListener {
 
-    TextView OE,Brand,Local,Used;
-    String OE_val,Brand_val,Local_val,Used_val,ticket_id;
+    TextView OE,Brand,Local,Used,OE_det,Local_det,Used_det,Brand_det;
+    String OE_val,Brand_val,Local_val,Used_val,ticket_id,payment_mode,oe_name,brand_name,local_name,used_name;
+    private NetworkImageView tick_image;
+
 
     Button send,cancel;
     CheckBox c1,c2,c3,c4;
@@ -60,6 +68,10 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
         setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        tick_image = (NetworkImageView) findViewById(R.id.ticket_image);
+
+
+
 
 
         c1= (CheckBox)findViewById(R.id.OE_box);
@@ -74,8 +86,10 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
         Brand_val = getIntent().getStringExtra("Brand_value");
         Local_val=getIntent().getStringExtra("Local_value");
         Used_val = getIntent().getStringExtra("Used_value");
-
-
+        oe_name = getIntent().getStringExtra("oe_name");
+        brand_name=getIntent().getStringExtra("branded_name");
+        local_name=getIntent().getStringExtra("local_name");
+        used_name=getIntent().getStringExtra("used_name");
 
 
 
@@ -85,10 +99,21 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
         Used = (TextView) findViewById(R.id.Used_value);
         send = (Button)findViewById(R.id.accept_proc);
         cancel = (Button) findViewById(R.id.reject_proc);
+        OE_det = (TextView) findViewById(R.id.OE_name);
+        Local_det = (TextView) findViewById(R.id.Local_name);
+        Brand_det = (TextView) findViewById(R.id.Brand_name);
+        Used_det = (TextView) findViewById(R.id.Used_name);
+
+        OE_det.setText(OE_det.getText()+"\n("+oe_name+")");
+        Local_det.setText(Local_det.getText()+"\n("+local_name+")");
+        Brand_det.setText(Brand_det.getText()+"\n("+brand_name+")");
+        Used_det.setText(Used_det.getText()+"\n("+used_name+")");
 
 
 
         setTitle("Ticket: "+ticket_id);
+
+        getimage();
 
         OE.setText(OE_val);
         Brand.setText(Brand_val);
@@ -177,10 +202,14 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
 //            }
 //        });
 
+        final User user = SharedPrefManager.getInstance(this).getUser();
+
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //do nothing for now
+                performreq(Noty_API.URL_Delete+ticket_id);
+                startActivity(new Intent(Notification_Details.this,NotificationActivity.class));
             }
         });
 
@@ -188,6 +217,48 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                final Dialog pay_dialog = new Dialog(Notification_Details.this);
+                pay_dialog.setContentView(R.layout.payment_mode);
+
+                pay_dialog.show();
+
+               RadioGroup radioGroup = (RadioGroup) pay_dialog.findViewById(R.id.myRadioGroup);
+
+                radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        // find which radio button is selected
+                        if(checkedId == R.id.cod) {
+                            payment_mode="COD";
+                        } else if(checkedId == R.id.online) {
+                            payment_mode = "ONLINE";
+                        }
+                    }
+
+                });
+
+                final Button pay_button = (Button) pay_dialog.findViewById(R.id.proceed);
+
+                pay_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(payment_mode.equals("COD")){
+                            sendToServer("http://ellipsoid.esy.es/repairstation_API/selected_price.php");
+                            Toast.makeText(getApplicationContext(),"Cod",Toast.LENGTH_SHORT).show();
+                            pay_mode();
+                            performreq(Noty_API.URL_Delete+ticket_id);
+                            startActivity(new Intent(Notification_Details.this,MainActivity.class));
+
+
+                        }
+                        else if(payment_mode.equals("ONLINE")){
+                            startPayment();
+                        }
+                    }
+                });
 
                 total=0;
 
@@ -203,7 +274,7 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
                 Toast.makeText(Notification_Details.this,"Total: "+total,Toast.LENGTH_SHORT).show();
 
 
-                startPayment();
+              //  startPayment();
 
             }
         });
@@ -348,6 +419,140 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
 
     }
 
+    ImageLoader imageLoader;
+
+    private void loadImage(){
+        String url = img_url;
+        if(url.equals("")){
+            Toast.makeText(this,"Please enter a URL",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        imageLoader = CustomVolleyRequest.getInstance(this.getApplicationContext())
+                .getImageLoader();
+        imageLoader.get(url, ImageLoader.getImageListener(tick_image,
+                R.drawable.ac, android.R.drawable
+                        .ic_dialog_alert));
+        tick_image.setImageUrl(url, imageLoader);
+    }
+
+    String img_url;
+JSONArray object;
+
+    private void getimage() {
+
+//        User user = SharedPrefManager.getInstance(this).getUser();
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://ellipsoid.esy.es/repairstation_API/show_notification_ticket.php?id="+ticket_id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(Cart.this, response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+
+
+                            object = new JSONArray(response);
+
+                            JSONObject mainobj=object.getJSONObject(0);
+                            img_url = mainobj.getString("url");
+                            loadImage();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Notification_Details.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+
+
+
+    }
+
+    private void pay_mode() {
+
+  //      User user = SharedPrefManager.getInstance(this).getUser();
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://ellipsoid.esy.es/repairstation_API/mode_of_payment.php?id="+ticket_id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(Cart.this, response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+
+
+
+
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Notification_Details.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mode_of_payment",payment_mode);
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+
+
+
+
+    }
+
+
+
+
+
 
 
     private void performreq(String url) {
@@ -417,7 +622,12 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
     public void onPaymentSuccess(String razorpayPaymentID) {
         try {
             Toast.makeText(this, "Payment Successful: " + razorpayPaymentID, Toast.LENGTH_SHORT).show();
-           // Toast.makeText(getApplicationContext(),OE_val+" "+Brand_val+" "+Local_val+" "+Used_val,Toast.LENGTH_SHORT).show();
+
+            performreq(Noty_API.URL_Delete+ticket_id);
+            pay_mode();
+
+
+            // Toast.makeText(getApplicationContext(),OE_val+" "+Brand_val+" "+Local_val+" "+Used_val,Toast.LENGTH_SHORT).show();
             sendToServer("http://ellipsoid.esy.es/repairstation_API/selected_price.php");
         } catch (Exception e) {
             Log.e(TAG, "Exception in onPaymentSuccess", e);
@@ -438,6 +648,32 @@ public class Notification_Details extends AppCompatActivity implements PaymentRe
             Log.e(TAG, "Exception in onPaymentError", e);
         }
     }
+//
+//    private void refreshlist(JSONArray array) {
+//
+//        try {
+//            for (int i = 0; i < array.length(); i++) {
+//
+//                JSONObject obj = array.getJSONObject(i);
+//
+//                heroList.add(new Hero(
+//                        obj.getInt("id"),
+//                        obj.getString("slc"),
+//                        obj.getString("brand"),
+//                        obj.getString("model"),
+//                        obj.getString("date")
+//                ));
+//            }
+//
+//            adapter = new Cart.HeroAdapter(heroList);
+//            listView.setAdapter(adapter);
+//            adapter.notifyDataSetChanged();
+//
+//
+//
+//        }catch(Exception e){}
+//    }
+
 
 
 

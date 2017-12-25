@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Cart"
+                        android:text="My Cart"
                         android:textSize="24sp"
                         android:layout_centerInParent="true"
                         android:textColor="@color/white"
@@ -52,6 +52,18 @@
                         />
 
                 </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Refresh"
+                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:textSize="18dp"
+
+                    android:layout_toLeftOf="@id/refreshbutton"
+                    />
 
                 <ImageButton
                     android:layout_width="50dp"

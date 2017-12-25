@@ -89,7 +89,7 @@ public class Step2 extends AppCompatActivity {
     Button  refresh;
     Button next1;
     EditText et1, et4;
-    TextView brand,Year,Model,Varient;
+    TextView brand,Year,Model,Varient,Vin;
 
 
     private Uri fileUri;
@@ -117,21 +117,27 @@ public class Step2 extends AppCompatActivity {
         setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        setTitle("Select Part");
+
 
         final String brandname = getIntent().getStringExtra("BRAND");
         final String yearname = getIntent().getStringExtra("YEAR");
         final String modelname = getIntent().getStringExtra("MODEL");
         final String variantname = getIntent().getStringExtra("VARIANT");
+        final String vin = getIntent().getStringExtra("VIN");
 
         brand = (TextView) findViewById(R.id.s2_brand);
         Year = (TextView) findViewById(R.id.s2_year);
         Model = (TextView) findViewById(R.id.s2_model);
         Varient = (TextView) findViewById(R.id.s2_varient);
+        Vin = (TextView) findViewById(R.id.vin_details);
+
 
         brand.setText(brandname);
         Year.setText(yearname);
         Model.setText(modelname);
         Varient.setText(variantname);
+        Vin.setText(vin);
 
 
 
@@ -537,7 +543,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Oil Cooler")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -546,7 +552,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Bush kit")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -555,7 +561,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Shock absorber")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -564,7 +570,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Ball joints")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -573,7 +579,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Tie Rod Ends")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -582,7 +588,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Stabler links")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -591,7 +597,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Lower and Upper arms")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -611,7 +617,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("A/C Cooling Coil")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -620,7 +626,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Cooling Condenser")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -629,7 +635,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("A/C compressor")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -638,7 +644,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("High speed cooling fan outer")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -647,7 +653,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Dashboard cooling blower")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -656,7 +662,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Thermistor")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -665,7 +671,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Pressure valve")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -674,7 +680,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Piping")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -683,7 +689,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Switch")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -703,7 +709,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Bonnet compartment Fuse box")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -712,7 +718,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Inner body compartment box")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -721,7 +727,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("wiring kit")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -730,7 +736,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Alternator")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -739,7 +745,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Battery")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -748,7 +754,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Ignition sockets")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -757,7 +763,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Head lights and wipes combination switch \t")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -766,7 +772,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Power Windows")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -775,7 +781,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("ECM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -784,7 +790,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("PCM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -793,7 +799,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("BCM")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -802,7 +808,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Immobilizer")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -811,7 +817,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("cluster(speedometer)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -820,7 +826,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("EPS Module")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -829,7 +835,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Air bag controller module(SRS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -838,7 +844,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("ABS control module")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -847,7 +853,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("ESP control module")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -856,7 +862,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Central locking")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -865,7 +871,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Auto")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -874,7 +880,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Manual")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -883,7 +889,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Calipers")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -892,7 +898,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Wheel drums")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -901,7 +907,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Drum bearing with ABS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -910,7 +916,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Drum bearing without ABS")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -928,7 +934,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Front Brake shoes")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -937,7 +943,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Brake cylinder(wheel)")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -945,7 +951,7 @@ public class Step2 extends AppCompatActivity {
                     spart.setAdapter(dataAdapter1);
                 }if (sp3.contentEquals("Brake cylinder Master")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -954,7 +960,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hand Brake cable")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -963,7 +969,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -972,7 +978,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -981,7 +987,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -990,7 +996,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -999,7 +1005,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1008,7 +1014,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1017,7 +1023,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1026,7 +1032,7 @@ public class Step2 extends AppCompatActivity {
                 }
                 if (sp3.contentEquals("Hydrolic")) {
                     List<String> list = new ArrayList<String>();
-                    list.add("No Sparate Classiication");
+                    list.add("No Separate Classification");
                     ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(Step2.this,
                             android.R.layout.simple_spinner_item, list);
                     dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -1097,9 +1103,9 @@ public class Step2 extends AppCompatActivity {
                  spartnumer = et4.getText().toString();
 
 
-                 if(checkImageResource(Step2.this,imgPreview,R.drawable.ic_fix)){
-                     Toast.makeText(Step2.this,"Please capture image of the part",Toast.LENGTH_SHORT).show();
-                 }
+//                 if(imgPreview.getTag().equals("no")){
+//                     Toast.makeText(Step2.this,"Please capture image of the part",Toast.LENGTH_SHORT).show();
+//                 }
 
 
                 Intent intent = new Intent(Step2.this, Step3.class);
@@ -1113,11 +1119,13 @@ public class Step2 extends AppCompatActivity {
                 intent.putExtra("SMODEL", modelname);
                 intent.putExtra("SVARIANT", variantname);
                 intent.putExtra("CAPTUREDIMAGE", byteArray);
+                    intent.putExtra("VIN", vin);
 
 
 
-                startActivity(intent);}
-                catch (Exception e){Log.d("in next",e.toString());}
+
+                    startActivity(intent);}
+                catch (Exception e){Toast.makeText(Step2.this,"Please capture image of the part & part detail",Toast.LENGTH_SHORT).show();}
 
             }
         });
@@ -1145,31 +1153,7 @@ public class Step2 extends AppCompatActivity {
 
     }
 
-    @SuppressWarnings("deprecation")
-    @SuppressLint("NewApi")
-    public static boolean checkImageResource(Context ctx, ImageView imageView,
-                                             int imageResource) {
-        boolean result = false;
 
-        if (ctx != null && imageView != null && imageView.getDrawable() != null) {
-            Drawable.ConstantState constantState;
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                constantState = ctx.getResources()
-                        .getDrawable(imageResource, ctx.getTheme())
-                        .getConstantState();
-            } else {
-                constantState = ctx.getResources().getDrawable(imageResource)
-                        .getConstantState();
-            }
-
-            if (imageView.getDrawable().getConstantState() == constantState) {
-                result = true;
-            }
-        }
-
-        return result;
-    }
 
     Bitmap bitmap;
 
@@ -1246,6 +1230,7 @@ public class Step2 extends AppCompatActivity {
                  bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
                     options);
                 imgPreview.setImageBitmap(bitmap);
+                imgPreview.setTag("bg");
 
                 SharedPreferences.Editor editor = getSharedPreferences("default", MODE_PRIVATE).edit();
                 editor.putString("bitmap",getStringImage(bitmap));

@@ -67,7 +67,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
-                    android:hint="Shipping Address"
+
+                    android:hint="Street Address, Pincode, Landmark"
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/black" />

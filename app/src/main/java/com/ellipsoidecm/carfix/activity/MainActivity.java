@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public static int mNotyCount = 0;
 
+
+
     //  public static final String TOKEN_BROADCAST = "myfcmtokenbroadcast";
 
 
@@ -106,6 +109,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         performreq("http://ellipsoid.esy.es/repairstation_API/showcart.php?id=" + user.getId());
         performreq1(Noty_API.URL_VIEW+user.getId());
+
+
+
+
+
+        SharedPreferences sharedPreferences= getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+
 //        setupBadge1();
 //        setupBadge();
 
@@ -113,7 +123,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), "Select Car Details", Snackbar.LENGTH_SHORT);
 //        snackbar.show();
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+        SharedPreferences share_token = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+
+        sendToken("http://ellipsoid.esy.es/repairstation_API/fcm_update.php?id="+user.getId(),share_token.getString(getString(R.string.FCM_TOKEN),""));
 
 
         //   Log.d("tokenbroad",sharedPreferences.getString())
@@ -150,6 +162,50 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navItemIndex = 0;
             loadHomeFragment();
         }
+    }
+
+
+    private void sendToken(String url, final String token) {
+
+//        User user = SharedPrefManager.getInstance(this).getUser();
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        // Toast.makeText(Cart.this, response, Toast.LENGTH_LONG).show();
+
+                        try {
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("fcm",token);
+
+                return params;
+            }
+
+        };
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
     }
 
 
@@ -315,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_notiications:
-                startActivity(new Intent(MainActivity.this, Notification.class));
+                startActivity(new Intent(MainActivity.this, NotificationActivity.class));
 
                 break;
         }
@@ -506,7 +562,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         obj.getString("oe_price"),
                         obj.getString("branded_price"),
                         obj.getString("local_price"),
-                        obj.getString("used_price")
+                        obj.getString("used_price"),
+                        obj.getString("oe_name"),
+                        obj.getString("branded_name"),
+                        obj.getString("local_name"),
+                        obj.getString("used_name")
                 ));
             }
 

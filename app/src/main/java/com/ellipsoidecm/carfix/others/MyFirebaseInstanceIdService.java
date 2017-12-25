@@ -6,11 +6,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.ellipsoidecm.carfix.R;
+import com.ellipsoidecm.carfix.activity.Notification_Details;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 import com.google.firebase.messaging.FirebaseMessagingService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -23,6 +34,10 @@ public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
         SharedPreferences.Editor editor=sharedPreferences.edit();
         editor.putString(getString(R.string.FCM_TOKEN),refreshedToken);
         editor.commit();
+
+
+
+
         Log.d("FirebaseToken", "Refreshed token: " + refreshedToken);
 
         // If you want to send messages to this application instance or
@@ -30,4 +45,8 @@ public class MyFirebaseInstanceIdService extends FirebaseInstanceIdService {
         // Instance ID token to your app server.
       //  sendRegistrationToServer(refreshedToken);
     }
+
+
+
+
 }

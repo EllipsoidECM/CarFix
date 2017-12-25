@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class Step3 extends AppCompatActivity {
 
-    TextView brand, year, model, variant, hc, lc, slc, partnumber,part,partdescription;
+    TextView brand, year, model, variant, hc, lc, slc, partnumber,part,partdescription,vin;
 
     ImageView finalimage;
 
@@ -46,7 +46,7 @@ public class Step3 extends AppCompatActivity {
     public static final String KEY_SLC ="slc";
     public static final String KEY_PARTNAME = "partdescription";
     public static final String KEY_PARTNUMBER = "partnumber";
-        String finalbrand,finalyear,finalmodel,finalvariant,finalHC,finalLC,finalSP,finalpartname,finalpartnumer;
+        String finalbrand,finalyear,finalmodel,finalvariant,finalHC,finalLC,finalSP,finalpartname,finalpartnumer,finalvin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class Step3 extends AppCompatActivity {
         part = (TextView) findViewById(R.id.subpart);
         partnumber = (TextView) findViewById(R.id.cpartnumber);
         partdescription = (TextView) findViewById(R.id.csubpart);
+        vin = (TextView) findViewById(R.id.vin_s3_dis);
 
 
 
@@ -84,6 +85,7 @@ public class Step3 extends AppCompatActivity {
          finalSP = getIntent().getStringExtra("SP");
          finalpartname = getIntent().getStringExtra("SNAME");
          finalpartnumer = getIntent().getStringExtra("SPARTNUMBER");
+         finalvin  = getIntent().getStringExtra("VIN");
 
 
         brand.setText(finalbrand);
@@ -97,6 +99,7 @@ public class Step3 extends AppCompatActivity {
         partdescription.setText(finalpartname);
       //  partnumber.setText(finalpartnumer);
         part.setText(finalSP);
+        vin.setText(finalvin);
 
         edit = (Button) findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +132,7 @@ public class Step3 extends AppCompatActivity {
         });
     }
 
-    String fbrand="",fyear="",fmodel="",fvariant="",fhc="",flc="",fslc="",fpartnumber="",fpart="";
+    String fbrand="",fyear="",fmodel="",fvariant="",fhc="",flc="",fslc="",fpartnumber="",fpart="",fvin="";
 
 
     User user;
@@ -146,6 +149,7 @@ public class Step3 extends AppCompatActivity {
         fslc = slc.getText().toString();
         fpartnumber = partnumber.getText().toString();
         fpart = part.getText().toString();
+        fvin = vin.getText().toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, INSERT_URL,
                 new Response.Listener<String>() {
@@ -165,6 +169,12 @@ public class Step3 extends AppCompatActivity {
             protected Map<String, String> getParams() {
 
 
+                if(fslc.equals("No Separate Classification"))
+                {
+                    fslc="";
+                }
+
+
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mechanic_id",user.getId()+"");
                 params.put(KEY_BRAND, fbrand);
@@ -176,6 +186,7 @@ public class Step3 extends AppCompatActivity {
                 params.put(KEY_SLC, fslc);
                 params.put(KEY_PARTNAME, fpart);
                 params.put(KEY_PARTNUMBER, fpartnumber);
+                params.put("vin",fvin);
                 return params;
             }
 

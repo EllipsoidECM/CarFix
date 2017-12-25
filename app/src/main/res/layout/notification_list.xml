@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:background="@drawable/shadow"
-        android:layout_width="wrap_content"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/tick_id"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ticket Id:"
-        android:textColor="@color/black"
-        android:layout_marginLeft="30dp"
-        />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/milkywhite">
 
+        <ImageView
+            android:id="@+id/rndicon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/round_icon" />
 
+        <TextView
+            android:id="@+id/tickt_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/rndicon"
+            android:text="Order No:"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black" />
 
-    <ImageView
+        <TextView
+            android:id="@+id/tick_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/tickt_id"
+            android:text="Ticket Id:"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp"
+            android:textStyle="italic"
+            android:layout_centerVertical="true"
+            android:textColor="@color/iron" />
 
-        android:layout_width="330dp"
-        android:layout_height="80dp"
-        android:layout_marginLeft="18dp"
-        android:background="@color/divideline"
-        />
+    </RelativeLayout>
 
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

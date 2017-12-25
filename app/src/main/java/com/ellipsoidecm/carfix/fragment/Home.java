@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,6 +62,10 @@ public class Home extends Fragment  {
     ArrayList<SpinnerModel> list;
     SpinnerAdapter adapter;
 
+    EditText vin_inp;
+    String vin;
+
+
     public Home() {
     }
 
@@ -80,6 +85,9 @@ public class Home extends Fragment  {
 
 
         TextView tx = (TextView)view.findViewById(R.id.main_about);
+
+        vin_inp = (EditText) view.findViewById(R.id.vin_input);
+
 
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/chaparral.ttf");
 
@@ -6910,6 +6918,7 @@ public class Home extends Fragment  {
                 String syear = s2.getSelectedItem().toString();
                 String smodel = s3.getSelectedItem().toString();
                 String svariant = s4.getSelectedItem().toString();
+                vin=vin_inp.getText().toString();
 
 
 
@@ -6925,6 +6934,7 @@ public class Home extends Fragment  {
                 intent.putExtra("YEAR", syear);
                 intent.putExtra("MODEL", smodel);
                 intent.putExtra("VARIANT", svariant);
+                intent.putExtra("VIN",vin);
                 getActivity().startActivity(intent);}
 
             }

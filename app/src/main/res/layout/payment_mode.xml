@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:background="@color/milkywhite"
+    android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:id="@+id/titledialog"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+
+            android:layout_height="40dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Payment Mode"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+
+
+        <RadioGroup
+            android:layout_below="@id/titledialog"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/myRadioGroup"
+            android:layout_width="wrap_content"
+            >
+
+            <RadioButton
+
+                android:id="@+id/cod"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+                android:layout_weight="1"
+                android:text="COD" />
+
+            <RadioButton
+                android:id="@+id/online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="PAY ONLINE"
+                />
+        </RadioGroup>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/proceed"
+        android:layout_margin="10dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/green"
+        android:text="Proceed"
+        />
+
+
+
+
+
+
+</LinearLayout>
